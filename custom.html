@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marvel: Anime Arena - Pilih Karakter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Montserrat', sans-serif;
+            color: white;
+            overflow: hidden;
+        }
+
+        .game-container {
+            height: 100vh;
+            background: url('aset/lab.png') no-repeat center center;
+            background-size: cover;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* HEADER ATAS */
+        .top-bar {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            left: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 5;
+        }
+
+        .top-bar .back-btn, .top-bar .shop-btn {
+            background: rgba(0,0,0,0.3);
+            border: 2px solid rgba(255,255,255,0.4);
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .top-bar .back-btn:hover, .top-bar .shop-btn:hover {
+            background-color: rgba(0,0,0,0.6);
+            transform: scale(1.05);
+        }
+
+        .top-bar .shop-btn i {
+            color: #e8a337;
+            font-size: 1.3rem;
+        }
+
+        /* BAGIAN PILIH */
+        .selection-wrapper {
+            display: flex;
+            gap: 60px;
+            align-items: flex-start;
+            z-index: 2;
+        }
+
+        .selection-zone {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .selection-zone h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            text-shadow: 2px 2px 5px black;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        /* GRID HERO */
+        .hero-list {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            background-color: rgba(10, 15, 20, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-portrait {
+            position: relative;
+            border: 2px solid #555;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .hero-portrait img {
+            width: 10vh;
+            display: block;
+        }
+
+        .hero-portrait:hover, .hero-portrait.active {
+            border-color: #e8a337;
+            box-shadow: 0 0 10px #e8a337;
+            transform: scale(1.05);
+        }
+
+        /* SKIN LIST */
+        .skin-list-arena {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .skin-item-arena {
+            position: relative;
+            width: 260px;
+            height: 460px;
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 3px solid #666;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .skin-item-arena.active {
+            border-color: #e8a337;
+            box-shadow: 0 0 20px #e8a337;
+        }
+
+        .skin-item-arena.locked {
+            border-color: #ff3333;
+        }
+
+        .skin-item-arena img {
+            max-width: 90%;
+            max-height: 90%;
+            transition: transform 0.3s ease;
+        }
+
+        .skin-item-arena:hover img {
+            transform: scale(1.1);
+        }
+
+        .item-name-arena {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .lock-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(150, 20, 20, 0.6);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            color: white;
+        }
+
+        .lock-overlay i { font-size: 4rem; text-shadow: 0 0 10px black; }
+        .lock-overlay span {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        /* Tombol PILIH di bawah area SKIN */
+        .action-bar {
+            margin-top: 25px;
+        }
+
+        .action-button-arena {
+            background: linear-gradient(90deg, #007bff, #00c3ff);
+            color: white;
+            padding: 15px 60px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(0, 195, 255, 0.5);
+            transition: all 0.25s ease;
+            border: 2px solid #66ddff;
+        }
+
+        .action-button-arena:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+
+        <!-- Tombol Kembali & Shop -->
+        <div class="top-bar">
+            <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i>KEMBALI</a>
+            <div class="shop-btn"><i class="fa-solid fa-store"></i> Shop</div>
+        </div>
+
+        <div class="selection-wrapper">
+            <!-- PILIH SKIN -->
+            <div class="selection-zone">
+                <h2>PILIH SKIN</h2>
+                <div class="skin-list-arena">
+                    <div class="skin-item-arena active">
+                        <img src="aset/iron.png" alt="Classic Suit">
+                        <div class="item-name-arena">CLASSIC SUIT</div>
+                    </div>
+                    <div class="skin-item-arena locked">
+                        <img src="https://i.ibb.co/bFDDW62/iron-spider-full.png" alt="Iron Spider Armor">
+                        <div class="lock-overlay">
+                            <i class="fas fa-lock"></i>
+                            <span>belum dimiliki</span>
+                        </div>
+                        <div class="item-name-arena">IRON MAN NANO SUIT</div>
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="action-button-arena">PILIH</button>
+                </div>
+            </div>
+
+            <!-- PILIH HERO -->
+            <div class="selection-zone">
+                <h2>PILIH HERO</h2>
+                <div class="hero-list">
+                    <div class="hero-portrait active"><img src="aset/head_iron.png"></div>
+                    <!-- sisanya -->
+                    <div class="hero-portrait"><img src="aset/head_capt.png"></div>
+                    <div class="hero-portrait"><img src="aset/head_capt.png"></div>
+                    <div class="hero-portrait"><img src="aset/head_capt.png"></div>
+                    <div class="hero-portrait"><img src="aset/head_capt.png"></div>
+                    <div class="hero-portrait"><img src="aset/head_capt.png"></div>
+                    <div class="hero-portrait"><img src="aset/head_capt.png"></div>
+                    <div class="hero-portrait"><img src="aset/head_capt.png"></div>
+                    <div class="hero-portrait"><img src="aset/head_capt.png"></div>
+                    <div class="hero-portrait"><img src="aset/head_capt.png"></div>
+                    <div class="hero-portrait"><img src="aset/head_capt.png"></div>
+                    <div class="hero-portrait"><img src="aset/head_capt.png"></div>
+                    <div class="hero-portrait"><img src="aset/head_capt.png"></div>
+                    <div class="hero-portrait"><img src="aset/head_capt.png"></div>
+                    <div class="hero-portrait"><img src="aset/head_capt.png"></div>
+                    <div class="hero-portrait"><img src="aset/head_capt.png"></div>
+                    <div class="hero-portrait"><img src="aset/head_capt.png"></div>
+                    <div class="hero-portrait"><img src="aset/head_capt.png"></div>
+                    <div class="hero-portrait"><img src="aset/head_capt.png"></div>
+                    <div class="hero-portrait"><img src="aset/head_capt.png"></div>
+                    <div class="hero-portrait"><img src="aset/head_capt.png"></div>
+                    <div class="hero-portrait"><img src="aset/head_capt.png"></div>
+                    <div class="hero-portrait"><img src="aset/head_capt.png"></div>
+                    <div class="hero-portrait"><img src="aset/head_capt.png"></div>
+                    <div class="hero-portrait"><img src="aset/head_capt.png"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

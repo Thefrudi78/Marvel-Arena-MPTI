@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marvel: Anime Arena - Training Mode</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="game-container training-session-bg">
+
+        <div class="hud-top-bar">
+            <div class="hud-player p1">
+                <div class="char-icon"><img src="aset/head_capt.png" alt="P1 Icon"></div>
+                <div class="player-details">
+                    <span class="player-name">LAX</span>
+                    <div class="health-bar"><div class="health-fill" style="width: 100%;"></div></div>
+                </div>
+            </div>
+            <div class="hud-center">
+                <div class="frame-data positive">+5</div>
+                <div class="timer">--</div>
+                <div class="frame-data negative">-7</div>
+            </div>
+            <div class="hud-player p2">
+                 <div class="player-details">
+                    <span class="player-name">CAS</span>
+                    <div class="health-bar"><div class="health-fill" style="width: 100%;"></div></div>
+                </div>
+                <div class="char-icon"><img src="aset/head_iron.png" alt="P2 Icon"></div>
+            </div>
+        </div>
+
+        <div class="hud-input-display">
+            <span>INPUT 1:</span>
+            <i class="fas fa-arrow-down"></i> <i class="fas fa-arrow-right"></i> <span>LP</span>
+        </div>
+
+        <div class="hud-combo-info">
+            <span>DAMAGE: KOMBO</span>
+            <span>SCALING: 60%</span>
+        </div>
+
+        <div class="pause-menu-overlay">
+            <div class="training-options-modal">
+                <h2>TRAINING OPTIONS</h2>
+                <div class="options-columns">
+                    <div class="options-column">
+                        <fieldset>
+                            <legend>PENGATURAN DUMMY</legend>
+                            <div class="option-group">
+                                <span>STATUS:</span>
+                                </div>
+                             <div class="option-group">
+                                <span>TANGKISAN:</span>
+                                <div class="option-item"><input type="radio" name="blocking" id="block-none" checked><label for="block-none">Tidak Menangkis</label></div>
+                                <div class="option-item"><input type="radio" name="blocking" id="block-all"><label for="block-all">Menangkis Semua</label></div>
+                                <div class="option-item"><input type="radio" name="blocking" id="block-after-hit"><label for="block-after-hit">Tangkis Setelah Pukulan Pertama</label></div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>AKSI BALASAN</legend>
+                            <button class="setting-button">Atur Aksi Balasan</button>
+                        </fieldset>
+                        <fieldset>
+                            <legend>REKAM & PUTAR</legend>
+                             <button class="setting-button">Atur Rekaman</button>
+                        </fieldset>
+                         <fieldset>
+                            <legend>LAINNYA</legend>
+                            <div class="option-item"><input type="checkbox" id="reset-pos"><label for="reset-pos">Reset Posisi</label></div>
+                        </fieldset>
+                    </div>
+
+                    <div class="options-column">
+                        <div class="option-group dummy-status-group">
+                           <div class="option-item"><input type="radio" name="status" id="status-stand" checked><label for="status-stand">Berdiri</label></div>
+                           <div class="option-item"><input type="radio" name="status" id="status-crouch"><label for="status-crouch">Merunduk</label></div>
+                           <div class="option-item"><input type="radio" name="status" id="status-jump"><label for="status-jump">Melompat</label></div>
+                        </div>
+                        <fieldset>
+                            <legend>PENGATURAN TAMPILAN</legend>
+                            <div class="option-item"><input type="checkbox" id="show-input" checked><label for="show-input">Tampilan Input</label></div>
+                            <div class="option-item"><input type="checkbox" id="show-framedata" checked><label for="show-framedata">Frame Data</label></div>
+                             <div class="option-item"><input type="checkbox" id="show-comboinfo" checked><label for="show-comboinfo">Info Kombo</label></div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>PENGATURAN METER</legend>
+                             <div class="option-item"><input type="checkbox" id="meter-full"><label for="meter-full">Meter Spesial Selalu Penuh</label></div>
+                             <div class="option-item"><input type="checkbox" id="rage-full"><label for="rage-full">Rage Selalu Penuh</label></div>
+                        </fieldset>
+
+                        <button onclick="location.href='index.html'" class="exit-button">KELUAR LATIHAN</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

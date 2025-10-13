@@ -1,0 +1,1074 @@
+/* ============================================================================================================
+    MENU UTAMA
+   ============================================================================================================ */
+/* Mengimpor font dari Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+
+/* Reset dan Pengaturan Dasar untuk seluruh halaman */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    overflow: hidden; /* Mencegah scroll */
+}
+
+/* Kontainer utama yang membungkus semua elemen game */
+.game-container {
+    height: 100vh;
+    /* Ganti URL background sesuai kebutuhan (menu utama atau lobi matchmaking) */
+    background: url('aset/lobby.png') no-repeat center center;
+    background-size: cover;
+    position: relative;
+}
+
+/* Lapisan gelap di atas background agar teks lebih mudah dibaca */
+.game-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.25); /* Sedikit penyesuaian opasitas */
+    z-index: 1;
+}
+
+/* Penempatan semua elemen UI di atas lapisan gelap */
+.game-title, .player-profile, .main-menu, .notification-box, .matchmaking-center, .character-showcase {
+    position: relative;
+    z-index: 2;
+}
+
+/* Judul Game (Hanya untuk Menu Utama) */
+.game-title {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    letter-spacing: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px 15px;
+    border-radius: 5px;
+    /* Posisikan di tengah atas */
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Profil Pemain (Kanan Atas) */
+.player-profile {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: rgba(15, 20, 35, 0.75);
+    padding: 8px 15px;
+    border-radius: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.level-badge {
+    background-color: #e8a337;
+    color: black;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    border: 2px solid white;
+    position: absolute;
+    left: -15px;
+    z-index: 3;
+}
+
+.exp-bar-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.exp-bar {
+    width: 150px;
+    height: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid #555;
+    border-radius: 5px;
+    margin-left: 20px;
+}
+
+.exp-fill {
+    height: 100%;
+    background-color: #e8a337;
+    border-radius: 5px;
+}
+
+.player-name {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.currency {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.1rem;
+}
+
+.gold-icon { color: #ffd700; }
+.diamond-icon { color: #00bfff; }
+
+/* Kotak Notifikasi (Kiri Bawah) */
+.notification-box {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border-radius: 5px;
+    border-left: 5px solid #e8a337;
+}
+
+.notification-box p {
+    margin: 5px 0;
+}
+
+/* Menu Navigasi Utama (Kiri) */
+.main-menu {
+    position: absolute;
+    top: 50%;
+    left: 50px;
+    transform: translateY(-50%);
+}
+
+.main-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.main-menu li {
+    margin: 10px 0;
+    position: relative;
+    padding-left: 25px; /* Ruang untuk garis emas */
+}
+
+.main-menu > ul > li > a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 2rem;
+    font-weight: bold;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Efek saat menu disorot atau aktif */
+.main-menu li:hover > a {
+    color: white;
+    text-shadow: 0 0 10px #e8a337;
+}
+
+/* Garis emas di sebelah menu */
+.main-menu li:hover::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 5px;
+    bottom: 5px;
+    width: 5px;
+    background-color: #e8a337;
+    border-radius: 5px;
+}
+
+/* Submenu dengan animasi slide-down */
+.submenu {
+    padding-left: 20px;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, opacity 0.3s ease-in, padding-top 0.4s ease-out;
+}
+
+.main-menu li:hover .submenu {
+    max-height: 200px; 
+    opacity: 1;
+    padding-top: 10px;
+}
+
+.submenu a {
+    font-size: 1rem;
+    font-weight: normal;
+    display: block;
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+}
+
+.submenu a:hover {
+    color: white;
+}
+
+/* ============================================================================================================================
+   CASUAL MODE
+   ============================================================================================================================ */
+
+/* Karakter yang ditampilkan di sisi kiri */
+.casual-bg {
+    /* Ganti dengan nama file background ranked Anda */
+    background: url('aset/city.png') no-repeat center center;
+    background-size: cover;
+}
+.character-showcase {
+    position: absolute;
+    bottom: 5vw;
+    left: 10vw;
+    height: 70vh;
+    object-fit: contain;
+    filter: drop-shadow(0 0 15px rgba(0,0,0,0.5));
+}
+
+/* Konten di tengah layar matchmaking */
+.matchmaking-center {
+    position: absolute;
+    top: 55%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.matchmaking-options {
+    display: flex;
+    gap: 15px;
+}
+
+.option-box {
+    background-color: rgba(10, 20, 35, 0.8);
+    border: 1px solid rgba(100, 150, 255, 0.5);
+    border-radius: 8px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.9rem;
+}
+
+.option-box div {
+    display: flex;
+    flex-direction: column;
+}
+
+.option-box small {
+    color: #00e0ff;
+    font-weight: bold;
+}
+
+.option-box i {
+    font-size: 1.5rem;
+    color: #00e0ff;
+}
+
+/* Tombol Utama "CARI PERTANDINGAN" */
+.find-match-button {
+    background: linear-gradient(180deg, #00aaff, #0077cc);
+    border: 2px solid #66ddff;
+    border-radius: 12px;
+    color: white;
+    padding: 20px 80px;
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    cursor: pointer;
+    position: relative;
+    transform: skewX(-15deg); /* Membuat tombol miring */
+    transition: all 0.3s ease;
+    box-shadow: 0 0 25px rgba(0, 170, 255, 0.6);
+}
+
+.find-match-button span {
+    display: inline-block;
+    transform: skewX(15deg); /* Meluruskan kembali teks */
+}
+
+.find-match-button:hover {
+    background: linear-gradient(180deg, #22bbff, #0088dd);
+    box-shadow: 0 0 35px rgba(0, 190, 255, 0.9);
+    transform: skewX(-15deg) scale(1.05); /* Sedikit membesar saat disorot */
+}
+
+/* ============================================================================================================================
+   RANKED MODE
+   ============================================================================================================================ */
+
+/* Background khusus untuk layar ranked */
+.ranked-bg {
+    /* Ganti dengan nama file background ranked Anda */
+    background: url('aset/rank.png') no-repeat center center;
+    background-size: cover;
+}
+
+/* Kontainer utama untuk konten ranked */
+.ranked-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 80px; /* Jarak antara emblem dan statistik */
+    width: 80%;
+}
+
+/* Sisi Kiri: Emblem Peringkat */
+.rank-emblem-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.rank-emblem {
+    width: 300px; /* Sesuaikan ukuran emblem jika perlu */
+    margin-bottom: 10px;
+    filter: drop-shadow(0 0 20px #ffd700); /* Efek cahaya keemasan */
+}
+
+.rank-title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #FFD700;
+    text-shadow: 0 0 10px rgba(0,0,0,0.7);
+}
+
+.rank-progress-bar {
+    width: 100%;
+    height: 12px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid #c0c0c0;
+    border-radius: 6px;
+    margin-top: 15px;
+}
+
+.rank-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ffd700, #f0c44c);
+    border-radius: 6px;
+    box-shadow: 0 0 10px #ffd700;
+}
+
+/* Sisi Kanan: Statistik */
+.stats-container {
+    background-color: rgba(10, 10, 20, 0.6);
+    padding: 25px 35px;
+    border-left: 3px solid #e8a337;
+    border-radius: 5px;
+    backdrop-filter: blur(3px); /* Efek blur pada background di belakangnya */
+}
+
+.stats-container h3 {
+    margin: 0 0 20px 0;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    text-align: center;
+    color: #e8a337;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    min-width: 400px; /* Lebar minimum agar rapi */
+}
+
+.stat-item:last-child {
+    border-bottom: none; /* Hilangkan garis bawah pada item terakhir */
+}
+
+.stat-item span:first-child {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.stat-item span:last-child {
+    font-weight: bold;
+}
+
+/* Tombol Cari Pertandingan Ranked *//* Tombol Cari Pertandingan Ranked */
+.find-ranked-match-button {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, #e8a337, #c88720);
+  border: 2px solid #ffd700;
+  border-radius: 30px;
+  color: white;
+  padding: 15px 60px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(232, 163, 55, 0.5);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  z-index: 100;          
+  pointer-events: auto;
+}
+
+.find-ranked-match-button:hover {
+  background: linear-gradient(180deg, #ffb74d, #d89730);
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+  transform: translate(-50%) scale(1.05);
+}
+
+
+/* ======================================================================================================================
+   VS AI MODE
+   ====================================================================================================================== */
+
+/* Background khusus untuk layar pemilihan karakter */
+.char-select-bg {
+    /* Ganti dengan nama file background Anda */
+    background: url('aset/lab.png') no-repeat center center;
+    background-size: cover;
+    display: flex; /* Menggunakan flex untuk penataan konten */
+    align-items: center;
+    justify-content: center;
+}
+
+.char-select-bg::before {
+    background: rgba(0, 0, 0, 0.4); /* Sedikit lebih gelap */
+}
+
+/* Kontainer utama untuk 3 kolom */
+.char-select-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    max-width: 1600px;
+    height: 100%;
+    z-index: 2;
+}
+
+/* Kolom Kiri & Kanan (Showcase Pemain & AI) */
+.player-showcase, .opponent-showcase {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.showcase-header {
+    background-color: rgba(20, 20, 20, 0.7);
+    padding: 8px 100px;
+    border-bottom: 2px solid #ccc;
+    font-weight: bold;
+    letter-spacing: 2px;
+    transform: skewX(-20deg);
+    margin-bottom: 20px;
+}
+
+.player-showcase img {
+    max-height: 80vh;
+    filter: drop-shadow(0 5px 15px black);
+}
+.opponent-showcase img {
+    max-height: 80vh;
+    filter: drop-shadow(0 5px 15px black);
+}
+.character-name {
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    margin-top: 10px;
+}
+
+/* Kolom Tengah (Grid Karakter) */
+.selection-grid-container {
+    flex: 1.2; /* lebih kecil supaya kolom tengah tidak memakan area terlalu luas */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+}
+
+.character-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 90px); /* 5 kolom dengan ukuran kotak tetap */
+    gap: 10px;
+    justify-content: center;
+    align-content: center;
+    background-color: rgba(10, 15, 20, 0.8);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    
+}
+
+.char-portrait {
+    position: relative;
+    border: 2px solid #555;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 90px;
+    height: 90px; /* proporsional */
+    overflow: hidden;
+}
+
+.char-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.char-portrait:hover {
+    border-color: #ffd700;
+    transform: scale(1.05);
+}
+
+.char-portrait.locked img {
+    filter: grayscale(100%);
+}
+
+.char-price {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 3px 6px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    border-top-right-radius: 5px;
+}
+
+.char-price .fa-coins {
+    color: #ffd700;
+    margin-right: 4px;
+}
+
+/* Footer / Bar Bawah */
+.selection-footer {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 1200px;
+    background-color: rgba(20, 20, 20, 0.85);
+    border-top: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px 10px 0 0;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 3;
+}
+
+.footer-option {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.footer-option h4 {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+}
+
+/* Opsi Stage Select */
+.stage-select .stage-preview { display: flex; align-items: center; gap: 10px; }
+.stage-select img { width: 80px; border: 1px solid #777; }
+.stage-select .stage-info { display: flex; flex-direction: column; }
+.stage-select .stage-info small { color: #aaa; }
+
+/* Opsi Difficulty Level */
+.difficulty-buttons button {
+    background-color: transparent;
+    border: 1px solid #777;
+    color: #aaa;
+    padding: 8px 20px;
+    margin-left: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+.difficulty-buttons button:hover {
+    background-color: #555;
+    color: white;
+}
+
+.difficulty-buttons button.active {
+    background-color: #e8a337;
+    border-color: #ffd700;
+    color: black;
+}
+
+/* Opsi Controller Setup */
+.controller-setup {
+    color: #aaa;
+}
+
+.controller-setup i {
+    font-size: 1.5rem;
+}
+
+/* ======================================================================================================================
+   VS MODE
+   ====================================================================================================================== */
+
+/* Penyesuaian untuk gambar Player 2 agar menghadap ke kiri */
+.p2-mirror {
+    transform: scaleX(-1);
+}
+
+/* Timer hitung mundur di atas grid karakter */
+.countdown-timer {
+    position: absolute;
+    top: -80px; /* Posisikan di atas grid */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 4rem;
+    font-weight: 900;
+    color: #ffd700;
+    text-shadow: 0 0 15px black;
+    z-index: 5;
+}
+
+/* Penyesuaian untuk footer di VS Mode */
+.vs-footer {
+    width: 90%; /* Sedikit lebih lebar */
+    max-width: 1400px;
+}
+
+.match-settings {
+    background-color: #333;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: flex;
+    gap: 25px;
+    text-align: center;
+}
+
+.match-setting-item {
+    display: flex;
+    flex-direction: column;
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+.match-setting-item strong {
+    color: white;
+    font-size: 1rem;
+}
+
+/* =================================================================================================================================
+    TUTORIAL MODE
+   ================================================================================================================================= */
+
+/* Background grid untuk arena latihan (Link diperbarui) */
+.tutorial-bg {
+    background-image: url('aset/tutor.png');
+    background-size: cover;
+    /* Menambahkan ini untuk membantu penataan posisi */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Tombol kembali di kiri atas */
+.back-button {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    z-index: 5;
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px black;
+    background-color: rgba(0,0,0,0.3);
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.back-button:hover {
+    background-color: rgba(0,0,0,0.6);
+}
+
+.back-button i {
+    margin-right: 15px;
+}
+
+/* KUNCI PERBAIKAN: Kontainer utama untuk panel pelajaran */
+.tutorial-main {
+    position: relative;
+    z-index: 3;
+    display: flex; /* Ini membuat panel kiri dan kanan bersebelahan */
+    gap: 20px;
+    width: 80;
+    max-width: 1400px;
+    height: 77vh; /* Tinggi tetap untuk panel */
+    align-items: flex-start; /* Jaga agar panel sejajar di bagian atas */
+}
+
+/* Panel Kiri: Daftar Pelajaran */
+.lesson-list-panel {
+    flex: 1; /* Mengambil 1 bagian ruang */
+    background-color: rgba(20, 25, 40, 0.85);
+    border-radius: 8px;
+    padding: 20px;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.lesson-list ul {
+    list-style: none; padding: 0; margin: 0;
+}
+
+.lesson-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    margin: 2px 0;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.lesson-list li.chapter {
+    font-size: 1rem; font-weight: bold; color: #e8a337;
+    margin-top: 1px; padding-left: 0;
+    border-bottom: 1px solid rgba(232, 163, 55, 0.5);
+    padding: 5px ;
+}
+.lesson-list li.chapter:first-child {
+    margin-top: 0;
+}
+
+.lesson-list li a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.lesson-list li:not(.chapter):hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.lesson-list li.active {
+    background-color: #e8a337;
+    border-left: 4px solid #ffd700;
+}
+.lesson-list li.active a {
+    color: black; font-weight: bold;
+}
+
+.lesson-list .fa-check-circle {
+    color: #e8a337; font-size: 1rem;
+}
+
+.lesson-list li.active .fa-check-circle {
+    color: black;
+}
+
+/* Panel Kanan: Deskripsi Pelajaran */
+.lesson-description-panel {
+    flex: 2; /* Mengambil 2 bagian ruang (lebih lebar) */
+    background-color: rgba(20, 25, 40, 0.85);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+}
+
+.lesson-header {
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-bottom: 2px solid #e8a337;
+}
+.lesson-header h2 {
+    margin: 0; font-size: 1rem; letter-spacing: 1px;
+}
+
+.lesson-content {
+    padding: 15px;
+}
+.lesson-content p {
+    font-size: 1rem; color: rgba(255, 255, 255, 0.8); line-height: 1;
+}
+.lesson-content img {
+    max-width: 60%; margin-top: 20px; border-radius: 5px; margin-left: 170px;
+}
+
+/* Karakter di bawah */
+.tutorial-character {
+    position: absolute;
+    bottom: 5vh;
+    left: 60%;
+    transform: translateX(-50%);
+    height: 45vh;
+    z-index: 2;
+}
+
+/* ======================================================================================================================
+   MODE LATIHAN (HUD & PAUSE MENU)
+   ====================================================================================================================== */
+
+/* Background untuk sesi latihan */
+.training-session-bg {
+    background: url('aset/traning.png') no-repeat center center;
+    background-size: cover;
+}
+
+/* --- Gaya untuk HUD (Live Interface) --- */
+
+.hud-top-bar {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+.hud-player { display: flex; align-items: center; gap: 10px; }
+.hud-player.p1 { flex-direction: row; }
+.hud-player.p2 { flex-direction: row-reverse; }
+
+.char-icon { width: 60px; height: 60px; border: 2px solid white; }
+.char-icon img { width: 100%; height: 100%; object-fit: cover; }
+
+.player-details { display: flex; flex-direction: column; }
+.hud-player.p2 .player-details { align-items: flex-end; }
+.player-name { font-weight: bold; font-size: 1.2rem; }
+
+.health-bar {
+    width: 400px; height: 20px;
+    background-color: rgba(0,0,0,0.5);
+    border: 2px solid #ccc;
+    padding: 2px;
+}
+.health-fill { height: 100%; background: linear-gradient(90deg, #ff4d4d, #ff0000); }
+
+.hud-center { display: flex; align-items: center; gap: 20px; }
+.timer { font-size: 2.5rem; font-weight: 900; }
+.frame-data { font-size: 2rem; font-weight: bold; padding: 5px 10px; border-radius: 5px; }
+.frame-data.positive { color: #55aaff; }
+.frame-data.negative { color: #ff4d4d; }
+
+.hud-input-display, .hud-combo-info {
+    position: absolute;
+    z-index: 10;
+    background-color: rgba(0,0,0,0.6);
+    padding: 10px;
+    border-radius: 5px;
+}
+.hud-input-display { top: 100px; left: 2.5%; }
+.hud-combo-info { top: 100px; right: 2.5%; text-align: right; display: flex; flex-direction: column; }
+
+/* --- Gaya untuk Pause Menu --- */
+
+.pause-menu-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.training-options-modal {
+    background-color: rgba(20, 28, 40, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 25px;
+    width: 800px;
+}
+
+.training-options-modal h2 {
+    text-align: center;
+    margin: 0 0 25px 0;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    background-color: rgba(0,0,0,0.3);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.options-columns { display: flex; gap: 40px; }
+.options-column { flex: 1; }
+
+fieldset {
+    border: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+fieldset legend {
+    font-weight: bold;
+    color: #e8a337;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    width: 100%;
+    border-bottom: 1px solid rgba(232, 163, 55, 0.4);
+}
+
+.option-group { margin-bottom: 15px; }
+.option-group > span { font-weight: bold; display: block; margin-bottom: 8px; color: #ccc; }
+.dummy-status-group { display: flex; gap: 10px; margin-top: 35px; }
+
+.option-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.option-item input[type="checkbox"], .option-item input[type="radio"] {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+}
+
+.option-item label {
+    font-size: 1rem;
+    color: #ddd;
+}
+
+.setting-button, .exit-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: 1px solid #777;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.setting-button {
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+}
+.setting-button:hover {
+    background-color: rgba(255,255,255,0.2);
+    border-color: white;
+}
+
+.exit-button {
+    background-color: #e8a337;
+    color: black;
+    border-color: #ffd700;
+    margin-top: 20px;
+}
+.exit-button:hover {
+    background-color: #ffb74d;
+}
+
+/* Store Section */
+.store-section {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(15, 20, 35, 0.85);
+    padding: 20px;
+    border-radius: 15px;
+    width: 300px;
+    max-height: 60vh;
+    overflow-y: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.store-section h2 {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    text-align: center;
+    letter-spacing: 2px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.store-items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.store-item {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: transform 0.2s;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.store-item:hover {
+    transform: translateX(-5px);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.store-item img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.item-details {
+    flex: 1;
+}
+
+.item-details h3 {
+    margin: 0 0 5px 0;
+    font-size: 0.9rem;
+    color: #fff;
+}
+
+.item-price {
+    margin: 0;
+    color: #ffd700;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.new-tag {
+    background-color: #ff4444;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 5px;
+}
+
