@@ -3,48 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marvel: Anime Arena - Cari Pertandingan</title>
+    <title>Marvel: Pilih Pahlawanmu</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="casual-bg game-container">
-        <img src="aset/iron.png" alt="Captain America" class="character-showcase">
-        
-        <div class="player-profile">
-            <div class="exp-bar-container">
-                <span class="level-badge">14</span>
-                <div class="exp-bar">
-                    <div class="exp-fill" style="width: 75%;"></div>
-                </div>
-            </div>
-            <span class="player-name">IronFist77</span>
-            <div class="currency">
-                <i class="fas fa-coins gold-icon"></i> 18,500
-            </div>
-            <div class="currency">
-                <i class="fas fa-gem diamond-icon"></i> 1,200
-            </div>
-        </div>
 
-        <div class="matchmaking-center">
-            <div class="matchmaking-options">
-                <div class="option-box">
-                    <i class="fas fa-users"></i>
-                    <span>Pilih Karakter</span>
-                </div>
-                <div class="option-box">
-                    <i class="fas fa-wifi"></i>
-                    <div>
-                        <span>Status Koneksi</span>
-                        <small>PING: 45ms</small>
+    <div class="character-select-screen">
+        <div class="selected-character-panel">
+            <div class="character-art">
+                <img src="https://i.ibb.co/L95Vv5z/iron-man-full.png" alt="Iron Man Full Body">
+            </div>
+            <div class="character-info">
+                <h1 class="character-name">IRON MAN</h1>
+                <p class="character-subtitle">Armored Avenger</p>
+                <div class="player-name">Player 1</div>
+                <div class="stats-container">
+                    <div class="stat-bar">
+                        <span class="stat-label">Kekuatan</span>
+                        <div class="bar"><div class="fill" style="width: 70%;"></div></div>
+                    </div>
+                    <div class="stat-bar">
+                        <span class="stat-label">Kecepatan</span>
+                        <div class="bar"><div class="fill" style="width: 80%;"></div></div>
+                    </div>
+                    <div class="stat-bar">
+                        <span class="stat-label">Pertahanan</span>
+                        <div class="bar"><div class="fill" style="width: 61%;"></div></div>
+                    </div>
+                    <div class="stat-bar">
+                        <span class="stat-label">Kecerdasan</span>
+                        <div class="bar"><div class="fill" style="width: 100%;"></div></div>
                     </div>
                 </div>
             </div>
-            <button class="find-match-button">
-                <span>CARI PERTANDINGAN</span>
-            </button>
+        </div>
+
+        <div class="character-grid-panel">
+            <h2 class="grid-title">PILIH PAHLAWANMU</h2>
+            <div class="character-grid">
+                <div class="character-portrait selected" data-character="iron-man">
+                    <img src="https://i.ibb.co/yQxGrtj/iron-man-portrait.jpg" alt="Iron Man">
+                </div>
+                <div class="character-portrait" data-character="captain-america">
+                    <img src="https://i.ibb.co/3cYvW1Q/captain-america-portrait.jpg" alt="Captain America">
+                </div>
+                <div class="character-portrait" data-character="thor">
+                    <img src="https://i.ibb.co/3m2YFbn/thor-portrait.jpg" alt="Thor">
+                </div>
+                <div class="character-portrait" data-character="hulk">
+                    <img src="https://i.ibb.co/mX7G0m6/hulk-portrait.jpg" alt="Hulk">
+                </div>
+                <div class="character-portrait" data-character="black-widow">
+                    <img src="https://i.ibb.co/gJFj22t/black-widow-portrait.jpg" alt="Black Widow">
+                </div>
+                <div class="character-portrait" data-character="spider-man">
+                    <img src="https://i.ibb.co/yqgL5pP/spiderman-portrait.jpg" alt="Spider-Man">
+                </div>
+                <div class="character-portrait" data-character="doctor-strange">
+                    <img src="https://i.ibb.co/QcYjQkS/dr-strange-portrait.jpg" alt="Doctor Strange">
+                </div>
+                 <div class="character-portrait random">
+                    <img src="https://i.ibb.co/k8B0CJY/dice-random.png" alt="Random">
+                </div>
+
+                <div class="character-portrait" data-character="scarlet-witch">
+                    <img src="https://i.ibb.co/j32K918/scarlet-witch-portrait.jpg" alt="Scarlet Witch">
+                </div>
+                <div class="character-portrait" data-character="black-panther">
+                    <img src="https://i.ibb.co/yYNWkP9/black-panther-portrait.jpg" alt="Black Panther">
+                </div>
+                <div class="character-portrait locked">
+                    <img src="https://i.ibb.co/yYNWkP9/black-panther-portrait.jpg" alt="Locked">
+                </div>
+                <div class="character-portrait locked">
+                    <img src="https://i.ibb.co/yYNWkP9/black-panther-portrait.jpg" alt="Locked">
+                </div>
+                 <div class="character-portrait locked">
+                    <img src="https://i.ibb.co/yYNWkP9/black-panther-portrait.jpg" alt="Locked">
+                </div>
+                <div class="character-portrait locked">
+                    <img src="https://i.ibb.co/yYNWkP9/black-panther-portrait.jpg" alt="Locked">
+                </div>
+                <div class="character-portrait locked">
+                    <img src="https://i.ibb.co/yYNWkP9/black-panther-portrait.jpg" alt="Locked">
+                </div>
+                 <div class="character-portrait locked">
+                    <img src="https://i.ibb.co/yYNWkP9/black-panther-portrait.jpg" alt="Locked">
+                </div>
+            </div>
+            <div class="footer-prompt">
+                <h3>TEKAN UNTUK BERGABUNG</h3>
+            </div>
         </div>
     </div>
+
 </body>
 </html>

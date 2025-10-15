@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marvel Game Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a12;
+            background-image: linear-gradient(180deg, #1a1a2e 0%, #0a0a12 100%);
+            color: #e0e0e0;
+        }
+        .card-glow {
+            box-shadow: 0 0 15px rgba(128, 90, 213, 0.3), 0 0 5px rgba(128, 90, 213, 0.2);
+            transition: all 0.3s ease-in-out;
+        }
+        .card-glow:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(128, 90, 213, 0.5), 0 0 10px rgba(128, 90, 213, 0.4);
+        }
+        .btn-buy {
+            background: linear-gradient(90deg, #1e5799 0%,#2989d8 50%,#207cca 100%);
+            transition: all 0.3s ease-in-out;
+        }
+        .btn-buy:hover {
+            filter: brightness(1.2);
+            box-shadow: 0 0 10px #2989d8;
+        }
+        .btn-gold {
+             background: linear-gradient(90deg, #f7971e 0%, #ffd200 100%);
+        }
+        .btn-gold:hover {
+            filter: brightness(1.1);
+            box-shadow: 0 0 10px #ffd200;
+        }
+        .active-nav {
+            background-color: #4a5568;
+            border-left: 4px solid #63b3ed;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <div class="container mx-auto p-4 md:p-6 max-w-7xl">
+        <!-- Header Section -->
+        <header class="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-black/30 rounded-lg border border-gray-700 mb-6">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center border-2 border-blue-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                </div>
+                <span class="font-bold text-lg tracking-wider">PLAYER ONE</span>
+            </div>
+            <div class="flex items-center gap-4 md:gap-6">
+                <div class="flex items-center gap-2 bg-gray-800/50 px-3 py-1 rounded-md">
+                    <svg class="w-6 h-6 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM6.5 10a.5.5 0 01.5-.5h2a.5.5 0 01.5.5v2a.5.5 0 01-1 0v-1.5H7a.5.5 0 01-.5-.5z" />
+                        <path d="M10.894 2.553a1 1 0 00-1.789 0l-2 4A1 1 0 008 8h4a1 1 0 00.894-1.447l-2-4z" />
+                    </svg>
+                    <span class="font-semibold text-yellow-300">12,500 GOLD</span>
+                </div>
+                <div class="flex items-center gap-2 bg-gray-800/50 px-3 py-1 rounded-md">
+                     <svg class="w-6 h-6 text-purple-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.232 6.232a.5.5 0 01.707 0L10 7.293l1.061-1.06a.5.5 0 01.707.707L10.707 8l1.06 1.06a.5.5 0 01-.707.707L10 8.707l-1.06 1.06a.5.5 0 01-.707-.707L9.293 8 8.232 6.939a.5.5 0 010-.707z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="font-semibold text-purple-300">5,000 SHARDS</span>
+                </div>
+            </div>
+            <button class="btn-gold text-black font-bold py-2 px-6 rounded-md shadow-lg w-full sm:w-auto">
+                BUY COINS
+            </button>
+        </header>
+
+        <!-- Main Content -->
+        <div class="flex flex-col md:flex-row gap-6">
+            <!-- Sidebar Navigation -->
+            <nav class="w-full md:w-1/5 lg:w-1/6 flex-shrink-0">
+                <ul class="space-y-2">
+                    <li><a href="#" class="block font-bold p-3 rounded-md text-left active-nav">FEATURED</a></li>
+                    <li><a href="#" class="block font-bold p-3 rounded-md text-left hover:bg-gray-700/50">HEROES</a></li>
+                    <li><a href="#" class="block font-bold p-3 rounded-md text-left hover:bg-gray-700/50">BUNDLES</a></li>
+                    <li><a href="#" class="block font-bold p-3 rounded-md text-left hover:bg-gray-700/50">SKINS</a></li>
+                    <li><a href="#" class="block font-bold p-3 rounded-md text-left hover:bg-gray-700/50">EMOTES</a></li>
+                </ul>
+            </nav>
+
+            <!-- Store Items Grid -->
+            <main class="w-full">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <!-- Card 1 -->
+                    <div class="bg-gray-900/50 border border-purple-500 rounded-lg overflow-hidden relative card-glow">
+                        <span class="absolute top-2 left-2 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">NEW</span>
+                        <img src="https://placehold.co/600x400/1a1a2e/ffffff?text=Iron+Man+Suit" alt="Iron Man Tech Suit Bundle" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg">IRON MAN TECH SUIT BUNDLE</h3>
+                            <p class="text-purple-300 font-semibold my-2">2,500 SHARDS</p>
+                            <button class="btn-buy w-full font-bold py-2 rounded-md">BUY</button>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="bg-gray-900/50 border border-orange-500 rounded-lg overflow-hidden relative card-glow">
+                        <span class="absolute top-2 left-2 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded">LIMITED EVENT</span>
+                        <img src="https://placehold.co/600x400/1a1a2e/ffffff?text=Spider-Verse" alt="Spider-Verse Pack" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg">SPIDER-VERSE PACK</h3>
+                            <p class="text-purple-300 font-semibold my-2">3,800 SHARDS</p>
+                            <button class="btn-buy w-full font-bold py-2 rounded-md">BUY</button>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="bg-gray-900/50 border border-red-500 rounded-lg overflow-hidden relative card-glow">
+                        <img src="https://placehold.co/600x400/1a1a2e/ffffff?text=Dr.+Strange" alt="Dark Dimension Set" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg">DARK DIMENSION SET</h3>
+                            <p class="text-purple-300 font-semibold my-2">3,800 SHARDS</p>
+                            <button class="btn-buy w-full font-bold py-2 rounded-md">BUY</button>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="bg-gray-900/50 border border-red-800 rounded-lg overflow-hidden relative card-glow">
+                        <img src="https://placehold.co/600x400/1a1a2e/ffffff?text=Spider-Man" alt="Digital Suit" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg">DIGITAL SUIT BUNDLE</h3>
+                            <p class="text-purple-300 font-semibold my-2">3,000 SHARDS</p>
+                            <button class="btn-buy w-full font-bold py-2 rounded-md">BUY</button>
+                        </div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="bg-gray-900/50 border border-yellow-500 rounded-lg overflow-hidden relative card-glow">
+                        <span class="absolute top-2 left-2 bg-yellow-500 text-black text-xs font-bold px-2 py-1 rounded">EXCLUSIVE</span>
+                        <img src="https://placehold.co/600x400/1a1a2e/ffffff?text=Wakanda+Heroes" alt="Wakanda Heroes" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg">WAKANDA HEROES</h3>
+                            <p class="text-purple-300 font-semibold my-2">3,200 SHARDS</p>
+                            <button class="btn-buy w-full font-bold py-2 rounded-md">BUY</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 6 -->
+                    <div class="bg-gray-900/50 border border-blue-400 rounded-lg overflow-hidden relative card-glow">
+                        <span class="absolute top-2 left-2 bg-yellow-500 text-black text-xs font-bold px-2 py-1 rounded">EXCLUSIVE</span>
+                        <img src="https://placehold.co/600x400/1a1a2e/ffffff?text=Avengers+vs+X-Men" alt="Avengers vs X-Men" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg">AVENGERS VS X-MEN</h3>
+                            <p class="text-purple-300 font-semibold my-2">2,800 SHARDS</p>
+                            <button class="btn-buy w-full font-bold py-2 rounded-md">BUY</button>
+                        </div>
+                    </div>
+
+                    <!-- Card 7 -->
+                    <div class="bg-gray-900/50 border border-gray-400 rounded-lg overflow-hidden relative card-glow">
+                        <img src="https://placehold.co/600x400/1a1a2e/ffffff?text=Mighty+Thor" alt="Mighty Thor Bundle" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg">MIGHTY THOR BUNDLE</h3>
+                            <p class="text-purple-300 font-semibold my-2">2,800 SHARDS</p>
+                            <button class="btn-buy w-full font-bold py-2 rounded-md">BUY</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 8 -->
+                    <div class="bg-gray-900/50 border border-green-500 rounded-lg overflow-hidden relative card-glow">
+                        <img src="https://placehold.co/600x400/1a1a2e/ffffff?text=Hulk+Gladiator" alt="Hulk Gladiator" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg">HULK GLADIATOR BUNDLE</h3>
+                            <p class="text-purple-300 font-semibold my-2">2,800 SHARDS</p>
+                            <button class="btn-buy w-full font-bold py-2 rounded-md">BUY</button>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+
+        <!-- Footer Banner -->
+        <footer class="mt-8 text-center p-4 bg-yellow-400 rounded-md">
+            <h2 class="text-black text-xl font-black tracking-wider">
+                MARVEL LEGACY DEAL: UNLOCK ALL HEROES - 50% OFF!
+            </h2>
+        </footer>
+    </div>
+
+</body>
+</html>
