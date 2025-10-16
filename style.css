@@ -365,9 +365,7 @@ body, html {
 
 /* Sisi Kanan: Statistik */
 .stats-container {
-    background-color: rgba(10, 10, 20, 0.6);
-    padding: 25px 35px;
-    border-left: 3px solid #e8a337;
+    padding: 5px 5px;
     border-radius: 5px;
     backdrop-filter: blur(3px); /* Efek blur pada background di belakangnya */
 }
@@ -466,7 +464,7 @@ body, html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    width: 90px;
 }
 
 .showcase-header {
@@ -480,15 +478,15 @@ body, html {
 }
 
 .player-showcase img {
-    max-height: 80vh;
+    max-height: 60vh;
     filter: drop-shadow(0 5px 15px black);
 }
 .opponent-showcase img {
-    max-height: 80vh;
+    max-height: 60vh;
     filter: drop-shadow(0 5px 15px black);
 }
 .character-name {
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 900;
     letter-spacing: 3px;
     margin-top: 10px;
@@ -496,8 +494,7 @@ body, html {
 
 /* Kolom Tengah (Grid Karakter) */
 .selection-grid-container {
-    flex: 1.2; /* lebih kecil supaya kolom tengah tidak memakan area terlalu luas */
-    display: flex;
+    flex: 1.5; /* lebih kecil supaya kolom tengah tidak memakan area terlalu luas */
     justify-content: center;
     align-items: center;
     border-radius: 8px;
@@ -506,23 +503,23 @@ body, html {
 
 .character-grid {
     display: grid;
-    grid-template-columns: repeat(5, 90px); /* 5 kolom dengan ukuran kotak tetap */
+    grid-template-columns: repeat(5, 100px); /* 5 kolom, masing-masing 100px */
     gap: 10px;
     justify-content: center;
-    align-content: center;
+    align-content: center;  
     background-color: rgba(10, 15, 20, 0.8);
     padding: 15px;
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    
 }
+
 
 .char-portrait {
     position: relative;
     border: 2px solid #555;
     cursor: pointer;
     transition: all 0.2s ease;
-    width: 90px;
+    width: 100px;
     height: 90px; /* proporsional */
     overflow: hidden;
 }
@@ -1101,12 +1098,12 @@ fieldset legend {
 
 .character-info {
     text-align: center;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
 }
 
 .character-name {
     font-family: 'Orbitron', sans-serif;
-    font-size: 3rem;
+    font-size: 2rem;
     margin: 0;
     letter-spacing: 3px;
     color: #ffffff;
@@ -1114,7 +1111,7 @@ fieldset legend {
 }
 
 .character-subtitle {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #a9c7d6;
     margin: 0.5rem 0;
 }
@@ -1129,7 +1126,7 @@ fieldset legend {
 
 /* Panel Statistik */
 .stats-container {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     width: 100%;
 }
 
