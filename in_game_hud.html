@@ -135,8 +135,38 @@
     .health-bar-fill {
       height: 100%;
       width: 100%;
-      background:  rgb(141, 200, 53);
+      background:  #ffd700;
       
+    }
+
+    .stamina-bar-p1-container, .stamina-bar-p2-container {
+      width: 100%;
+      height: 16px;
+      background-color: rgba(10, 15, 20, 0.7);
+      border: 2px solid #1e90ff;
+      display: flex;
+      align-items: center;
+      margin-top: 4px;
+      position: relative;
+      overflow: hidden;
+    }
+    .stamina-bar-p1-container {
+      transform: skewX(-20deg);
+    }
+    .stamina-bar-p2-container {
+      transform: skewX(20deg);
+    }
+    .stamina-bar-fill {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, #1e90ff 60%, #00eaff 100%);
+      transition: width 0.3s;
+    }
+    .stamina-bar-fill-2 {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, #00eaff 60%, #1e90ff 100%);
+      transition: width 0.3s;
     }
 
     .round-wins {
@@ -184,6 +214,7 @@
         <div class="health-info">
           <div class="name-bar">IronFish77</div>
           <div class="health-bar-p1-container"><div class="health-bar-fill"></div></div>
+          <div class="stamina-bar-p1-container"><div class="stamina-bar-fill"></div></div>
           <div class="round-wins">
             <div class="win-gem"></div>
             <div class="win-gem"></div>
@@ -201,6 +232,7 @@
         <div class="health-info">
           <div class="name-bar">MamangRoni</div>
           <div class="health-bar-p2-container"><div class="health-bar-fill"></div></div>
+          <div class="stamina-bar-p2-container"><div class="stamina-bar-fill-2"></div></div>
           <div class="round-wins">
             <div class="win-gem"></div>
             <div class="win-gem"></div>

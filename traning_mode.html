@@ -8,39 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
-    <div class="game-container training-session-bg">
-
-        <div class="hud-top-bar">
-            <div class="hud-player p1">
-                <div class="char-icon"><img src="aset/head_capt.png" alt="P1 Icon"></div>
-                <div class="player-details">
-                    <span class="player-name">LAX</span>
-                    <div class="health-bar"><div class="health-fill" style="width: 100%;"></div></div>
-                </div>
-            </div>
-            <div class="hud-center">
-                <div class="frame-data positive">+5</div>
-                <div class="timer">--</div>
-                <div class="frame-data negative">-7</div>
-            </div>
-            <div class="hud-player p2">
-                 <div class="player-details">
-                    <span class="player-name">CAS</span>
-                    <div class="health-bar"><div class="health-fill" style="width: 100%;"></div></div>
-                </div>
-                <div class="char-icon"><img src="aset/head_iron.png" alt="P2 Icon"></div>
-            </div>
-        </div>
-
-        <div class="hud-input-display">
-            <span>INPUT 1:</span>
-            <i class="fas fa-arrow-down"></i> <i class="fas fa-arrow-right"></i> <span>LP</span>
-        </div>
-
-        <div class="hud-combo-info">
-            <span>DAMAGE: KOMBO</span>
-            <span>SCALING: 60%</span>
-        </div>
+    <div class="game-container training-session-bg" style="background-image: url('aset/in-game.png'); background-size: cover; background-position: center;">
 
         <div class="pause-menu-overlay">
             <div class="training-options-modal">
@@ -87,10 +55,11 @@
                         </fieldset>
                         <fieldset>
                             <legend>PENGATURAN METER</legend>
-                             <div class="option-item"><input type="checkbox" id="meter-full"><label for="meter-full">Meter Spesial Selalu Penuh</label></div>
-                             <div class="option-item"><input type="checkbox" id="rage-full"><label for="rage-full">Rage Selalu Penuh</label></div>
+                             <div class="option-item"><input type="checkbox" id="meter-full"><label for="meter-full">Darah Selalu Penuh</label></div>
+                             <div class="option-item"><input type="checkbox" id="rage-full"><label for="rage-full">Stamina Selalu Penuh</label></div>
                         </fieldset>
 
+                        <button class="setting-button">KEMBALI KE MATCH</button>
                         <button onclick="location.href='index.html'" class="exit-button">KELUAR LATIHAN</button>
                     </div>
                 </div>
