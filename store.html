@@ -1,193 +1,481 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marvel Game Store</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0a0a12;
-            background-image: linear-gradient(180deg, #1a1a2e 0%, #0a0a12 100%);
-            color: #e0e0e0;
-        }
-        .card-glow {
-            box-shadow: 0 0 15px rgba(128, 90, 213, 0.3), 0 0 5px rgba(128, 90, 213, 0.2);
-            transition: all 0.3s ease-in-out;
-        }
-        .card-glow:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 25px rgba(128, 90, 213, 0.5), 0 0 10px rgba(128, 90, 213, 0.4);
-        }
-        .btn-buy {
-            background: linear-gradient(90deg, #1e5799 0%,#2989d8 50%,#207cca 100%);
-            transition: all 0.3s ease-in-out;
-        }
-        .btn-buy:hover {
-            filter: brightness(1.2);
-            box-shadow: 0 0 10px #2989d8;
-        }
-        .btn-gold {
-             background: linear-gradient(90deg, #f7971e 0%, #ffd200 100%);
-        }
-        .btn-gold:hover {
-            filter: brightness(1.1);
-            box-shadow: 0 0 10px #ffd200;
-        }
-        .active-nav {
-            background-color: #4a5568;
-            border-left: 4px solid #63b3ed;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marvel Game Store</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top, #0a0e1a, #03050a);
+      color: #fff;
+      height: 100vh;
+      overflow: hidden; /* agar tidak scroll seluruh halaman */
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(5, 10, 30, 0.9);
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between; /* Mengatur jarak antar elemen */
+      align-items: center;
+      border-bottom: 2px solid #00bfff;
+      box-shadow: 0 0 10px #00bfff80;
+      z-index: 10;
+      box-sizing: border-box; /* Agar padding tidak menambah lebar */
+    }
+    
+    .header-left {
+        display: flex;
+        gap: 10px; /* Jarak antar tombol */
+    }
+
+    header h1 {
+      font-size: 22px;
+      color: #00bfff;
+      text-shadow: 0 0 10px #00bfff;
+      margin: 0;
+    }
+
+    .coins {
+      display: flex; /* Menggunakan flexbox untuk alignment */
+      align-items: center;
+      gap: 15px; /* Jarak antara Gold dan Shard */
+      background: rgba(0, 30, 60, 0.6);
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid #00bfff;
+      box-shadow: 0 0 8px #00bfff80 inset;
+      font-size: 14px;
+    }
+    
+    .coins span {
+        display: flex;
+        align-items: center;
+        gap: 5px; /* Jarak ikon dan teks */
+    }
+
+    /* Container utama */
+    .container {
+      display: flex;
+      height: 100vh;
+      padding-top: 65px; /* Disesuaikan dengan tinggi header baru */
+    }
+
+    /* Sidebar */
+    nav {
+      width: 180px;
+      background: rgba(5, 10, 30, 0.85);
+      padding: 20px;
+      border-right: 2px solid #00bfff;
+      box-shadow: 0 0 10px #00bfff40;
+      position: fixed;
+      top: 65px; /* Tepat di bawah header */
+      bottom: 0;
+      left: 0;
+    }
+
+    nav a {
+      display: block;
+      color: #b0caff;
+      text-decoration: none;
+      padding: 10px;
+      margin-bottom: 8px;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      background: rgba(0, 191, 255, 0.2);
+      border: 1px solid #00bfff;
+      color: #fff;
+      box-shadow: 0 0 10px #00bfff80;
+    }
+
+    /* Area scroll utama */
+    main {
+      flex: 1;
+      margin-left: 220px; /* Memberi ruang untuk sidebar (180px + 20px padding) */
+      padding: 20px;
+      height: calc(100vh - 65px);
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
+
+    section {
+      /* --- PERUBAHAN DI SINI --- */
+      scroll-margin-top: 80px; /* Memberi jarak dari header saat navigasi di-klik */
+      
+      margin-bottom: 60px;
+      background: rgba(10, 15, 30, 0.8);
+      border: 2px solid #00bfff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 0 15px #00bfff40;
+    }
+
+    h2 {
+      color: #00bfff;
+      border-bottom: 2px solid #00bfff;
+      padding-bottom: 5px;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px #00bfff;
+      text-align: center;
+    }
+
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: rgba(5, 10, 25, 0.9);
+      border: 2px solid #00bfff40;
+      border-radius: 12px;
+      overflow: hidden;
+      width: 200px;
+      text-align: center;
+      transition: 0.3s;
+      box-shadow: 0 0 10px #00bfff20;
+      padding-bottom: 15px;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #00bfff;
+      box-shadow: 0 0 15px #00bfff80;
+    }
+
+    .card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      border-bottom: 1px solid #00bfff40;
+    }
+
+    .card h3 {
+      margin: 10px 0 5px;
+      font-size: 16px;
+      color: #00bfff;
+    }
+
+    .card p {
+      color: #ccc;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .btn-buy {
+      display: inline-block;
+      background: linear-gradient(90deg, #0077ff, #00bfff);
+      color: white;
+      padding: 8px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 0 10px #00bfff80;
+      transition: 0.3s;
+    }
+
+    .btn-buy:hover {
+      background: linear-gradient(90deg, #00bfff, #0077ff);
+      box-shadow: 0 0 15px #00bfff;
+    }
+
+    footer {
+      text-align: center;
+      background: rgba(0, 20, 40, 0.9);
+      color: #00bfff;
+      padding: 15px;
+      font-weight: bold;
+      border-top: 2px solid #00bfff;
+      box-shadow: 0 0 10px #00bfff80;
+    }
+
+    /* Tombol-tombol di header */
+    .btn-back, .btn-customize {
+      color: white;
+      font-weight: bold;
+      padding: 8px 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: 0.3s;
+    }
+    
+    .btn-back {
+    box-shadow: 0 0 10px #00bfff80;
+    text-shadow: #0077ff;
+    color: white;
+    border-radius: 5px;
+    transform: skewX(-20deg);
+    font-family: 'Orbitron', sans-serif;
+    transition: all 0.2s ease;
+    background-color: rgba(0,0,0,0.3);
+    border: 2px solid #00bfff; /* Memperbaiki typo 'solisd' menjadi 'solid' */
+    }
+
+    .btn-back:hover {
+      background: linear-gradient(90deg, #00bfff, #0077ff);
+      box-shadow: 0 0 20px #00bfff;
+    }
+
+    .btn-customize {
+    box-shadow: 0 0 10px #00bfff80;
+    text-shadow: #0077ff;
+    color: white;
+    border-radius: 5px;
+    transform: skewX(-20deg);
+    font-family: 'Orbitron', sans-serif;
+    transition: all 0.2s ease;
+    background-color: rgba(0,0,0,0.3);
+    border: 2px solid #00bfff; /* Memperbaiki typo 'solisd' menjadi 'solid' */
+    }
+
+    .btn-customize:hover {
+        background: linear-gradient(90deg, #ffb300, #ff7700);
+        box-shadow: 0 0 20px #ffb300;
+    }
+
+  </style>
 </head>
-<body class="min-h-screen">
+<body>
 
-    <div class="container mx-auto p-4 md:p-6 max-w-7xl">
-        <!-- Header Section -->
-        <header class="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-black/30 rounded-lg border border-gray-700 mb-6">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center border-2 border-blue-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                    </svg>
-                </div>
-                <span class="font-bold text-lg tracking-wider">PLAYER ONE</span>
-            </div>
-            <div class="flex items-center gap-4 md:gap-6">
-                <div class="flex items-center gap-2 bg-gray-800/50 px-3 py-1 rounded-md">
-                    <svg class="w-6 h-6 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM6.5 10a.5.5 0 01.5-.5h2a.5.5 0 01.5.5v2a.5.5 0 01-1 0v-1.5H7a.5.5 0 01-.5-.5z" />
-                        <path d="M10.894 2.553a1 1 0 00-1.789 0l-2 4A1 1 0 008 8h4a1 1 0 00.894-1.447l-2-4z" />
-                    </svg>
-                    <span class="font-semibold text-yellow-300">12,500 GOLD</span>
-                </div>
-                <div class="flex items-center gap-2 bg-gray-800/50 px-3 py-1 rounded-md">
-                     <svg class="w-6 h-6 text-purple-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.232 6.232a.5.5 0 01.707 0L10 7.293l1.061-1.06a.5.5 0 01.707.707L10.707 8l1.06 1.06a.5.5 0 01-.707.707L10 8.707l-1.06 1.06a.5.5 0 01-.707-.707L9.293 8 8.232 6.939a.5.5 0 010-.707z" clip-rule="evenodd" />
-                    </svg>
-                    <span class="font-semibold text-purple-300">5,000 SHARDS</span>
-                </div>
-            </div>
-            <button class="btn-gold text-black font-bold py-2 px-6 rounded-md shadow-lg w-full sm:w-auto">
-                BUY COINS
-            </button>
-        </header>
-
-        <!-- Main Content -->
-        <div class="flex flex-col md:flex-row gap-6">
-            <!-- Sidebar Navigation -->
-            <nav class="w-full md:w-1/5 lg:w-1/6 flex-shrink-0">
-                <ul class="space-y-2">
-                    <li><a href="#" class="block font-bold p-3 rounded-md text-left active-nav">FEATURED</a></li>
-                    <li><a href="#" class="block font-bold p-3 rounded-md text-left hover:bg-gray-700/50">HEROES</a></li>
-                    <li><a href="#" class="block font-bold p-3 rounded-md text-left hover:bg-gray-700/50">BUNDLES</a></li>
-                    <li><a href="#" class="block font-bold p-3 rounded-md text-left hover:bg-gray-700/50">SKINS</a></li>
-                    <li><a href="#" class="block font-bold p-3 rounded-md text-left hover:bg-gray-700/50">EMOTES</a></li>
-                </ul>
-            </nav>
-
-            <!-- Store Items Grid -->
-            <main class="w-full">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    <!-- Card 1 -->
-                    <div class="bg-gray-900/50 border border-purple-500 rounded-lg overflow-hidden relative card-glow">
-                        <span class="absolute top-2 left-2 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">NEW</span>
-                        <img src="https://placehold.co/600x400/1a1a2e/ffffff?text=Iron+Man+Suit" alt="Iron Man Tech Suit Bundle" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="font-bold text-lg">IRON MAN TECH SUIT BUNDLE</h3>
-                            <p class="text-purple-300 font-semibold my-2">2,500 SHARDS</p>
-                            <button class="btn-buy w-full font-bold py-2 rounded-md">BUY</button>
-                        </div>
-                    </div>
-
-                    <!-- Card 2 -->
-                    <div class="bg-gray-900/50 border border-orange-500 rounded-lg overflow-hidden relative card-glow">
-                        <span class="absolute top-2 left-2 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded">LIMITED EVENT</span>
-                        <img src="https://placehold.co/600x400/1a1a2e/ffffff?text=Spider-Verse" alt="Spider-Verse Pack" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="font-bold text-lg">SPIDER-VERSE PACK</h3>
-                            <p class="text-purple-300 font-semibold my-2">3,800 SHARDS</p>
-                            <button class="btn-buy w-full font-bold py-2 rounded-md">BUY</button>
-                        </div>
-                    </div>
-
-                    <!-- Card 3 -->
-                    <div class="bg-gray-900/50 border border-red-500 rounded-lg overflow-hidden relative card-glow">
-                        <img src="https://placehold.co/600x400/1a1a2e/ffffff?text=Dr.+Strange" alt="Dark Dimension Set" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="font-bold text-lg">DARK DIMENSION SET</h3>
-                            <p class="text-purple-300 font-semibold my-2">3,800 SHARDS</p>
-                            <button class="btn-buy w-full font-bold py-2 rounded-md">BUY</button>
-                        </div>
-                    </div>
-
-                    <!-- Card 4 -->
-                    <div class="bg-gray-900/50 border border-red-800 rounded-lg overflow-hidden relative card-glow">
-                        <img src="https://placehold.co/600x400/1a1a2e/ffffff?text=Spider-Man" alt="Digital Suit" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="font-bold text-lg">DIGITAL SUIT BUNDLE</h3>
-                            <p class="text-purple-300 font-semibold my-2">3,000 SHARDS</p>
-                            <button class="btn-buy w-full font-bold py-2 rounded-md">BUY</button>
-                        </div>
-                    </div>
-
-                    <!-- Card 5 -->
-                    <div class="bg-gray-900/50 border border-yellow-500 rounded-lg overflow-hidden relative card-glow">
-                        <span class="absolute top-2 left-2 bg-yellow-500 text-black text-xs font-bold px-2 py-1 rounded">EXCLUSIVE</span>
-                        <img src="https://placehold.co/600x400/1a1a2e/ffffff?text=Wakanda+Heroes" alt="Wakanda Heroes" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="font-bold text-lg">WAKANDA HEROES</h3>
-                            <p class="text-purple-300 font-semibold my-2">3,200 SHARDS</p>
-                            <button class="btn-buy w-full font-bold py-2 rounded-md">BUY</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Card 6 -->
-                    <div class="bg-gray-900/50 border border-blue-400 rounded-lg overflow-hidden relative card-glow">
-                        <span class="absolute top-2 left-2 bg-yellow-500 text-black text-xs font-bold px-2 py-1 rounded">EXCLUSIVE</span>
-                        <img src="https://placehold.co/600x400/1a1a2e/ffffff?text=Avengers+vs+X-Men" alt="Avengers vs X-Men" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="font-bold text-lg">AVENGERS VS X-MEN</h3>
-                            <p class="text-purple-300 font-semibold my-2">2,800 SHARDS</p>
-                            <button class="btn-buy w-full font-bold py-2 rounded-md">BUY</button>
-                        </div>
-                    </div>
-
-                    <!-- Card 7 -->
-                    <div class="bg-gray-900/50 border border-gray-400 rounded-lg overflow-hidden relative card-glow">
-                        <img src="https://placehold.co/600x400/1a1a2e/ffffff?text=Mighty+Thor" alt="Mighty Thor Bundle" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="font-bold text-lg">MIGHTY THOR BUNDLE</h3>
-                            <p class="text-purple-300 font-semibold my-2">2,800 SHARDS</p>
-                            <button class="btn-buy w-full font-bold py-2 rounded-md">BUY</button>
-                        </div>
-                    </div>
-                    
-                    <!-- Card 8 -->
-                    <div class="bg-gray-900/50 border border-green-500 rounded-lg overflow-hidden relative card-glow">
-                        <img src="https://placehold.co/600x400/1a1a2e/ffffff?text=Hulk+Gladiator" alt="Hulk Gladiator" class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h3 class="font-bold text-lg">HULK GLADIATOR BUNDLE</h3>
-                            <p class="text-purple-300 font-semibold my-2">2,800 SHARDS</p>
-                            <button class="btn-buy w-full font-bold py-2 rounded-md">BUY</button>
-                        </div>
-                    </div>
-
-                </div>
-            </main>
-        </div>
-
-        <!-- Footer Banner -->
-        <footer class="mt-8 text-center p-4 bg-yellow-400 rounded-md">
-            <h2 class="text-black text-xl font-black tracking-wider">
-                MARVEL LEGACY DEAL: UNLOCK ALL HEROES - 50% OFF!
-            </h2>
-        </footer>
+  <header>
+    <div class="header-left">
+        <button class="btn-back" onclick="window.location.href='index.html'">Kembali</button>
+        <button class="btn-customize" onclick="window.location.href='custom.html'">Customize</button>
     </div>
+    <h1>MARVEL GAME STORE</h1>
+    <div class="coins">
+        <span>💰 12,500 GOLD</span>
+        <span>💎 5,000 SHARDS</span>
+    </div>
+  </header>
 
+  <div class="container">
+    <nav>
+      <a href="#heroes">Heroes</a>
+      <a href="#skins">Skins</a>
+      <a href="#emotes">Emotes</a>
+    </nav>
+
+    <main>
+      <section id="heroes">
+        <h2>Heroes</h2>
+        <div class="grid">
+          <div class="card">
+            <img src="aset/skin/thor.png" alt="Thor"> <h3>Thor</h3>
+            <p>2,500 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+          <div class="card">
+            <img src="aset/skin/ultron.png" alt="Ultron">
+            <h3>Ultron</h3>
+            <p>2,500 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+          <div class="card">
+            <img src="aset/skin/venom.png" alt="Venom">
+            <h3>Venom</h3>
+            <p>2,500 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+           <div class="card">
+            <img src="aset/skin/visionn.png" alt="Vision">
+            <h3>Vision</h3>
+            <p>2,500 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+           <div class="card">
+            <img src="aset/skin/wasp.png" alt="The Wasp">
+            <h3>The Wasp</h3>
+            <p>2,500 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="skins">
+        <h2>Skins</h2>
+        <div class="grid">
+          <div class="card">
+            <img src="aset/skin/antman_skin.png" alt="Antman">
+            <h3>Antman </h3>
+            <p>3,000 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+                    <div class="card">
+            <img src="aset/skin/blackpanther_skin.png" alt="Black Panther">
+            <h3>Black Panther</h3>
+            <p>3,000 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+          <div class="card">
+            <img src="aset/skin/blackwidow_skin.png" alt="Black Widow">
+            <h3>Black Widow</h3>
+            <p>3,000 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+                    <div class="card">
+            <img src="aset/skin/capt_skin.png" alt="Captain America">
+            <h3>Captain America</h3>
+            <p>3,000 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+                    <div class="card">
+            <img src="aset/skin/captainmarvel_skin.png" alt="Captain Marvel">
+            <h3>Captain Marvel</h3>
+            <p>3,000 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+                    <div class="card">
+            <img src="aset/skin/doctoroctopus_kin.png" alt="Doctor Octopus">
+            <h3>Doctor Octopus</h3>
+            <p>3,000 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+                    <div class="card">
+            <img src="aset/skin/doctorstrange_skin.png" alt="Doctor Strange">
+            <h3>Doctor Strange</h3>
+            <p>3,000 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+                    <div class="card">
+            <img src="aset/skin/falcon_skin.png" alt="Falcon">
+            <h3>Falcon</h3>
+            <p>3,000 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+                    <div class="card">
+            <img src="aset/skin/greengoblin_skin.png" alt="Green Goblin">
+            <h3>Green Goblin</h3>
+            <p>3,000 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+                    <div class="card">
+            <img src="aset/skin/hawkeye_skin.png" alt="Hawkeye">
+            <h3>Hawkeye</h3>
+            <p>3,000 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+                    <div class="card">
+            <img src="aset/skin/hela_skin.png" alt="Hela">
+            <h3>Hela</h3>
+            <p>3,000 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+                    <div class="card">
+            <img src="aset/skin/hulk_skin.png" alt="Hulk">
+            <h3>Hulk</h3>
+            <p>3,000 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+                    <div class="card">
+            <img src="aset/skin/iron_skin.png" alt="Iron Man">
+            <h3>Iron Man</h3>
+            <p>3,000 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+                    <div class="card">
+            <img src="aset/skin/kang_skin.png" alt="Kang the Conqueror">
+            <h3>Kang the Conqueror</h3>
+            <p>3,000 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+                    <div class="card">
+            <img src="aset/skin/kilmonger_skin.png" alt="Killmonger">
+            <h3>Killmonger</h3>
+            <p>3,000 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+                    <div class="card">
+            <img src="aset/skin/loki_skin.png" alt="Loki">
+            <h3>Loki</h3>
+            <p>3,000 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+                    <div class="card">
+            <img src="aset/skin/redskull_skin.png" alt="Red Skull">
+            <h3>Red Skull</h3>
+            <p>3,000 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+                    <div class="card">
+            <img src="aset/skin/scarletwitch_skin.png" alt="Scarlet Witch">
+            <h3>Scarlet Witch</h3>
+            <p>3,000 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+                    <div class="card">
+            <img src="aset/skin/spiderman_skin.png" alt="Spider-Man">
+            <h3>Spider-Man</h3>
+            <p>3,000 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+                    <div class="card">
+            <img src="aset/skin/thanos_skin.png" alt="Thanos">
+            <h3>Thanos</h3>
+            <p>3,000 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+                    <div class="card">
+            <img src="aset/skin/thor_skin.png" alt="Thor">
+            <h3>Thor</h3>
+            <p>3,000 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+                    <div class="card">
+            <img src="aset/skin/ultron_skin.png" alt="Ultron">
+            <h3>Ultron</h3>
+            <p>3,000 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+                    <div class="card">
+            <img src="aset/skin/venom.skin.png" alt="Venom">
+            <h3>Venom</h3>
+            <p>3,000 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+                    <div class="card">
+            <img src="aset/skin/vision_skin.png" alt="Vision">
+            <h3>Vision</h3>
+            <p>3,000 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+                    <div class="card">
+            <img src="aset/skin/wasp_skin.png" alt="Wasp">
+            <h3>Wasp</h3>
+            <p>3,000 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="emotes">
+        <h2>Emotes</h2>
+        <div class="grid">
+          <div class="card">
+            <img src="https://placehold.co/300x400?text=Hero+Pose" alt="Hero Pose">
+            <h3>Hero Pose</h3>
+            <p>500 Shards</p>
+            <a href="#" class="btn-buy">Buy</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
 </body>
 </html>
