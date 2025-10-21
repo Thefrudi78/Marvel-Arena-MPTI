@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marvel: Anime Arena - Profil Pemain</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <style>
+        /* Mengimpor Font dari Google */
+        @import url('https://fonts.googleapis.com/css2?family=Teko:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+        /* Pengaturan Dasar */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Montserrat', sans-serif;
+            color: white;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        /* Kontainer Utama & Latar Belakang */
+        .profile-screen-container {
+            height: 100vh;
+            position: relative;
+            background: url('https://i.ibb.co/6yYJc9V/char5.png') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .profile-screen-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 1;
+        }
+
+/* [DIUBAH] Tombol Kembali */
+        .profile-close-button {
+            position: absolute;
+            top: 10px;
+            left: 30px;
+            z-index: 5;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-shadow: 0 0 5px #00aaff;
+            background-color: rgba(0,0,0,0.3);
+            border: 2px solid rgba(255,255,255,0.4);
+            padding: 10px 20px;
+            border-radius: 5px;
+            transform: skewX(-20deg);
+            font-family: 'Orbitron', sans-serif;
+            transition: all 0.2s ease;
+        }
+        .profile-close-button i {
+            margin-right: 15px; /* Jarak ikon */
+        }
+        .profile-close-button:hover {
+            background-color: rgba(0,0,0,0.6); 
+            transform: scale(1.05);/* Efek hover */
+        }
+
+        /* Wrapper konten */
+        .profile-wrapper {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            gap: 30px;
+            width: 90%;
+            max-width: 1600px;
+            height: 90vh;
+        }
+
+        /* ==================================
+           ZONA KIRI: PANGGUNG KARAKTER
+           ================================== */
+        .profile-showcase {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .showcase-character {
+            height: 60vh; /* Mengecilkan tinggi karakter */
+            object-fit: contain;
+            filter: drop-shadow(0 5px 25px rgba(0, 190, 255, 0.5));
+        }
+
+        .showcase-stats {
+            background-color: rgba(10, 20, 30, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 15px; /* Mengecilkan padding */
+            width: 100%;
+            margin-top: 15px; /* Mengurangi margin */
+        }
+        .showcase-stats h3 {
+            margin: 0 0 10px 0;
+            text-align: center;
+            color: #e8a337;
+            font-family: 'Teko', sans-serif;
+            font-size: 1.5rem; /* Mengecilkan font */
+            letter-spacing: 1px;
+        }
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem; /* Mengecilkan font */
+            padding: 6px 0; /* Mengecilkan padding */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .stat-row:last-child { border-bottom: none; }
+        .stat-row span:first-child { color: #aaa; }
+        .stat-row span:last-child { font-weight: bold; }
+
+
+        /* ==================================
+           ZONA KANAN: PANEL INFO
+           ================================== */
+        .profile-info-panel {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Mengurangi jarak antar panel */
+            overflow: hidden; /* Menghilangkan scroll */
+        }
+        
+        /* 1. Identitas Pemain */
+        .player-identity {
+            background-color: rgba(10, 20, 30, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 20px; /* Mengecilkan padding */
+        }
+        .identity-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .player-avatar {
+            width: 80px; /* Mengecilkan avatar */
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid #e8a337;
+        }
+        .name-block {
+            flex-grow: 1;
+        }
+        .player-name {
+            font-family: 'Teko', sans-serif;
+            font-size: 3.5rem; /* Mengecilkan font */
+            margin: 0;
+            line-height: 1;
+        }
+        .player-title {
+            font-size: 1.2rem; /* Mengecilkan font */
+            color: #e8a337;
+            font-style: italic;
+        }
+        .level-bar {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 15px; /* Mengurangi margin */
+        }
+        .level-badge {
+            background-color: #e8a337;
+            color: black;
+            padding: 6px 10px; /* Mengecilkan padding */
+            font-weight: bold;
+            font-size: 0.9rem; /* Mengecilkan font */
+            border-radius: 5px;
+        }
+        .exp-progress {
+            flex-grow: 1;
+            height: 18px; /* Mengecilkan bar */
+            background-color: rgba(0,0,0,0.5);
+            border: 1px solid #555;
+            border-radius: 10px;
+        }
+        .exp-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #e8a337, #ffd700);
+            border-radius: 10px;
+        }
+
+        /* 2. Data Hub (Kanan) */
+        .stats-hub {
+            background-color: rgba(10, 20, 30, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            flex-grow: 1;
+            display: flex; /* Menggunakan flexbox untuk layout */
+            flex-direction: column; /* Mengatur arah item */
+        }
+        
+        .stats-tabs {
+            display: flex;
+            background-color: rgba(0,0,0,0.3);
+            flex-shrink: 0; /* Mencegah tab mengecil */
+        }
+        .tab {
+            flex-grow: 1;
+            padding: 12px; /* Mengecilkan padding */
+            text-align: center;
+            text-decoration: none;
+            color: #aaa;
+            font-weight: bold;
+            font-size: 1.1rem; /* Mengecilkan font */
+            border-bottom: 3px solid transparent;
+        }
+        .tab:hover {
+            background-color: rgba(255,255,255,0.05);
+        }
+        
+        /* Logika untuk Tab */
+        .tab[href="#overview"] {
+            color: white;
+            background-color: rgba(20, 30, 40, 0.9);
+            border-bottom-color: #e8a337;
+        }
+        #ranked-stats:target ~ .stats-tabs .tab[href="#ranked-stats"] {
+             color: white;
+            background-color: rgba(20, 30, 40, 0.9);
+            border-bottom-color: #e8a337;
+        }
+        #ranked-stats:target ~ .stats-tabs .tab[href="#overview"] {
+            color: #aaa;
+            background-color: transparent;
+            border-bottom-color: transparent;
+        }
+
+        .stats-content {
+            padding: 20px; /* Mengecilkan padding */
+            overflow-y: auto; /* Izinkan scroll jika benar-benar perlu */
+            flex-grow: 1; /* Mengisi sisa ruang */
+        }
+
+        .rank-display {
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 15px; /* Mengurangi padding */
+            margin-bottom: 15px; /* Mengurangi margin */
+        }
+        .rank-emblem {
+            width: 120px; /* Mengecilkan emblem */
+            margin-bottom: 10px;
+        }
+        .rank-display span {
+            display: block;
+            font-size: 0.9rem; /* Mengecilkan font */
+            color: #ccc;
+        }
+        .rank-display h2 {
+            font-family: 'Teko', sans-serif;
+            font-size: 2.5rem; /* Mengecilkan font */
+            color: #e8a337;
+            margin: 0;
+            line-height: 1;
+        }
+        
+        .stat-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px; /* Mengurangi jarak */
+        }
+        .stat-list .stat-row {
+            font-size: 1.1rem; /* Mengecilkan font */
+        }
+
+        /* [PERBAIKAN] Logika untuk Panel Konten */
+        #ranked-stats-content {
+            display: none;
+        }
+        #overview-content {
+            display: block;
+        }
+        #ranked-stats:target ~ .stats-content #ranked-stats-content {
+            display: block;
+        }
+        #ranked-stats:target ~ .stats-content #overview-content {
+            display: none;
+        }
+        #overview:target ~ .stats-content #overview-content {
+            display: block;
+        }
+        #overview:target ~ .stats-content #ranked-stats-content {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-screen-container">
+        
+            <a href="index.html" class="profile-close-button"> KEMBALI</a>
+        <div class="profile-wrapper">
+            <div class="profile-showcase">
+                <img src="aset/skin/iron.png" class="showcase-character" alt="Karakter Favorit">
+                <div class="showcase-stats">
+                    <h3>STATISTIK KARAKTER</h3>
+                    <div class="stat-row"><span>Total Kemenangan:</span><span>520</span></div>
+                    <div class="stat-row"><span>Rasio Kemenangan:</span><span>68%</span></div>
+                    <div class="stat-row"><span>Waktu Bermain:</span><span>40 Jam</span></div>
+                </div>
+            </div>
+
+            <div class="profile-info-panel">
+                <div class="player-identity">
+                    <div class="identity-header">
+                        <img src="aset/head/head_thor.png" class="player-avatar" alt="Avatar">
+                        <div class="name-block">
+                            <h1 class="player-name">IronFist77</h1>
+                            <span class="player-title">Pejuang Musim 1</span>
+                        </div>
+                    </div>
+                    <div class="level-bar">
+                        <span class="level-badge">LEVEL 25</span>
+                        <div class="exp-progress">
+                            <div class="exp-fill" style="width: 70%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-hub">
+                    <span class="target-fix" id="overview"></span>
+                    <span class="target-fix" id="ranked-stats"></span>
+
+                    <nav class="stats-tabs">
+                        <a href="#overview" class="tab">Ringkasan</a>
+                        <a href="#ranked-stats" class="tab">Statistik Ranked</a>
+                    </nav>
+                    
+                    <div class="stats-content">
+                        <div class="tab-pane" id="overview-content">
+                            <div class="rank-display">
+                                <img src="aset/gold.png" class="rank-emblem" alt="Gold Emblem">
+                                <span>PERINGKAT MUSIM INI</span>
+                                <h2>GOLD III</h2>
+                            </div>
+                            <div class="stat-list">
+                                <div class="stat-row"><span>Total Kemenangan (Semua Mode):</span><span>1200</span></div>
+                                <div class="stat-row"><span>Total Pertandingan Dimainkan:</span><span>1950</span></div>
+                                 <div class="stat-row"><span>Rasio Kemenangan Keseluruhan:</span><span>61.5%</span></div>
+                                <div class="stat-row"><span>Kemenangan Beruntun Saat Ini:</span><span>8</span></div>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-pane" id="ranked-stats-content">
+                            <div class="stat-list">
+                                <div class="stat-row"><span>Rasio Kemenangan (Ranked):</span><span>58%</span></div>
+                                <div class="stat-row"><span>Jumlah Pertandingan (Ranked):</span><span>300</span></div>
+                                <div class="stat-row"><span>Jumlah Pertandingan Menang (Ranked):</span><span>174</span></div>
+                                <div class="stat-row"><span>Peringkat Tertinggi (Lalu):</span><span>PLATINUM V</span></div>
+                                <div class="stat-row"><span>Karakter Sering (Ranked):</span><span>Iron Man</span></div>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div> </div> </div> </body>
+</html>
