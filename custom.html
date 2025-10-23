@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marvel: Anime Arena - Pilih Karakter</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <style>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Marvel: Anime Arena - Pilih Karakter</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&amp;family=Roboto:wght@400;700&amp;display=swap">
+		<style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap');
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Orbitron', sans-serif;
             color: white;
             overflow: hidden;
         }
@@ -107,19 +109,15 @@
         .skin-box h2, .hero-box h2 {
             font-size: 1.8rem;
             font-weight: 900;
-            text-shadow: 0 0 10px #00aaff;
             letter-spacing: 2px;
-            color: #00bfff;
             margin-top: 5px;
             margin-bottom: 5px;
             text-align: center;
             font-family: 'Orbitron', sans-serif;
-            background: linear-gradient(90deg, rgba(0,123,255,0.2), rgba(0,195,255,0.3));
             padding: 10px 0;
             border: 2px solid #00aaff;
             border-radius: 8px;
-            
-            
+
         }
 
         /* GRID HERO */
@@ -252,85 +250,137 @@
             cursor: pointer;
             transition: all 0.25s ease;
             background-color: rgba(0,0,0,0.3);
-            border: 2px solid #66ddff;
+            border: 2px solid #00aaff;
+            font-family: 'Orbitron', sans-serif;
         }
 
         .action-button-arena:hover {
             transform: scale(1.05);
             box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
         }
-    </style>
-</head>
-<body>
-    <div class="game-container">
-
-        <!-- Tombol Kembali & Shop -->
-        <div class="top-bar">
-            <a href="index.html" class="back-btn"></i>KEMBALI</a>
-            <a href="store.html" class="shop-btn"><i class="fa-solid fa-store"></i> SHOP</a>
-        </div>
-
-        <div class="selection-wrapper">
-
-            <!-- PILIH SKIN -->
-            <div class="selection-zone">
-                <div class="skin-box">
-                    <h2>PILIH SKIN</h2>
-                    <div class="skin-list-arena">
-                        <div class="skin-item-arena active">
-                            <img src="aset/skin/spiderman.png" alt="Classic Suit">
-                            <div class="item-name-arena">Classic Suit</div>
-                        </div>
-                        <div class="skin-item-arena locked">
-                            <img src="aset/skin/spiderman_skin.png" alt="Black Spiderman">
-                            <div class="lock-overlay">
-                                <i class="fas fa-lock"></i>
-                                <span>Belum Dimiliki</span>
-                            </div>
-                            <div class="item-name-arena">Black Spiderman</div>
-                        </div>
-                    </div>
-                    <div class="action-bar">
-                        <button class="action-button-arena">Pilih Skin</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PILIH HERO -->
-            <div class="selection-zone">
-                <div class="hero-box">
-                    <h2>PILIH HERO</h2>
-                    <div class="hero-list">
-                        <div class="hero-portrait"><img src="aset/head/head_antman.png"></div>
-                        <div class="hero-portrait"><img src="aset/head/head_blackphanter.png"></div>
-                        <div class="hero-portrait"><img src="aset/head/head_blackwidow.png"></div>
-                        <div class="hero-portrait"><img src="aset/head/head_capt.png"></div>
-                        <div class="hero-portrait"><img src="aset/head/head_captainmavel.png"></div>
-                        <div class="hero-portrait"><img src="aset/head/head_falcon.png"></div>
-                        <div class="hero-portrait"><img src="aset/head/head_goblin.png"></div>
-                        <div class="hero-portrait"><img src="aset/head/head_hawk.png"></div>
-                        <div class="hero-portrait"><img src="aset/head/head_hela.png"></div>
-                        <div class="hero-portrait"><img src="aset/head/head_hulk.png"></div>
-                        <div class="hero-portrait"><img src="aset/head/head_iron.png"></div>
-                        <div class="hero-portrait"><img src="aset/head/head_kang.png"></div>
-                        <div class="hero-portrait"><img src="aset/head/head_kilmo.png"></div>
-                        <div class="hero-portrait"><img src="aset/head/head_loki.png"></div>
-                        <div class="hero-portrait"><img src="aset/head/head_octopus.png"></div>
-                        <div class="hero-portrait"><img src="aset/head/head_redskul.png"></div>
-                        <div class="hero-portrait"><img src="aset/head/head_scarlet.png"></div>
-                        <div class="hero-portrait"><img src="aset/head/head_spider.png"></div>
-                        <div class="hero-portrait"><img src="aset/head/head_strange.png"></div>
-                        <div class="hero-portrait"><img src="aset/head/head_thanos.png"></div>
-                        <div class="hero-portrait"><img src="aset/head/head_thor.png"></div>
-                        <div class="hero-portrait"><img src="aset/head/head_ultron.png"></div>
-                        <div class="hero-portrait"><img src="aset/head/head_venom.png"></div>
-                        <div class="hero-portrait"><img src="aset/head/head_vison.png"></div>
-                        <div class="hero-portrait"><img src="aset/head/head_wasp.png"></div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</body>
+    
+		</style>
+	</head>
+	<body>
+		<div class="game-container">
+			
+			<!-- Tombol Kembali & Shop -->
+			<div class="top-bar">
+				<a href="index.html" class="back-btn">KEMBALI</a>
+				<a href="store.html" class="shop-btn">
+					<i class="fa-solid fa-store"></i>
+					TOKO</a>
+			</div>
+			<div class="selection-wrapper">
+				
+				<!-- PILIH SKIN -->
+				<div class="selection-zone">
+					<div class="skin-box">
+						<h2>PILIH SKIN</h2>
+						<div class="skin-list-arena">
+							<div class="skin-item-arena active">
+								<img src="aset/skin/spiderman.png" alt="Classic Suit">
+								<div class="item-name-arena">Classic Suit</div>
+							</div>
+							<div class="skin-item-arena locked">
+								<img src="aset/skin/spiderman_skin.png" alt="Black Spiderman">
+								<div class="lock-overlay">
+									<i class="fas fa-lock"></i>
+									<span>Belum Dimiliki</span>
+								</div>
+								<div class="item-name-arena">Black Spiderman</div>
+							</div>
+						</div>
+						<div class="action-bar">
+							<button class="action-button-arena">Pilih Skin</button>
+						</div>
+					</div>
+				</div>
+				
+				<!-- PILIH HERO -->
+				<div class="selection-zone">
+					<div class="hero-box">
+						<h2>PILIH HERO</h2>
+						<div class="hero-list">
+							<div class="hero-portrait">
+								<img src="aset/head/head_antman.png">
+							</div>
+							<div class="hero-portrait">
+								<img src="aset/head/head_blackphanter.png">
+							</div>
+							<div class="hero-portrait">
+								<img src="aset/head/head_blackwidow.png">
+							</div>
+							<div class="hero-portrait">
+								<img src="aset/head/head_capt.png">
+							</div>
+							<div class="hero-portrait">
+								<img src="aset/head/head_captainmavel.png">
+							</div>
+							<div class="hero-portrait">
+								<img src="aset/head/head_falcon.png">
+							</div>
+							<div class="hero-portrait">
+								<img src="aset/head/head_goblin.png">
+							</div>
+							<div class="hero-portrait">
+								<img src="aset/head/head_hawk.png">
+							</div>
+							<div class="hero-portrait">
+								<img src="aset/head/head_hela.png">
+							</div>
+							<div class="hero-portrait">
+								<img src="aset/head/head_hulk.png">
+							</div>
+							<div class="hero-portrait">
+								<img src="aset/head/head_iron.png">
+							</div>
+							<div class="hero-portrait">
+								<img src="aset/head/head_kang.png">
+							</div>
+							<div class="hero-portrait">
+								<img src="aset/head/head_kilmo.png">
+							</div>
+							<div class="hero-portrait">
+								<img src="aset/head/head_loki.png">
+							</div>
+							<div class="hero-portrait">
+								<img src="aset/head/head_octopus.png">
+							</div>
+							<div class="hero-portrait">
+								<img src="aset/head/head_redskul.png">
+							</div>
+							<div class="hero-portrait">
+								<img src="aset/head/head_scarlet.png">
+							</div>
+							<div class="hero-portrait">
+								<img src="aset/head/head_spider.png">
+							</div>
+							<div class="hero-portrait">
+								<img src="aset/head/head_strange.png">
+							</div>
+							<div class="hero-portrait">
+								<img src="aset/head/head_thanos.png">
+							</div>
+							<div class="hero-portrait">
+								<img src="aset/head/head_thor.png">
+							</div>
+							<div class="hero-portrait">
+								<img src="aset/head/head_ultron.png">
+							</div>
+							<div class="hero-portrait">
+								<img src="aset/head/head_venom.png">
+							</div>
+							<div class="hero-portrait">
+								<img src="aset/head/head_vison.png">
+							</div>
+							<div class="hero-portrait">
+								<img src="aset/head/head_wasp.png">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>

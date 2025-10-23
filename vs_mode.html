@@ -1,87 +1,162 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marvel: Anime Arena - VS Mode</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-</head>
-<body>
-    <div class="game-container char-select-bg">
-        <a href="index.html" class="back-button-all"></i>KEMBALI</a>
-        <div class="char-select-main">
-            
-            <div class="player-showcase">
-                <div class="showcase-header">PLAYER 1</div>
-                <img src="aset/skin/antman_skin.png" alt="Ant-Man Showcase">
-                <h2 class="character-name">ANT-MAN</h2>
-            </div>
-
-            <div class="selection-grid-container">
-                <div class="countdown-timer">10</div>
-                
-                <div class="character-grid">
-                    <div class="char-portrait"><img src="aset/head/head_capt.png"><div class="char-price"></div></div>
-                    <div class="char-portrait"><img src="aset/head/head_antman.png"><div class="char-price"></div></div>
-                    <div class="char-portrait"><img src="aset/head/head_spider.png"><div class="char-price"></div></div>
-                    <div class="char-portrait"><img src="aset/head/head_blackphanter.png"><div class="char-price"></div></div>
-                    <div class="char-portrait"><img src="aset/head/head_falcon.png"><div class="char-price"></div></div>
-                    <div class="char-portrait"><img src="aset/head/head_goblin.png"><div class="char-price"></div></div>
-                    <div class="char-portrait"><img src="aset/head/head_hawk.png"><div class="char-price"></div></div>
-                    <div class="char-portrait"><img src="aset/head/head_hela.png"><div class="char-price"></div></div>
-                    <div class="char-portrait"><img src="aset/head/head_iron.png"><div class="char-price"></div></div>
-                    <div class="char-portrait"><img src="aset/head/head_kang.png"><div class="char-price"></div></div>
-                    <div class="char-portrait"><img src="aset/head/head_kilmo.png"><div class="char-price"></div></div>
-                    <div class="char-portrait"><img src="aset/head/head_loki.png"><div class="char-price"></div></div>
-                    <div class="char-portrait"><img src="aset/head/head_octopus.png"><div class="char-price"></div></div>
-                    <div class="char-portrait"><img src="aset/head/head_scarlet.png"><div class="char-price"></div></div>
-                    <div class="char-portrait"><img src="aset/head/head_thanos.png"><div class="char-price"></div></div>
-                    <div class="char-portrait"><img src="aset/head/head_thor.png"><div class="char-price"></div></div>
-                    <div class="char-portrait"><img src="aset/head/head_ultron.png"><div class="char-price"></div></div>
-                    <div class="char-portrait"><img src="aset/head/head_venom.png"><div class="char-price"></div></div>
-                    <div class="char-portrait"><img src="aset/head/head_vison.png"><div class="char-price"></div></div>
-                    <div class="char-portrait"><img src="aset/head/head_wasp.png"><div class="char-price"></div></div>
-                    <div class="char-portrait locked"><img src="aset/head/head_blackwidow.png"><div class="char-price"></div></div>
-                    <div class="char-portrait locked"><img src="aset/head/head_redskul.png"><div class="char-price"></div></div>
-                    <div class="char-portrait locked"><img src="aset/head/head_strange.png"><div class="char-price"></div></div>
-                    <div class="char-portrait locked"><img src="aset/head/head_hulk.png"><div class="char-price"></div></div>
-                    <div class="char-portrait locked"><img src="aset/head/head_captainmavel.png"><div class="char-price"></div></div>
-                </div>
-            </div>
-
-            <div class="player-showcase">
-                <div class="showcase-header">PLAYER 2</div>
-                <img src="aset/skin/captainmarvel.png" alt="Captain Marvel Showcase" class="p2-mirror">
-                <h2 class="character-name">CAPTAIN MARVEL</h2>
-            </div>
-        </div>
-
-        <div class="selection-footer vs-footer">
-            <div class="footer-option stage-select">
-                <h4>STAGE SELECT</h4>
-                <div class="stage-preview">
-                    <img src="aset/asgard.jpg" alt="Asgard">
-                    <div class="stage-info">
-                        <span>Asgard</span>
-                        <small>Training Grounds</small>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-option match-settings">
-                <div class="match-setting-item">
-                    <span>ROUNDS: <strong>BEST 3</strong></span>
-                </div>
-                <div class="match-setting-item">
-                    <span>TIME LIMIT: <strong>60 SECONDS</strong></span>
-                </div>
-            </div>
-            <div class="footer-option controller-setup">
-                <i class="fas fa-gamepad"></i>
-                <span>CONTROLLER SETUP</span>
-            </div>
-        </div>
-
-    </div>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Marvel: Anime Arena - VS Mode</title>
+		<link rel="stylesheet" href="style.css">
+		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&amp;family=Roboto:wght@400;700&amp;display=swap">
+	</head>
+	<body>
+		<div class="game-container char-select-bg">
+			<a href="index.html" class="back-button-all">KEMBALI</a>
+			<div class="char-select-main">
+				<div class="player-showcase">
+					<div class="showcase-header">PLAYER 1</div>
+					<img src="aset/skin/antman_skin.png" alt="Ant-Man Showcase">
+					<h2 class="character-name">ANT-MAN</h2>
+				</div>
+				<div class="selection-grid-container">
+					<div class="countdown-timer">10</div>
+				<div class="selection-grid-container">
+					<div class="character-grid">
+						<div class="char-portrait">
+							<img src="aset/head/head_antman.png">
+							<div class="char-price"></div>
+						</div>
+						<div class="char-portrait">
+							<img src="aset/head/head_blackphanter.png">
+							<div class="char-price"></div>
+						</div>
+						<div class="char-portrait">
+							<img src="aset/head/head_blackwidow.png">
+							<div class="char-price"></div>
+						</div>
+						<div class="char-portrait">
+							<img src="aset/head/head_capt.png">
+							<div class="char-price"></div>
+						</div>
+						<div class="char-portrait">
+							<img src="aset/head/head_captainmavel.png">
+							<div class="char-price"></div>
+						</div>
+						<div class="char-portrait">
+							<img src="aset/head/head_falcon.png">
+							<div class="char-price"></div>
+						</div>
+						<div class="char-portrait">
+							<img src="aset/head/head_goblin.png">
+							<div class="char-price"></div>
+						</div>
+						<div class="char-portrait">
+							<img src="aset/head/head_hawk.png">
+							<div class="char-price"></div>
+						</div>
+						<div class="char-portrait">
+							<img src="aset/head/head_hela.png">
+							<div class="char-price"></div>
+						</div>
+						<div class="char-portrait">
+							<img src="aset/head/head_hulk.png">
+							<div class="char-price"></div>
+						</div>
+						<div class="char-portrait">
+							<img src="aset/head/head_iron.png">
+							<div class="char-price"></div>
+						</div>
+						<div class="char-portrait">
+							<img src="aset/head/head_kang.png">
+							<div class="char-price"></div>
+						</div>
+						<div class="char-portrait">
+							<img src="aset/head/head_kilmo.png">
+							<div class="char-price"></div>
+						</div>
+						<div class="char-portrait">
+							<img src="aset/head/head_loki.png">
+							<div class="char-price"></div>
+						</div>
+						<div class="char-portrait">
+							<img src="aset/head/head_octopus.png">
+							<div class="char-price"></div>
+						</div>
+						<div class="char-portrait">
+							<img src="aset/head/head_redskul.png">
+							<div class="char-price"></div>
+						</div>
+						<div class="char-portrait">
+							<img src="aset/head/head_scarlet.png">
+							<div class="char-price"></div>
+						</div>
+						<div class="char-portrait">
+							<img src="aset/head/head_spider.png">
+							<div class="char-price"></div>
+						</div>
+						<div class="char-portrait">
+							<img src="aset/head/head_strange.png">
+							<div class="char-price"></div>
+						</div>
+						<div class="char-portrait">
+							<img src="aset/head/head_thanos.png">
+							<div class="char-price"></div>
+						</div>
+						<div class="char-portrait locked">
+							<img src="aset/head/head_thor.png">
+							<div class="char-price"></div>
+						</div>
+						<div class="char-portrait locked">
+							<img src="aset/head/head_ultron.png">
+							<div class="char-price"></div>
+						</div>
+						<div class="char-portrait locked">
+							<img src="aset/head/head_venom.png">
+							<div class="char-price"></div>
+						</div>
+						<div class="char-portrait locked">
+							<img src="aset/head/head_vison.png">
+							<div class="char-price"></div>
+						</div>
+                        <div class="char-portrait locked">
+							<img src="aset/head/head_wasp.png">
+							<div class="char-price"></div>
+						</div>
+					</div>
+				</div>
+				</div>
+				<div class="player-showcase">
+					<div class="showcase-header">PLAYER 2</div>
+					<img src="aset/skin/captainmarvel.png" alt="Captain Marvel Showcase" class="p2-mirror">
+					<h2 class="character-name">CAPTAIN MARVEL</h2>
+				</div>
+			</div>
+			<div class="selection-footer vs-footer">
+				<div class="footer-option stage-select">
+					<h4>STAGE SELECT</h4>
+					<div class="stage-preview">
+						<img src="aset/asgard.jpg" alt="Asgard">
+						<div class="stage-info">
+							<span>Asgard</span>
+							<small>Training Grounds</small>
+						</div>
+					</div>
+				</div>
+				<div class="footer-option match-settings">
+					<div class="match-setting-item">
+						<span>ROUNDS:
+							<strong>BEST 3</strong>
+						</span>
+					</div>
+					<div class="match-setting-item">
+						<span>TIME LIMIT:
+							<strong>60 SECONDS</strong>
+						</span>
+					</div>
+				</div>
+				<div class="footer-option controller-setup">
+					<i class="fas fa-gamepad"></i>
+					<span>CONTROLLER SETUP</span>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>

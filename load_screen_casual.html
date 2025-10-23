@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marvel: Anime Arena - Loading Match</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    
-    <style>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Marvel: Anime Arena - Loading Match</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&amp;family=Roboto:wght@400;700&amp;display=swap">
+		<style>
         /* Mengimpor Font dari Google */
-        @import url('https://fonts.googleapis.com/css2?family=Teko:wght@400;700&display=swap');
+        @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap");
 
         /* Pengaturan Dasar */
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
-            font-family: 'Teko', sans-serif;
+            font-family: 'Orbitron', sans-serif;
             color: white;
             overflow: hidden;
             background-color: #000;
@@ -89,9 +89,9 @@
             left: 5%;
             text-align: left;
         }
-        .player-panel.p1 .player-name { font-size: 6rem; line-height: 1; }
-        .player-panel.p1 .player-level { font-size: 2rem; }
-        .player-panel.p1 .player-stat { font-size: 1.5rem; color: #ccc; }
+        .player-panel.p1 .player-name { font-size: 4rem; line-height: 1; }
+        .player-panel.p1 .player-level { font-size: 1.5rem; }
+        .player-panel.p1 .player-stat { font-size: 1.2rem; color: #ccc; }
 
         /* Panel Player 2 (Kanan) */
         .player-panel.p2 {
@@ -99,14 +99,14 @@
             right: 5%;
             text-align: right;
         }
-        .player-panel.p2 .player-name { font-size: 6rem; line-height: 1; }
-        .player-panel.p2 .player-level { font-size: 2rem; }
-        .player-panel.p2 .player-stat { font-size: 1.5rem; color: #ccc; }
+        .player-panel.p2 .player-name { font-size: 4rem; line-height: 1; }
+        .player-panel.p2 .player-level { font-size: 1.5rem; }
+        .player-panel.p2 .player-stat { font-size: 1.2rem; color: #ccc; }
 
         .ping-info {
             position: absolute;
             bottom: 20px;
-            font-size: 1.5rem;
+            font-size: 1rem;
             z-index: 4;
             display: flex; align-items: center; gap: 8px;
         }
@@ -124,12 +124,12 @@
             text-shadow: 2px 2px 8px #000;
         }
         .match-info .game-title {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             letter-spacing: 5px;
             margin-bottom: 5px;
         }
         .match-info .match-mode {
-            font-size: 4rem;
+            font-size: 3rem;
             font-weight: 700;
         }
 
@@ -157,49 +157,46 @@
             border-radius: 3px;
         }
         .loading-tip {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: #ddd;
         }
 
-    </style>
-</head>
-<body>
-    <div class="loading-screen-container">
-        <div class="split-bg"></div>
-        
-        <img src="aset/skin/iron_skin.png" alt="Player 1 Character" class="character p1">
-        <img src="aset/skin/loki_skin.png" alt="Player 2 Character" class="character p2">
-
-        <div class="player-panel p1">
-            <div class="player-name">IronFist77</div>
-            <div class="player-level">LEVEL 25</div>
-            <div class="player-stat">Total Wins: 150</div>
-        </div>
-        <div class="ping-info p1">
-            <i class="fas fa-wifi"></i> Ping 30ms
-        </div>
-
-        <div class="player-panel p2">
-            <div class="player-name">AkangRoni</div>
-            <div class="player-level">LEVEL 28</div>
-            <div class="player-stat">Total Wins: 120</div>
-        </div>
-        <div class="ping-info p2">
-            <i class="fas fa-wifi"></i> Ping 40ms
-        </div>
-
-        <div class="match-info">
-            <div class="game-title">MARVEL ARENA</div>
-            <div class="match-mode">CASUAL MATCH</div>
-        </div>
-
-        <div class="loading-info">
-            <div class="loading-bar-container">
-                <div class="loading-bar-fill"></div>
-            </div>
-            <div class="loading-tip">Gunakan DASH untuk bergerak cepat dan menghindari serangan!</div>
-        </div>
-
-    </div>
-</body>
+    
+		</style>
+	</head>
+	<body>
+		<div class="loading-screen-container">
+			<div class="split-bg"></div>
+			<img src="aset/skin/thanos_skin.png" alt="Player 1 Character" class="character p1">
+			<img src="aset/skin/capt.png" alt="Player 2 Character" class="character p2">
+			<div class="player-panel p1">
+				<div class="player-name">IronFist77</div>
+				<div class="player-level">LEVEL 25</div>
+				<div class="player-stat">Total Wins: 150</div>
+			</div>
+			<div class="ping-info p1">
+				<i class="fas fa-wifi"></i>
+				Ping 30ms
+			</div>
+			<div class="player-panel p2">
+				<div class="player-name">AkangRoni</div>
+				<div class="player-level">LEVEL 28</div>
+				<div class="player-stat">Total Wins: 120</div>
+			</div>
+			<div class="ping-info p2">
+				<i class="fas fa-wifi"></i>
+				Ping 40ms
+			</div>
+			<div class="match-info">
+				<div class="game-title">MARVEL ARENA</div>
+				<div class="match-mode">CASUAL MATCH</div>
+			</div>
+			<div class="loading-info">
+				<div class="loading-bar-container">
+					<div class="loading-bar-fill"></div>
+				</div>
+				<div class="loading-tip">Gunakan DASH untuk bergerak cepat dan menghindari serangan!</div>
+			</div>
+		</div>
+	</body>
 </html>

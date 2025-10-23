@@ -2,7 +2,7 @@
     MENU UTAMA
    ============================================================================================================ */
 /* Mengimpor font dari Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap');
 .back-button-all{
 position: absolute;
 top: 10px;
@@ -32,7 +32,7 @@ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Orbitron', sans-serif;
     color: white;
     overflow: hidden; /* Mencegah scroll */
 }
@@ -66,7 +66,7 @@ body, html {
 
 /* Judul Game (Hanya untuk Menu Utama) */
 .game-title {
-    margin-top: 20px;
+    margin-top: 10px;
     font-size: 1.5rem;
     letter-spacing: 5px;
     background-color: rgba(0, 0, 0, 0.5);
@@ -77,16 +77,17 @@ body, html {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
+    font-family: 'Orbitron', sans-serif;
 }
 
 /* Profil Pemain (Kanan Atas) */
 .player-profile {
     position: absolute;
-    top: 25px;
-    right: 30px;
+    top: 10px;
+    right: 5px;
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
     background-color: rgba(15, 20, 35, 0.75);
     padding: 0px 30px;
     border-radius: 45px;
@@ -107,6 +108,7 @@ body, html {
     position: absolute;
     left: -15px;
     z-index: 3;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .exp-bar-container {
@@ -130,16 +132,19 @@ body, html {
     border-radius: 5px;
 }
 
-.player-name {
+.player-name-lobby {
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 1rem;
+    font-family: 'Orbitron', sans-serif;
+    margin: 20px;
 }
 
 .currency {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 1.1rem;
+    font-size: 1rem;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .gold-icon { color: #ffd700; }
@@ -186,6 +191,7 @@ body, html {
     font-size: 2rem;
     font-weight: bold;
     transition: all 0.2s ease-in-out;
+    font-family: 'Orbitron', sans-serif;
 }
 
 /* Efek saat menu disorot atau aktif */
@@ -228,6 +234,7 @@ body, html {
     margin-bottom: 8px;
     color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .submenu a:hover {
@@ -327,6 +334,7 @@ body, html {
     font-size: 1rem;
     color: #a9c7d6;
     margin: 0.5rem 0;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .player-name {
@@ -347,12 +355,14 @@ body, html {
     display: flex;
     align-items: center;
     margin-bottom: 0.7rem;
+    gap: 20px;
 }
 
 .stat-label {
     width: 100px; /* Lebar label tetap */
     text-align: left;
     font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .bar {
@@ -524,6 +534,7 @@ body, html {
     letter-spacing: 2px;
     color: #FFD700;
     text-shadow: 0 0 10px rgba(0,0,0,0.7);
+    font-family: 'Orbitron', sans-serif;
 }
 
 .rank-progress-bar {
@@ -564,6 +575,7 @@ body, html {
     padding: 12px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     min-width: 400px; /* Lebar minimum agar rapi */
+    font-family: 'Orbitron', sans-serif;
 }
 
 .stat-item:last-child {
@@ -576,6 +588,7 @@ body, html {
 
 .stat-item span:last-child {
     font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
 }
 
 /* Tombol Cari Pertandingan Ranked *//* Tombol Cari Pertandingan Ranked */
@@ -599,6 +612,7 @@ body, html {
   z-index: 100;          
   pointer-events: auto;
   text-decoration: none;
+  font-family: 'Orbitron', sans-serif;
 }
 
 .find-ranked-match-button:hover {
@@ -655,6 +669,7 @@ body, html {
     letter-spacing: 2px;
     transform: skewX(-20deg);
     margin-bottom: 20px;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .player-showcase img {
@@ -670,6 +685,7 @@ body, html {
     font-weight: 900;
     letter-spacing: 3px;
     margin-top: 10px;
+    font-family: 'Orbitron', sans-serif;
 }
 
 /* Kolom Tengah (Grid Karakter) */
@@ -729,6 +745,7 @@ body, html {
     font-size: 0.8rem;
     font-weight: bold;
     border-top-right-radius: 5px;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .char-price .fa-coins {
@@ -764,6 +781,7 @@ body, html {
     margin: 0;
     color: rgba(255, 255, 255, 0.6);
     font-size: 0.9rem;
+    font-family: 'Orbitron', sans-serif;
 }
 
 /* Opsi Stage Select */
@@ -802,6 +820,7 @@ body, html {
 
 .controller-setup i {
     font-size: 1.5rem;
+    font-family: 'Orbitron', sans-serif;
 }
 
 /* ======================================================================================================================
@@ -824,6 +843,7 @@ body, html {
     color: #ffd700;
     text-shadow: 0 0 15px black;
     z-index: 5;
+    font-family: 'Orbitron', sans-serif;
 }
 
 /* Penyesuaian untuk footer di VS Mode */
@@ -846,11 +866,13 @@ body, html {
     flex-direction: column;
     color: #aaa;
     font-size: 0.9rem;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .match-setting-item strong {
     color: white;
     font-size: 1rem;
+    font-family: 'Orbitron', sans-serif;
 }
 
 /* =================================================================================================================================
@@ -859,7 +881,7 @@ body, html {
 
 /* Background grid untuk arena latihan (Link diperbarui) */
 .tutorial-bg {
-    background-image: url('aset/tutor.png');
+    background-image: url('aset/lab.png');
     background-size: cover;
     /* Menambahkan ini untuk membantu penataan posisi */
     display: flex;
@@ -939,6 +961,7 @@ transition: all 0.2s ease;
     margin-top: 1px; padding-left: 0;
     border-bottom: 1px solid rgba(232, 163, 55, 0.5);
     padding: 5px ;
+    font-family: 'Orbitron', sans-serif;
 }
 .lesson-list li.chapter:first-child {
     margin-top: 0;
@@ -948,6 +971,7 @@ transition: all 0.2s ease;
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
     font-size: 1rem;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .lesson-list li:not(.chapter):hover {
@@ -960,10 +984,12 @@ transition: all 0.2s ease;
 }
 .lesson-list li.active a {
     color: black; font-weight: bold;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .lesson-list .fa-check-circle {
     color: #e8a337; font-size: 1rem;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .lesson-list li.active .fa-check-circle {
@@ -986,6 +1012,7 @@ transition: all 0.2s ease;
 }
 .lesson-header h2 {
     margin: 0; font-size: 1rem; letter-spacing: 1px;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .lesson-content {
@@ -1041,7 +1068,7 @@ transition: all 0.2s ease;
 
 .player-details { display: flex; flex-direction: column; }
 .hud-player.p2 .player-details { align-items: flex-end; }
-.player-name { font-weight: bold; font-size: 1.2rem; }
+.player-name { font-weight: bold; font-size: 1.2rem; font-family: 'Orbitron', sans-serif;}
 
 .health-bar {
     width: 400px; height: 20px;
@@ -1052,8 +1079,8 @@ transition: all 0.2s ease;
 .health-fill { height: 100%; background: linear-gradient(90deg, #ff4d4d, #ff0000); }
 
 .hud-center { display: flex; align-items: center; gap: 20px; }
-.timer { font-size: 2.5rem; font-weight: 900; }
-.frame-data { font-size: 2rem; font-weight: bold; padding: 5px 10px; border-radius: 5px; }
+.timer { font-size: 2.5rem; font-weight: 900;font-family: 'Orbitron', sans-serif; }
+.frame-data { font-size: 2rem; font-weight: bold; padding: 5px 10px; border-radius: 5px;font-family: 'Orbitron', sans-serif; }
 .frame-data.positive { color: #55aaff; }
 .frame-data.negative { color: #ff4d4d; }
 
@@ -1096,6 +1123,7 @@ transition: all 0.2s ease;
     background-color: rgba(0,0,0,0.3);
     padding: 10px;
     border-radius: 5px;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .options-columns { display: flex; gap: 40px; }
@@ -1117,7 +1145,7 @@ fieldset legend {
 }
 
 .option-group { margin-bottom: 15px; }
-.option-group > span { font-weight: bold; display: block; margin-bottom: 8px; color: #ccc; }
+.option-group > span { font-weight: bold; display: block; margin-bottom: 8px; color: #ccc;font-family: 'Orbitron', sans-serif;}
 .dummy-status-group { display: flex; gap: 10px; margin-top: 35px; }
 
 .option-item {
@@ -1135,6 +1163,7 @@ fieldset legend {
 .option-item label {
     font-size: 1rem;
     color: #ddd;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .setting-button, .exit-button {
@@ -1146,6 +1175,7 @@ fieldset legend {
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.2s;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .setting-button {
@@ -1191,6 +1221,7 @@ fieldset legend {
     letter-spacing: 2px;
     border-bottom: 2px solid rgba(255, 255, 255, 0.1);
     padding-bottom: 10px;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .store-items {
@@ -1231,6 +1262,7 @@ fieldset legend {
     margin: 0 0 5px 0;
     font-size: 0.9rem;
     color: #fff;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .item-price {
@@ -1240,6 +1272,7 @@ fieldset legend {
     display: flex;
     align-items: center;
     gap: 5px;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .new-tag {
@@ -1251,5 +1284,6 @@ fieldset legend {
     font-weight: bold;
     display: inline-block;
     margin-top: 5px;
+    font-family: 'Orbitron', sans-serif;
 }
 

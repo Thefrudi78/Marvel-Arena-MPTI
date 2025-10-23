@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marvel: Anime Arena - Profil Pemain</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    
-    <style>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Marvel: Anime Arena - Profil Pemain</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&amp;family=Roboto:wght@400;700&amp;display=swap">
+		<style>
         /* Mengimpor Font dari Google */
         @import url('https://fonts.googleapis.com/css2?family=Teko:wght@400;700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap');
 
         /* Pengaturan Dasar */
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Orbitron', sans-serif;
             color: white;
             overflow: hidden;
             background-color: #000;
@@ -26,7 +27,7 @@
         .profile-screen-container {
             height: 100vh;
             position: relative;
-            background: url('https://i.ibb.co/6yYJc9V/char5.png') no-repeat center center;
+            background: url('aset/city.png') no-repeat center center;
             background-size: cover;
             display: flex;
             justify-content: center;
@@ -159,7 +160,7 @@
             flex-grow: 1;
         }
         .player-name {
-            font-family: 'Teko', sans-serif;
+            font-family:'orbitron', sans-serif;
             font-size: 3.5rem; /* Mengecilkan font */
             margin: 0;
             line-height: 1;
@@ -205,6 +206,7 @@
             flex-grow: 1;
             display: flex; /* Menggunakan flexbox untuk layout */
             flex-direction: column; /* Mengatur arah item */
+            margin-bottom: 20px;
         }
         
         .stats-tabs {
@@ -300,75 +302,109 @@
         #overview:target ~ .stats-content #ranked-stats-content {
             display: none;
         }
-    </style>
-</head>
-<body>
-
-    <div class="profile-screen-container">
-        
-            <a href="index.html" class="profile-close-button"> KEMBALI</a>
-        <div class="profile-wrapper">
-            <div class="profile-showcase">
-                <img src="aset/skin/iron.png" class="showcase-character" alt="Karakter Favorit">
-                <div class="showcase-stats">
-                    <h3>STATISTIK KARAKTER</h3>
-                    <div class="stat-row"><span>Total Kemenangan:</span><span>520</span></div>
-                    <div class="stat-row"><span>Rasio Kemenangan:</span><span>68%</span></div>
-                    <div class="stat-row"><span>Waktu Bermain:</span><span>40 Jam</span></div>
-                </div>
-            </div>
-
-            <div class="profile-info-panel">
-                <div class="player-identity">
-                    <div class="identity-header">
-                        <img src="aset/head/head_thor.png" class="player-avatar" alt="Avatar">
-                        <div class="name-block">
-                            <h1 class="player-name">IronFist77</h1>
-                            <span class="player-title">Pejuang Musim 1</span>
-                        </div>
-                    </div>
-                    <div class="level-bar">
-                        <span class="level-badge">LEVEL 25</span>
-                        <div class="exp-progress">
-                            <div class="exp-fill" style="width: 70%;"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="stats-hub">
-                    <span class="target-fix" id="overview"></span>
-                    <span class="target-fix" id="ranked-stats"></span>
-
-                    <nav class="stats-tabs">
-                        <a href="#overview" class="tab">Ringkasan</a>
-                        <a href="#ranked-stats" class="tab">Statistik Ranked</a>
-                    </nav>
-                    
-                    <div class="stats-content">
-                        <div class="tab-pane" id="overview-content">
-                            <div class="rank-display">
-                                <img src="aset/gold.png" class="rank-emblem" alt="Gold Emblem">
-                                <span>PERINGKAT MUSIM INI</span>
-                                <h2>GOLD III</h2>
-                            </div>
-                            <div class="stat-list">
-                                <div class="stat-row"><span>Total Kemenangan (Semua Mode):</span><span>1200</span></div>
-                                <div class="stat-row"><span>Total Pertandingan Dimainkan:</span><span>1950</span></div>
-                                 <div class="stat-row"><span>Rasio Kemenangan Keseluruhan:</span><span>61.5%</span></div>
-                                <div class="stat-row"><span>Kemenangan Beruntun Saat Ini:</span><span>8</span></div>
-                            </div>
-                        </div>
-                        
-                        <div class="tab-pane" id="ranked-stats-content">
-                            <div class="stat-list">
-                                <div class="stat-row"><span>Rasio Kemenangan (Ranked):</span><span>58%</span></div>
-                                <div class="stat-row"><span>Jumlah Pertandingan (Ranked):</span><span>300</span></div>
-                                <div class="stat-row"><span>Jumlah Pertandingan Menang (Ranked):</span><span>174</span></div>
-                                <div class="stat-row"><span>Peringkat Tertinggi (Lalu):</span><span>PLATINUM V</span></div>
-                                <div class="stat-row"><span>Karakter Sering (Ranked):</span><span>Iron Man</span></div>
-                            </div>
-                        </div> 
-                    </div>
-                </div>
-            </div> </div> </div> </body>
+    
+		</style>
+	</head>
+	<body>
+		<div class="profile-screen-container">
+			<a href="index.html" class="profile-close-button">
+				KEMBALI</a>
+			<div class="profile-wrapper">
+				<div class="profile-showcase">
+					<img src="aset/skin/iron.png" class="showcase-character" alt="Karakter Favorit">
+					<div class="showcase-stats">
+						<h3>STATISTIK KARAKTER</h3>
+						<div class="stat-row">
+							<span>Total Kemenangan:</span>
+							<span>520</span>
+						</div>
+						<div class="stat-row">
+							<span>Rasio Kemenangan:</span>
+							<span>68%</span>
+						</div>
+						<div class="stat-row">
+							<span>Waktu Bermain:</span>
+							<span>40 Jam</span>
+						</div>
+					</div>
+				</div>
+				<div class="profile-info-panel">
+					<div class="player-identity">
+						<div class="identity-header">
+							<img src="aset/head/head_thor.png" class="player-avatar" alt="Avatar">
+							<div class="name-block">
+								<h1 class="player-name">IronFist77</h1>
+								<span class="player-title">Pejuang Musim 1</span>
+							</div>
+						</div>
+						<div class="level-bar">
+							<span class="level-badge">LEVEL 25</span>
+							<div class="exp-progress">
+								<div class="exp-fill" style="width: 70%;"></div>
+							</div>
+						</div>
+					</div>
+					<div class="stats-hub">
+						<span class="target-fix" id="overview"></span>
+						<span class="target-fix" id="ranked-stats"></span>
+						<nav class="stats-tabs">
+							<a href="#overview" class="tab">Ringkasan</a>
+							<a href="#ranked-stats" class="tab">Statistik Ranked</a>
+						</nav>
+						<div class="stats-content">
+							<div class="tab-pane" id="overview-content">
+								<div class="rank-display">
+									<img src="aset/gold.png" class="rank-emblem" alt="Gold Emblem">
+									<span>PERINGKAT MUSIM INI</span>
+									<h2>GOLD III</h2>
+								</div>
+								<div class="stat-list">
+									<div class="stat-row">
+										<span>Total Kemenangan (Semua Mode):</span>
+										<span>1200</span>
+									</div>
+									<div class="stat-row">
+										<span>Total Pertandingan Dimainkan:</span>
+										<span>1950</span>
+									</div>
+									<div class="stat-row">
+										<span>Rasio Kemenangan Keseluruhan:</span>
+										<span>61.5%</span>
+									</div>
+									<div class="stat-row">
+										<span>Kemenangan Beruntun Saat Ini:</span>
+										<span>8</span>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane" id="ranked-stats-content">
+								<div class="stat-list">
+									<div class="stat-row">
+										<span>Rasio Kemenangan (Ranked):</span>
+										<span>58%</span>
+									</div>
+									<div class="stat-row">
+										<span>Jumlah Pertandingan (Ranked):</span>
+										<span>300</span>
+									</div>
+									<div class="stat-row">
+										<span>Jumlah Pertandingan Menang (Ranked):</span>
+										<span>174</span>
+									</div>
+									<div class="stat-row">
+										<span>Peringkat Tertinggi (Lalu):</span>
+										<span>PLATINUM V</span>
+									</div>
+									<div class="stat-row">
+										<span>Karakter Sering (Ranked):</span>
+										<span>Iron Man</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>

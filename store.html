@@ -1,481 +1,522 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Marvel Game Store</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background: radial-gradient(circle at top, #0a0e1a, #03050a);
-      color: #fff;
-      height: 100vh;
-      overflow: hidden; /* agar tidak scroll seluruh halaman */
-    }
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&amp;family=Roboto:wght@400;700&amp;display=swap">
+		<title>Marvel Game Store</title>
+		<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap');
+  body {
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    background: radial-gradient(circle at top, #0d0e12, #1b1f23);
+    background-image: url('aset/traning.png'); /* 🖼️ Ganti dengan aset kamu */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #f0f0f0;
+    height: 100vh;
+    overflow: hidden;
+  }
 
-    /* Header */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(5, 10, 30, 0.9);
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between; /* Mengatur jarak antar elemen */
-      align-items: center;
-      border-bottom: 2px solid #00bfff;
-      box-shadow: 0 0 10px #00bfff80;
-      z-index: 10;
-      box-sizing: border-box; /* Agar padding tidak menambah lebar */
-    }
-    
-    .header-left {
-        display: flex;
-        gap: 10px; /* Jarak antar tombol */
-    }
+  /* Header */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(10, 20, 30, 0.85);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #16a3e6;
+    box-shadow: 0 0 10px #22b4f080;
+    z-index: 10;
+    box-sizing: border-box;
+  }
+  
+  .header-left {
+    display: flex;
+    gap: 10px;
+  }
 
-    header h1 {
-      font-size: 22px;
-      color: #00bfff;
-      text-shadow: 0 0 10px #00bfff;
-      margin: 0;
-    }
+  header h1 {
+    font-size: 22px;
+    color: #f6c343;
+    margin: 0;
+  }
 
-    .coins {
-      display: flex; /* Menggunakan flexbox untuk alignment */
-      align-items: center;
-      gap: 15px; /* Jarak antara Gold dan Shard */
-      background: rgba(0, 30, 60, 0.6);
-      padding: 8px 12px;
-      border-radius: 10px;
-      border: 1px solid #00bfff;
-      box-shadow: 0 0 8px #00bfff80 inset;
-      font-size: 14px;
-    }
-    
-    .coins span {
-        display: flex;
-        align-items: center;
-        gap: 5px; /* Jarak ikon dan teks */
-    }
+  .coins {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: rgba(10, 20, 30, 0.85);
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 8px #16a3e680 inset;
+    font-size: 14px;
+  }
 
-    /* Container utama */
-    .container {
-      display: flex;
-      height: 100vh;
-      padding-top: 65px; /* Disesuaikan dengan tinggi header baru */
-    }
+  .coins span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 1.1rem;
+  }
 
-    /* Sidebar */
-    nav {
-      width: 180px;
-      background: rgba(5, 10, 30, 0.85);
-      padding: 20px;
-      border-right: 2px solid #00bfff;
-      box-shadow: 0 0 10px #00bfff40;
-      position: fixed;
-      top: 65px; /* Tepat di bawah header */
-      bottom: 0;
-      left: 0;
-    }
+  .gold-icon { color: #f6c343; }
+  .diamond-icon { color: #16a3e6; }
 
-    nav a {
-      display: block;
-      color: #b0caff;
-      text-decoration: none;
-      padding: 10px;
-      margin-bottom: 8px;
-      border-radius: 6px;
-      transition: 0.3s;
-    }
+  /* Container */
+  .container {
+    display: flex;
+    height: 100vh;
+    padding-top: 65px;
+  }
 
-    nav a:hover {
-      background: rgba(0, 191, 255, 0.2);
-      border: 1px solid #00bfff;
-      color: #fff;
-      box-shadow: 0 0 10px #00bfff80;
-    }
+  /* Sidebar */
+  nav {
+    width: 180px;
+    background-color: rgba(10, 20, 30, 0.85);
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px #16a3e640;
+    position: fixed;
+    top: 65px;
+    bottom: 0;
+    left: 0;
+  }
 
-    /* Area scroll utama */
-    main {
-      flex: 1;
-      margin-left: 220px; /* Memberi ruang untuk sidebar (180px + 20px padding) */
-      padding: 20px;
-      height: calc(100vh - 65px);
-      overflow-y: auto;
-      scroll-behavior: smooth;
-    }
+  nav a {
+    display: block;
+    color: #f6c343;
+    text-decoration: none;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    transition: 0.3s;
+    font-weight: bold;
+  }
 
-    section {
-      /* --- PERUBAHAN DI SINI --- */
-      scroll-margin-top: 80px; /* Memberi jarak dari header saat navigasi di-klik */
-      
-      margin-bottom: 60px;
-      background: rgba(10, 15, 30, 0.8);
-      border: 2px solid #00bfff;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 0 15px #00bfff40;
-    }
+  nav a:hover {
+    background-color: rgba(10, 20, 30, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px #22b4f080;
+  }
 
-    h2 {
-      color: #00bfff;
-      border-bottom: 2px solid #00bfff;
-      padding-bottom: 5px;
-      margin-bottom: 20px;
-      text-shadow: 0 0 10px #00bfff;
-      text-align: center;
-    }
+  /* Main content */
+  main {
+    flex: 1;
+    margin-left: 220px;
+    padding: 20px;
+    height: calc(100vh - 65px);
+    overflow-y: auto;
+    scroll-behavior: smooth;
+  }
 
-    .grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-    }
+  section {
+    scroll-margin-top: 80px;
+    margin-bottom: 60px;
+    background-color: rgba(10, 20, 30, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 0 15px #22b4f040;
+  }
 
-    .card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      background: rgba(5, 10, 25, 0.9);
-      border: 2px solid #00bfff40;
-      border-radius: 12px;
-      overflow: hidden;
-      width: 200px;
-      text-align: center;
-      transition: 0.3s;
-      box-shadow: 0 0 10px #00bfff20;
-      padding-bottom: 15px;
-    }
+  h2 {
+    color: #f6c343;
+    border-bottom: 2px solid #f0d16f;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
 
-    .card:hover {
-      transform: translateY(-5px);
-      border-color: #00bfff;
-      box-shadow: 0 0 15px #00bfff80;
-    }
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
 
-    .card img {
-      width: 100%;
-      height: 240px;
-      object-fit: cover;
-      border-bottom: 1px solid #00bfff40;
-    }
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(10, 20, 30, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    width: 200px;
+    text-align: center;
+    transition: 0.3s;
+    box-shadow: 0 0 10px #16a3e620;
+    padding-bottom: 15px;
+  }
 
-    .card h3 {
-      margin: 10px 0 5px;
-      font-size: 16px;
-      color: #00bfff;
-    }
+  .card:hover {
+    transform: translateY(-5px);
+    border-color: #22b4f0;
+    box-shadow: 0 0 15px #22b4f080;
+  }
 
-    .card p {
-      color: #ccc;
-      margin-bottom: 10px;
-      font-size: 14px;
-    }
+  .card img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border-bottom: 1px solid #3a6d87;
+  }
 
-    .btn-buy {
-      display: inline-block;
-      background: linear-gradient(90deg, #0077ff, #00bfff);
-      color: white;
-      padding: 8px 14px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-      box-shadow: 0 0 10px #00bfff80;
-      transition: 0.3s;
-    }
+  .card h3 {
+    margin: 10px 0 5px;
+    font-size: 16px;
+    color: #f6c343;
+  }
 
-    .btn-buy:hover {
-      background: linear-gradient(90deg, #00bfff, #0077ff);
-      box-shadow: 0 0 15px #00bfff;
-    }
+  .card p {
+    color: #e0e0e0;
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
 
-    footer {
-      text-align: center;
-      background: rgba(0, 20, 40, 0.9);
-      color: #00bfff;
-      padding: 15px;
-      font-weight: bold;
-      border-top: 2px solid #00bfff;
-      box-shadow: 0 0 10px #00bfff80;
-    }
+  .btn-buy {
+    display: inline-block;
+    background: linear-gradient(90deg, #f6c343, #ffcc33);
+    color: #0d0e12;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 0 10px #f0d16f80;
+    transition: 0.3s;
+  }
 
-    /* Tombol-tombol di header */
-    .btn-back, .btn-customize {
-      color: white;
-      font-weight: bold;
-      padding: 8px 18px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      text-transform: uppercase;
-      transition: 0.3s;
-    }
-    
-    .btn-back {
-    box-shadow: 0 0 10px #00bfff80;
-    text-shadow: #0077ff;
+  .btn-buy:hover {
+    background: linear-gradient(90deg, #d7b44c, #f0d16f);
+    box-shadow: 0 0 15px #f6c343;
+  }
+
+  footer {
+    text-align: center;
+    background: rgba(11, 79, 104, 0.9);
+    color: #f0d16f;
+    padding: 15px;
+    font-weight: bold;
+    border-top: 2px solid #f6c343;
+    box-shadow: 0 0 10px #f6c34380;
+  }
+
+  /* Tombol Header */
+  .btn-back, .btn-customize {
+    color: white;
+    font-weight: bold;
+    padding: 8px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.3s;
+  }
+  
+  .btn-back {
+    box-shadow: 0 0 10px #16a3e680;
     color: white;
     border-radius: 5px;
     transform: skewX(-20deg);
     font-family: 'Orbitron', sans-serif;
-    transition: all 0.2s ease;
-    background-color: rgba(0,0,0,0.3);
-    border: 2px solid #00bfff; /* Memperbaiki typo 'solisd' menjadi 'solid' */
-    }
+    background-color: rgba(11, 79, 104, 0.5);
+    border: 2px solid #22b4f0;
+  }
 
-    .btn-back:hover {
-      background: linear-gradient(90deg, #00bfff, #0077ff);
-      box-shadow: 0 0 20px #00bfff;
-    }
+  .btn-back:hover {
+    background: linear-gradient(90deg, #0b5f75, #16a3e6);
+    box-shadow: 0 0 20px #22b4f0;
+  }
 
-    .btn-customize {
-    box-shadow: 0 0 10px #00bfff80;
-    text-shadow: #0077ff;
+  .btn-customize {
+    box-shadow: 0 0 10px #f6c34380;
     color: white;
     border-radius: 5px;
     transform: skewX(-20deg);
     font-family: 'Orbitron', sans-serif;
-    transition: all 0.2s ease;
-    background-color: rgba(0,0,0,0.3);
-    border: 2px solid #00bfff; /* Memperbaiki typo 'solisd' menjadi 'solid' */
-    }
+    background-color: rgba(215, 180, 76, 0.3);
+    border: 2px solid #f0d16f;
+  }
 
-    .btn-customize:hover {
-        background: linear-gradient(90deg, #ffb300, #ff7700);
-        box-shadow: 0 0 20px #ffb300;
-    }
+  .btn-customize:hover {
+    background: linear-gradient(90deg, #f6c343, #ffcc33);
+    box-shadow: 0 0 20px #f0d16f;
+  }
 
-  </style>
-</head>
-<body>
-
-  <header>
-    <div class="header-left">
-        <button class="btn-back" onclick="window.location.href='index.html'">Kembali</button>
-        <button class="btn-customize" onclick="window.location.href='custom.html'">Customize</button>
-    </div>
-    <h1>MARVEL GAME STORE</h1>
-    <div class="coins">
-        <span>💰 12,500 GOLD</span>
-        <span>💎 5,000 SHARDS</span>
-    </div>
-  </header>
-
-  <div class="container">
-    <nav>
-      <a href="#heroes">Heroes</a>
-      <a href="#skins">Skins</a>
-      <a href="#emotes">Emotes</a>
-    </nav>
-
-    <main>
-      <section id="heroes">
-        <h2>Heroes</h2>
-        <div class="grid">
-          <div class="card">
-            <img src="aset/skin/thor.png" alt="Thor"> <h3>Thor</h3>
-            <p>2,500 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-          <div class="card">
-            <img src="aset/skin/ultron.png" alt="Ultron">
-            <h3>Ultron</h3>
-            <p>2,500 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-          <div class="card">
-            <img src="aset/skin/venom.png" alt="Venom">
-            <h3>Venom</h3>
-            <p>2,500 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-           <div class="card">
-            <img src="aset/skin/visionn.png" alt="Vision">
-            <h3>Vision</h3>
-            <p>2,500 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-           <div class="card">
-            <img src="aset/skin/wasp.png" alt="The Wasp">
-            <h3>The Wasp</h3>
-            <p>2,500 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-        </div>
-      </section>
-
-      <section id="skins">
-        <h2>Skins</h2>
-        <div class="grid">
-          <div class="card">
-            <img src="aset/skin/antman_skin.png" alt="Antman">
-            <h3>Antman </h3>
-            <p>3,000 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-                    <div class="card">
-            <img src="aset/skin/blackpanther_skin.png" alt="Black Panther">
-            <h3>Black Panther</h3>
-            <p>3,000 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-          <div class="card">
-            <img src="aset/skin/blackwidow_skin.png" alt="Black Widow">
-            <h3>Black Widow</h3>
-            <p>3,000 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-                    <div class="card">
-            <img src="aset/skin/capt_skin.png" alt="Captain America">
-            <h3>Captain America</h3>
-            <p>3,000 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-                    <div class="card">
-            <img src="aset/skin/captainmarvel_skin.png" alt="Captain Marvel">
-            <h3>Captain Marvel</h3>
-            <p>3,000 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-                    <div class="card">
-            <img src="aset/skin/doctoroctopus_kin.png" alt="Doctor Octopus">
-            <h3>Doctor Octopus</h3>
-            <p>3,000 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-                    <div class="card">
-            <img src="aset/skin/doctorstrange_skin.png" alt="Doctor Strange">
-            <h3>Doctor Strange</h3>
-            <p>3,000 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-                    <div class="card">
-            <img src="aset/skin/falcon_skin.png" alt="Falcon">
-            <h3>Falcon</h3>
-            <p>3,000 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-                    <div class="card">
-            <img src="aset/skin/greengoblin_skin.png" alt="Green Goblin">
-            <h3>Green Goblin</h3>
-            <p>3,000 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-                    <div class="card">
-            <img src="aset/skin/hawkeye_skin.png" alt="Hawkeye">
-            <h3>Hawkeye</h3>
-            <p>3,000 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-                    <div class="card">
-            <img src="aset/skin/hela_skin.png" alt="Hela">
-            <h3>Hela</h3>
-            <p>3,000 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-                    <div class="card">
-            <img src="aset/skin/hulk_skin.png" alt="Hulk">
-            <h3>Hulk</h3>
-            <p>3,000 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-                    <div class="card">
-            <img src="aset/skin/iron_skin.png" alt="Iron Man">
-            <h3>Iron Man</h3>
-            <p>3,000 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-                    <div class="card">
-            <img src="aset/skin/kang_skin.png" alt="Kang the Conqueror">
-            <h3>Kang the Conqueror</h3>
-            <p>3,000 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-                    <div class="card">
-            <img src="aset/skin/kilmonger_skin.png" alt="Killmonger">
-            <h3>Killmonger</h3>
-            <p>3,000 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-                    <div class="card">
-            <img src="aset/skin/loki_skin.png" alt="Loki">
-            <h3>Loki</h3>
-            <p>3,000 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-                    <div class="card">
-            <img src="aset/skin/redskull_skin.png" alt="Red Skull">
-            <h3>Red Skull</h3>
-            <p>3,000 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-                    <div class="card">
-            <img src="aset/skin/scarletwitch_skin.png" alt="Scarlet Witch">
-            <h3>Scarlet Witch</h3>
-            <p>3,000 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-                    <div class="card">
-            <img src="aset/skin/spiderman_skin.png" alt="Spider-Man">
-            <h3>Spider-Man</h3>
-            <p>3,000 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-                    <div class="card">
-            <img src="aset/skin/thanos_skin.png" alt="Thanos">
-            <h3>Thanos</h3>
-            <p>3,000 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-                    <div class="card">
-            <img src="aset/skin/thor_skin.png" alt="Thor">
-            <h3>Thor</h3>
-            <p>3,000 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-                    <div class="card">
-            <img src="aset/skin/ultron_skin.png" alt="Ultron">
-            <h3>Ultron</h3>
-            <p>3,000 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-                    <div class="card">
-            <img src="aset/skin/venom.skin.png" alt="Venom">
-            <h3>Venom</h3>
-            <p>3,000 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-                    <div class="card">
-            <img src="aset/skin/vision_skin.png" alt="Vision">
-            <h3>Vision</h3>
-            <p>3,000 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-                    <div class="card">
-            <img src="aset/skin/wasp_skin.png" alt="Wasp">
-            <h3>Wasp</h3>
-            <p>3,000 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-        </div>
-      </section>
-
-      <section id="emotes">
-        <h2>Emotes</h2>
-        <div class="grid">
-          <div class="card">
-            <img src="https://placehold.co/300x400?text=Hero+Pose" alt="Hero Pose">
-            <h3>Hero Pose</h3>
-            <p>500 Shards</p>
-            <a href="#" class="btn-buy">Buy</a>
-          </div>
-        </div>
-      </section>
-    </main>
-  </div>
-</body>
+		</style>
+	</head>
+	<body>
+		<header>
+			<div class="header-left">
+				<button class="btn-back" onclick="window.location.href='index.html'">Kembali</button>
+				<button class="btn-customize" onclick="window.location.href='custom.html'">Customize</button>
+			</div>
+			<h1>MARVEL ARENA STORE</h1>
+			<div class="coins">
+				<span>
+					<i class="fas fa-coins gold-icon"></i>
+					10,600
+				</span>
+				<span>
+					<i class="fas fa-gem diamond-icon"></i>
+					4,2000
+				</span>
+			</div>
+		</header>
+		<div class="container">
+			<nav>
+				<a href="#heroes">Heroes</a>
+				<a href="#skins">Skins</a>
+				<a href="#emotes">Emotes</a>
+			</nav>
+			<main>
+				<section id="heroes">
+					<h2>Heroes</h2>
+					<div class="grid">
+						<div class="card">
+							<img src="aset/skin/thor.png" alt="Thor">
+							<h3>Thor</h3>
+							<p>
+								<i class="fas fa-coins gold-icon"></i>
+								10,000</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+						<div class="card">
+							<img src="aset/skin/ultron.png" alt="Ultron">
+							<h3>Ultron</h3>
+							<p>
+								<i class="fas fa-coins gold-icon"></i>
+								10,000</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+						<div class="card">
+							<img src="aset/skin/venom.png" alt="Venom">
+							<h3>Venom</h3>
+							<p>
+								<i class="fas fa-coins gold-icon"></i>
+								10,000</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+						<div class="card">
+							<img src="aset/skin/visionn.png" alt="Vision">
+							<h3>Vision</h3>
+							<p>
+								<i class="fas fa-coins gold-icon"></i>
+								10,000</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+						<div class="card">
+							<img src="aset/skin/wasp.png" alt="The Wasp">
+							<h3>The Wasp</h3>
+							<p>
+								<i class="fas fa-coins gold-icon"></i>
+								10,000</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+					</div>
+				</section>
+				<section id="skins">
+					<h2>Skins</h2>
+					<div class="grid">
+						<div class="card">
+							<img src="aset/skin/antman_skin.png" alt="Antman">
+							<h3>Antman
+							</h3>
+							<p>
+								<i class="fas fa-gem diamond-icon"></i>2,500</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+						<div class="card">
+							<img src="aset/skin/blackpanther_skin.png" alt="Black Panther">
+							<h3>Black Panther</h3>
+							<p>
+								<i class="fas fa-gem diamond-icon"></i>2,500</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+						<div class="card">
+							<img src="aset/skin/blackwidow_skin.png" alt="Black Widow">
+							<h3>Black Widow</h3>
+							<p>
+								<i class="fas fa-gem diamond-icon"></i>2,500</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+						<div class="card">
+							<img src="aset/skin/capt_skin.png" alt="Captain America">
+							<h3>Captain America</h3>
+							<p>
+								<i class="fas fa-gem diamond-icon"></i>2,500</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+						<div class="card">
+							<img src="aset/skin/captainmarvel_skin.png" alt="Captain Marvel">
+							<h3>Captain Marvel</h3>
+							<p>
+								<i class="fas fa-gem diamond-icon"></i>2,500</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+						<div class="card">
+							<img src="aset/skin/doctoroctopus_kin.png" alt="Doctor Octopus">
+							<h3>Doctor Octopus</h3>
+							<p>
+								<i class="fas fa-gem diamond-icon"></i>2,500</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+						<div class="card">
+							<img src="aset/skin/doctorstrange_skin.png" alt="Doctor Strange">
+							<h3>Doctor Strange</h3>
+							<p>
+								<i class="fas fa-gem diamond-icon"></i>2,500</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+						<div class="card">
+							<img src="aset/skin/falcon_skin.png" alt="Falcon">
+							<h3>Falcon</h3>
+							<p>
+								<i class="fas fa-gem diamond-icon"></i>2,500</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+						<div class="card">
+							<img src="aset/skin/greengoblin_skin.png" alt="Green Goblin">
+							<h3>Green Goblin</h3>
+							<p>
+								<i class="fas fa-gem diamond-icon"></i>2,500</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+						<div class="card">
+							<img src="aset/skin/hawkeye_skin.png" alt="Hawkeye">
+							<h3>Hawkeye</h3>
+							<p>
+								<i class="fas fa-gem diamond-icon"></i>2,500</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+						<div class="card">
+							<img src="aset/skin/hela_skin.png" alt="Hela">
+							<h3>Hela</h3>
+							<p>
+								<i class="fas fa-gem diamond-icon"></i>2,500</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+						<div class="card">
+							<img src="aset/skin/hulk_skin.png" alt="Hulk">
+							<h3>Hulk</h3>
+							<p>
+								<i class="fas fa-gem diamond-icon"></i>2,500</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+						<div class="card">
+							<img src="aset/skin/iron_skin.png" alt="Iron Man">
+							<h3>Iron Man</h3>
+							<p>
+								<i class="fas fa-gem diamond-icon"></i>2,500</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+						<div class="card">
+							<img src="aset/skin/kang_skin.png" alt="Kang the Conqueror">
+							<h3>Kang the Conqueror</h3>
+							<p>
+								<i class="fas fa-gem diamond-icon"></i>2,500</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+						<div class="card">
+							<img src="aset/skin/kilmonger_skin.png" alt="Killmonger">
+							<h3>Killmonger</h3>
+							<p>
+								<i class="fas fa-gem diamond-icon"></i>2,500</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+						<div class="card">
+							<img src="aset/skin/loki_skin.png" alt="Loki">
+							<h3>Loki</h3>
+							<p>
+								<i class="fas fa-gem diamond-icon"></i>2,500</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+						<div class="card">
+							<img src="aset/skin/redskull_skin.png" alt="Red Skull">
+							<h3>Red Skull</h3>
+							<p>
+								<i class="fas fa-gem diamond-icon"></i>2,500</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+						<div class="card">
+							<img src="aset/skin/scarletwitch_skin.png" alt="Scarlet Witch">
+							<h3>Scarlet Witch</h3>
+							<p>
+								<i class="fas fa-gem diamond-icon"></i>2,500</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+						<div class="card">
+							<img src="aset/skin/spiderman_skin.png" alt="Spider-Man">
+							<h3>Spider-Man</h3>
+							<p>
+								<i class="fas fa-gem diamond-icon"></i>2,500</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+						<div class="card">
+							<img src="aset/skin/thanos_skin.png" alt="Thanos">
+							<h3>Thanos</h3>
+							<p>
+								<i class="fas fa-gem diamond-icon"></i>2,500</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+						<div class="card">
+							<img src="aset/skin/thor_skin.png" alt="Thor">
+							<h3>Thor</h3>
+							<p>
+								<i class="fas fa-gem diamond-icon"></i>2,500</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+						<div class="card">
+							<img src="aset/skin/ultron_skin.png" alt="Ultron">
+							<h3>Ultron</h3>
+							<p>
+								<i class="fas fa-gem diamond-icon"></i>2,500</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+						<div class="card">
+							<img src="aset/skin/venom.skin.png" alt="Venom">
+							<h3>Venom</h3>
+							<p>
+								<i class="fas fa-gem diamond-icon"></i>2,500</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+						<div class="card">
+							<img src="aset/skin/vision_skin.png" alt="Vision">
+							<h3>Vision</h3>
+							<p>
+								<i class="fas fa-gem diamond-icon"></i>2,500</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+						<div class="card">
+							<img src="aset/skin/wasp_skin.png" alt="Wasp">
+							<h3>Wasp</h3>
+							<p>
+								<i class="fas fa-gem diamond-icon"></i>2,500</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+					</div>
+				</section>
+				<section id="emotes">
+					<h2>Emotes</h2>
+					<div class="grid">
+						<div class="card">
+							<img src="https://placehold.co/300x400?text=Hero+Pose" alt="Hero Pose">
+							<h3>Hero Pose</h3>
+							<p>500 Shards</p>
+							<a href="#" class="btn-buy">Buy</a>
+						</div>
+					</div>
+				</section>
+			</main>
+		</div>
+	</body>
 </html>
