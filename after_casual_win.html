@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Marvel: Anime Arena - Casual Victory</title>
+		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&amp;display=swap" rel="stylesheet">
+		<style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    body {
+      background: url('aset/city.png') no-repeat center center/cover;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100vh;
+      padding: 0 60px;
+            background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+    }
+
+    /* Bagian kiri */
+    .left-section {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+      position: relative;
+    }
+
+    .victory-text {
+      font-size: 90px;
+      font-weight: 700;
+      color: #f6c343;
+      letter-spacing: 5px;
+      text-align: center;
+      margin-bottom: 10px;
+      filter: drop-shadow(0 0 10px #ffd700);
+    }
+
+    .character {
+      width: 500px; /* perbesar ukuran karakter */
+      filter: drop-shadow(0 0 40px rgba(255, 215, 0, 0.5));
+    }
+
+    /* Bagian kanan */
+    .right-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 80vh; /* mengikuti tinggi area Victory & Thanos */
+    }
+
+    .info-box {
+           background-color: rgba(0,0,0,0.3);
+border: 2px solid rgba(255,255,255,0.4);
+
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 25px;
+    }
+
+    .info-title {
+      color: #f6c343;
+      font-size: 22px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .info-text {
+      display: flex;
+      justify-content: space-between;
+      color: #a0a0a0;
+      font-size: 16px;
+      padding: 5px 0;
+    }
+
+    .progress-container {
+      margin-top: 10px;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      color: #a0a0a0;
+      margin-bottom: 5px;
+    }
+
+    .progress-bar-bg {
+      height: 12px;
+      width: 100%;
+      background-color: #333;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #555;
+    }
+
+    .progress-bar-fill-blue {
+      height: 100%;
+      width: 85%;
+      background-color: #3a6d87;
+    }
+
+    .progress-bar-fill-purple {
+      height: 100%;
+      width: 70%;
+      background-color: purple;
+    }
+
+    .reward-text {
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    .reward-text i {
+      margin-right: 8px;
+      color: gold;
+    }
+
+    .back-button {
+      align-self: center;
+      background: transparent;
+     background-color: rgba(0,0,0,0.3);
+border: 2px solid rgba(255,255,255,0.4);
+      color: white;
+      padding: 10px 35px;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: #f6c343;
+      color: white;
+      transform: scale(1.05);
+    }
+  
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			
+			<!-- Bagian kiri -->
+			<div class="left-section">
+				<div class="victory-text">VICTORY</div>
+				<img src="aset/skin/thanos_skin.png" alt="Thanos" class="character">
+			</div>
+			
+			<!-- Bagian kanan -->
+			<div class="right-section">
+				<div class="info-box">
+					<div class="info-title">RANGKUMAN CASUAL</div>
+					<div class="info-text">
+						<span>Skor Akhir:</span>
+						<span>2 - 0</span>
+					</div>
+					<div class="info-text">
+						<span>K.O.s:</span>
+						<span>3</span>
+					</div>
+					<div class="info-text">
+						<span>Durasi:</span>
+						<span>04:27</span>
+					</div>
+				</div>
+				<div class="info-box">
+					<div class="info-title">HADIAH PERTANDINGAN</div>
+					<div class="progress-container">
+						<div class="progress-label">
+							<span>LEVEL 25</span>
+							<span>+1,200 XP</span>
+						</div>
+						<div class="progress-bar-bg">
+							<div class="progress-bar-fill-blue"></div>
+						</div>
+					</div>
+					<div class="progress-container">
+						<div class="progress-label">
+							<span>SEASON PASS</span>
+							<span>+100 SP</span>
+						</div>
+						<div class="progress-bar-bg">
+							<div class="progress-bar-fill-purple"></div>
+						</div>
+					</div>
+					<div class="reward-text">
+						<i class="fas fa-coins"></i>
+						Gold Diperoleh:
+						<b>+500 G</b>
+					</div>
+				</div>
+				<button class="back-button">KEMBALI KE LOBBY</button>
+			</div>
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js"></script>
+	</body>
+</html>

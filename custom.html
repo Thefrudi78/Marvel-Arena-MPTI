@@ -93,7 +93,7 @@
         /* KOTAK PILIH SKIN & HERO */
         .skin-box, .hero-box {
             background-color: rgba(10, 15, 20, 0.85);
-            border: 2px solid #00aaff;
+            border: 2px solid rgba(255, 255, 255, 0.4);
             border-radius: 15px;
             padding: 25px;
             box-shadow: 0 0 25px rgba(0, 195, 255, 0.2);
@@ -115,7 +115,7 @@
             text-align: center;
             font-family: 'Orbitron', sans-serif;
             padding: 10px 0;
-            border: 2px solid #00aaff;
+            border: 2px solid rgba(255, 255, 255, 0.4);
             border-radius: 8px;
 
         }
@@ -128,14 +128,21 @@
             background-color: rgba(10, 15, 20, 0.8);
             padding: 15px;
             border-radius: 12px;
-            border: 1px solid #00aaff;
+            border: 2px solid rgba(255, 255, 255, 0.4);
             overflow-y: auto;
-            
         }
 
+        .hero-list::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hero-list {
+            scrollbar-width: none; /* Firefox */
+        }
+        
         .hero-portrait {
             position: relative;
-            border: 2px solid #00aaff;
+            border: 2px solid rgba(255, 255, 255, 0.4);
             cursor: pointer;
             transition: all 0.25s ease;
             border-radius: 8px;
@@ -151,8 +158,8 @@
         }
 
         .hero-portrait:hover, .hero-portrait.active {
-            border-color: #00aaff;
-            box-shadow: 0 0 10px #00aaff;
+            border: 2px solid #e8a337;
+            box-shadow: 0 0 10px #e8a337;
             transform: scale(1.05);
         }
 
@@ -180,8 +187,8 @@
         }
 
         .skin-item-arena.active {
-            border-color: #00aaff;
-            box-shadow: 0 0 20px #00aaff;
+            border-color: #e8a337;
+            box-shadow: 0 0 20px #e8a337;
         }
 
         .skin-item-arena.locked {
@@ -250,15 +257,17 @@
             cursor: pointer;
             transition: all 0.25s ease;
             background-color: rgba(0,0,0,0.3);
-            border: 2px solid #00aaff;
+            border: 2px solid rgba(255, 255, 255, 0.4);
             font-family: 'Orbitron', sans-serif;
         }
 
         .action-button-arena:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+            box-shadow: 0 0 15px #e8a337;
+            border: 2px solid #e8a337;
         }
     
+		
 		</style>
 	</head>
 	<body>
