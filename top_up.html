@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Marvel: Anime Arena - Top-Up Diamond</title>
+
+    <!-- Font & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body, html {
+            height: 100%;
+            font-family: 'Orbitron', sans-serif;
+            color: #fff;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #0f0f1f 100%);
+            overflow-y: auto;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('aset/diamond-bg.jpg') center/cover no-repeat;
+            filter: blur(8px) brightness(0.3);
+            z-index: -2;
+        }
+
+        .topup-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* HEADER */
+        .topup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .back-button {
+            background: rgba(0,0,0,0.4);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .back-button:hover {
+            background: rgba(232,163,55,0.2);
+            border-color: #e8a337;
+            transform: scale(1.05);
+        }
+
+        /* DIAMOND BALANCE DENGAN LOGO */
+        .diamond-balance {
+            background: rgba(232,163,55,0.15);
+            border: 1px solid #e8a337;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 0 15px rgba(232,163,55,0.3);
+            min-width: 140px;
+            justify-content: center;
+        }
+
+        .diamond-balance i {
+            color: #4fc3f7;
+            font-size: 1.3rem;
+        }
+
+        .diamond-balance span {
+            color: #fff;
+            font-weight: 900;
+        }
+
+        /* JUDUL */
+        .topup-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin: 15px 0;
+            background: linear-gradient(90deg, #e8a337, #ffd700, #e8a337);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(232,163,55,0.5);
+        }
+
+        .topup-subtitle {
+            text-align: center;
+            font-size: 1rem;
+            color: #aaa;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* GRID PAKET */
+        .diamond-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 10px;
+        }
+
+        .diamond-card {
+            background: rgba(20, 25, 40, 0.9);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 20px 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            height: 190px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .diamond-card:hover {
+            transform: translateY(-8px);
+            border-color: #e8a337;
+            box-shadow: 0 12px 25px rgba(232,163,55,0.3);
+        }
+
+        .diamond-card.popular {
+            border: 2px solid #e8a337;
+            box-shadow: 0 0 25px rgba(232,163,55,0.4);
+        }
+
+        .diamond-card.popular::after {
+            content: 'POPULAR';
+            position: absolute;
+            top: 12px;
+            right: -32px;
+            background: #e8a337;
+            color: #000;
+            padding: 5px 38px;
+            font-size: 0.75rem;
+            font-weight: 900;
+            transform: rotate(45deg);
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        .diamond-icon {
+            font-size: 2.8rem;
+            color: #4fc3f7;
+            margin-bottom: 10px;
+        }
+
+        .diamond-amount {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #e8a337;
+            line-height: 1.2;
+        }
+
+        .diamond-bonus {
+            color: #4ade80;
+            font-weight: 700;
+            font-size: 0.8rem;
+            margin: 4px 0;
+        }
+
+        .diamond-price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        /* POPUP KONFIRMASI - TANPA SALDO DIAMOND */
+        .confirm-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .confirm-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #0f1419;
+            border: 3px solid #ffd700;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 380px;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.5);
+            animation: modalPop 0.4s ease;
+        }
+
+        @keyframes modalPop {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-header {
+            background: #ffd700;
+            color: #000;
+            padding: 12px 20px;
+            font-weight: 900;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-close {
+            cursor: pointer;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .modal-close:hover {
+            color: #c00;
+        }
+
+        .modal-body {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .package-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            background: #1a1f2e;
+            border: 3px solid #ffd700;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+        }
+
+        .package-icon i {
+            font-size: 2.5rem;
+            color: #4fc3f7;
+        }
+
+        .package-name {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .package-diamonds {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 8px;
+        }
+
+        .package-bonus {
+            color: #4ade80;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .package-price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .warning {
+            color: #ff4444;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .btn-buy, .btn-cancel {
+            flex: 1;
+            padding: 14px;
+            border-radius: 10px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-buy {
+            background: #666;
+            color: #ccc;
+            border: none;
+        }
+
+        .btn-buy.enabled {
+            background: #ffd700;
+            color: #000;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .btn-buy.enabled:hover {
+            background: #ffed4a;
+            transform: scale(1.03);
+        }
+
+        .btn-cancel {
+            background: transparent;
+            color: #aaa;
+            border: 1px solid #555;
+        }
+
+        .btn-cancel:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .diamond-balance {
+                font-size: 1rem;
+                padding: 8px 14px;
+                min-width: 120px;
+            }
+            .diamond-balance i {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="topup-container">
+
+        <!-- HEADER -->
+        <div class="topup-header">
+            <a href="index.html" class="back-button">
+                KEMBALI
+            </a>
+            <div class="diamond-balance">
+                <i class="fas fa-gem"></i>
+                <span id="current-diamonds">4,200</span>
+            </div>
+        </div>
+
+        <!-- JUDUL -->
+        <h1 class="topup-title">TOP-UP DIAMOND</h1>
+        <p class="topup-subtitle">
+            Dapatkan Skin Eksklusif, Season Pass, & Item Premium!
+        </p>
+
+        <!-- 8 PAKET -->
+        <div class="diamond-grid">
+            <div class="diamond-card" data-diamonds="50" data-price="8000" data-bonus="0">
+                <i class="fas fa-gem diamond-icon"></i>
+                <div class="diamond-amount">50</div>
+                <div class="diamond-price">Rp 8.000</div>
+            </div>
+            <div class="diamond-card" data-diamonds="100" data-price="15000" data-bonus="0">
+                <i class="fas fa-gem diamond-icon"></i>
+                <div class="diamond-amount">100</div>
+                <div class="diamond-price">Rp 15.000</div>
+            </div>
+            <div class="diamond-card" data-diamonds="300" data-price="43000" data-bonus="30">
+                <i class="fas fa-gem diamond-icon"></i>
+                <div class="diamond-amount">300</div>
+                <div class="diamond-bonus">+30 Bonus</div>
+                <div class="diamond-price">Rp 43.000</div>
+            </div>
+            <div class="diamond-card" data-diamonds="500" data-price="70000" data-bonus="75">
+                <i class="fas fa-gem diamond-icon"></i>
+                <div class="diamond-amount">500</div>
+                <div class="diamond-bonus">+75 Bonus</div>
+                <div class="diamond-price">Rp 70.000</div>
+            </div>
+            <div class="diamond-card popular" data-diamonds="1200" data-price="165000" data-bonus="240">
+                <i class="fas fa-gem diamond-icon"></i>
+                <div class="diamond-amount">1.200</div>
+                <div class="diamond-bonus">+240 Bonus</div>
+                <div class="diamond-price">Rp 165.000</div>
+            </div>
+            <div class="diamond-card" data-diamonds="2500" data-price="330000" data-bonus="625">
+                <i class="fas fa-gem diamond-icon"></i>
+                <div class="diamond-amount">2.500</div>
+                <div class="diamond-bonus">+625 Bonus</div>
+                <div class="diamond-price">Rp 330.000</div>
+            </div>
+            <div class="diamond-card" data-diamonds="5000" data-price="650000" data-bonus="1500">
+                <i class="fas fa-gem diamond-icon"></i>
+                <div class="diamond-amount">5.000</div>
+                <div class="diamond-bonus">+1.500 Bonus</div>
+                <div class="diamond-price">Rp 650.000</div>
+            </div>
+            <div class="diamond-card" data-diamonds="10000" data-price="1250000" data-bonus="3500">
+                <i class="fas fa-gem diamond-icon"></i>
+                <div class="diamond-amount">10.000</div>
+                <div class="diamond-bonus">+3.500 Bonus</div>
+                <div class="diamond-price">Rp 1.250.000</div>
+            </div>
+        </div>
+
+        <!-- POPUP KONFIRMASI -->
+        <div class="confirm-modal" id="confirm-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span>KONFIRMASI PEMBELIAN</span>
+                    <span class="modal-close" id="modal-close">x</span>
+                </div>
+                <div class="modal-body">
+                    <div class="package-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="package-name" id="package-name">Paket 1.200 Diamond</div>
+                    <div class="package-diamonds" id="package-diamonds">1.200 Diamond</div>
+                    <div class="package-bonus" id="package-bonus">+240 Bonus</div>
+                    <div class="package-price" id="package-price">Rp 165.000</div>
+
+                    <div class="warning" id="warning-text" style="display:none;">
+                        Saldo tidak cukup!
+                    </div>
+
+                    <div class="modal-buttons">
+                        <button class="btn-buy" id="btn-buy">BELI</button>
+                        <button class="btn-cancel" id="btn-cancel">BATAL</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const cards = document.querySelectorAll('.diamond-card');
+        const modal = document.getElementById('confirm-modal');
+        const modalClose = document.getElementById('modal-close');
+        const btnBuy = document.getElementById('btn-buy');
+        const btnCancel = document.getElementById('btn-cancel');
+        const warning = document.getElementById('warning-text');
+        const packageName = document.getElementById('package-name');
+        const packageDiamonds = document.getElementById('package-diamonds');
+        const packageBonus = document.getElementById('package-bonus');
+        const packagePrice = document.getElementById('package-price');
+        const currentDiamonds = document.getElementById('current-diamonds');
+
+        // Simulasi saldo uang (Rp)
+        let userMoney = 200000;
+
+        let selectedPackage = null;
+
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                cards.forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                selectedPackage = {
+                    diamonds: parseInt(card.dataset.diamonds),
+                    price: parseInt(card.dataset.price),
+                    bonus: parseInt(card.dataset.bonus)
+                };
+
+                // Update popup
+                packageName.textContent = `Paket ${selectedPackage.diamonds} Diamond`;
+                packageDiamonds.textContent = `${selectedPackage.diamonds.toLocaleString()} Diamond`;
+                packageBonus.textContent = selectedPackage.bonus > 0 ? `+${selectedPackage.bonus} Bonus` : '';
+                packageBonus.style.display = selectedPackage.bonus > 0 ? 'block' : 'none';
+                packagePrice.textContent = `Rp ${selectedPackage.price.toLocaleString('id-ID')}`;
+
+                // Cek saldo uang
+                if (userMoney >= selectedPackage.price) {
+                    btnBuy.classList.add('enabled');
+                    warning.style.display = 'none';
+                } else {
+                    btnBuy.classList.remove('enabled');
+                    warning.style.display = 'flex';
+                }
+
+                modal.classList.add('active');
+            });
+        });
+
+        // Tutup modal
+        modalClose.addEventListener('click', closeModal);
+        btnCancel.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        function closeModal() {
+            modal.classList.remove('active');
+            cards.forEach(c => c.classList.remove('selected'));
+            selectedPackage = null;
+        }
+
+        // Beli
+        btnBuy.addEventListener('click', () => {
+            if (!btnBuy.classList.contains('enabled')) return;
+
+            const newDiamonds = parseInt(currentDiamonds.textContent.replace(/,/g, '')) + selectedPackage.diamonds;
+            currentDiamonds.textContent = newDiamonds.toLocaleString('id-ID');
+            userMoney -= selectedPackage.price;
+
+            alert(`Pembelian Berhasil!\n+${selectedPackage.diamonds} Diamond ditambahkan.`);
+
+            closeModal();
+        });
+
+        // Selected style
+        const style = document.createElement('style');
+        style.textContent = `
+            .diamond-card.selected {
+                border-color: #ffd700 !important;
+                box-shadow: 0 0 30px rgba(255,215,0,0.6) !important;
+                background: rgba(30, 35, 55, 0.95);
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+
+</body>
+</html>

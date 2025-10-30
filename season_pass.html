@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Marvel: Anime Arena - Season Pass</title>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
 		<style>
         /* Mengimpor Font dari Google */
         @import url('https://fonts.googleapis.com/css2?family=Teko:wght@500;700&display=swap');
@@ -404,6 +404,139 @@
         .back-button i {
             margin-right: 15px;
         }
+
+        .popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.popup-overlay.show {
+    display: flex;
+    opacity: 1;
+}
+
+.popup-content {
+    background: linear-gradient(135deg, rgba(20, 20, 40, 0.95), rgba(10, 10, 20, 0.95));
+    border: 2px solid #e8a337;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 420px;
+    box-shadow: 0 0 30px rgba(232, 163, 55, 0.5);
+    overflow: hidden;
+    animation: popupSlide 0.4s ease-out;
+    font-family: 'Orbitron', sans-serif;
+}
+
+@keyframes popupSlide {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.popup-header {
+    background: linear-gradient(to right, #e8a337, #ffd700);
+    color: black;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.popup-close {
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.popup-close:hover {
+    color: #fff;
+    transform: rotate(90deg);
+}
+
+.popup-body {
+    padding: 25px;
+    color: #eee;
+}
+
+.popup-body p {
+    margin: 0 0 15px;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.popup-benefits {
+    margin: 15px 0;
+    font-size: 0.95rem;
+}
+
+.popup-benefits p {
+    margin: 8px 0;
+    color: #b8b8b8;
+}
+
+.popup-benefits i {
+    color: #04e762;
+    margin-right: 8px;
+}
+
+.popup-price {
+    text-align: center;
+    margin: 20px 0 0;
+    font-size: 1.1rem;
+}
+
+.popup-footer {
+    display: flex;
+    gap: 10px;
+    padding: 15px 25px;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.popup-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.popup-btn.confirm {
+    background-color: #e8a337;
+    color: black;
+}
+
+.popup-btn.confirm:hover {
+    background-color: #ffd700;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(232, 163, 55, 0.4);
+}
+
+.popup-btn.cancel {
+    background-color: transparent;
+    color: #aaa;
+    border: 2px solid #555;
+}
+
+.popup-btn.cancel:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+    border-color: #aaa;
+}
+		
 		</style>
 	</head>
 	<body>
@@ -424,7 +557,7 @@
 					<div class="header-right">
 						<span class="season-time">Waktu Tersisa: 45 Hari 12 Jam</span>
 						<div class="header-buttons">
-							<a href="#" class="pass-button">BELI PREMIUM PASS</a>
+							<a href="#" class="pass-button" id="buy-premium-btn">BELI PREMIUM PASS</a>
 						</div>
 					</div>
 				</div>
@@ -510,6 +643,7 @@
                                                 </div>
                                             `);
                                         }
+										
 										</script>
 									</div>
 								</div>
@@ -531,49 +665,49 @@
 									</div>
 									<div class="challenge-item">
 										<div class="challenge-info">
-											<div class="challenge-desc">Gunakan Skill Ultimate 15 Kali</div>
+											<div class="challenge-desc">Menangkan 15 Pertandingan Casual</div>
 										</div>
 										<div class="challenge-reward">150 EXP</div>
 									</div>
 									<div class="challenge-item">
 										<div class="challenge-info">
-											<div class="challenge-desc">Kalahkan 50 Musuh di Mode Arena</div>
+											<div class="challenge-desc">Dapatkan 25 Point Kemenangan</div>
 										</div>
 										<div class="challenge-reward">190 EXP</div>
 									</div>
 									<div class="challenge-item">
 										<div class="challenge-info">
-											<div class="challenge-desc">Selesaikan 5 Pertandingan Co-op Bersama Teman</div>
+											<div class="challenge-desc">Selesaikan 20 Pertandingan Casual</div>
 										</div>
 										<div class="challenge-reward">160 EXP</div>
 									</div>
 									<div class="challenge-item">
 										<div class="challenge-info">
-											<div class="challenge-desc">Gunakan Karakter Tipe Tank Selama 3 Pertandingan</div>
+											<div class="challenge-desc">Gunakan Karakter Spiderman Selama 3 Pertandingan</div>
 										</div>
 										<div class="challenge-reward">120 EXP</div>
 									</div>
 									<div class="challenge-item">
 										<div class="challenge-info">
-											<div class="challenge-desc">Kumpulkan Total 1000 Koin dari Pertandingan</div>
+											<div class="challenge-desc">Kumpulkan Total 30000 Koin dari Pertandingan</div>
 										</div>
 										<div class="challenge-reward">140 EXP</div>
 									</div>
 									<div class="challenge-item">
 										<div class="challenge-info">
-											<div class="challenge-desc">Gunakan Karakter Marvel Minimal 5 Kali</div>
+											<div class="challenge-desc">Gunakan Skin Black Spider Minimal 5 Kali</div>
 										</div>
 										<div class="challenge-reward">130 EXP</div>
 									</div>
 									<div class="challenge-item">
 										<div class="challenge-info">
-											<div class="challenge-desc">Capai 10 Assist dalam Pertandingan Ranked</div>
+											<div class="challenge-desc">Login Selama 7 Hari Berturut-turut</div>
 										</div>
 										<div class="challenge-reward">170 EXP</div>
 									</div>
 									<div class="challenge-item">
 										<div class="challenge-info">
-											<div class="challenge-desc">Login Selama 5 Hari Berturut-turut</div>
+											<div class="challenge-desc">Login Selama 15 Hari Berturut-turut</div>
 										</div>
 										<div class="challenge-reward">100 EXP</div>
 									</div>
@@ -584,5 +718,78 @@
 				</div>
 			</div>
 		</div>
+		<div id="premium-popup" class="popup-overlay">
+			<div class="popup-content">
+				<div class="popup-header">
+					<h3>KONFIRMASI PEMBELIAN</h3>
+					<span class="popup-close">×</span>
+				</div>
+				<div class="popup-body">
+					<p>Apakah Anda yakin ingin membeli
+						<strong>PREMIUM PASS</strong>?</p>
+					<div class="popup-benefits">
+						<p>
+							<i class="fas fa-check"></i>
+							Akses ke semua hadiah premium</p>
+						<p>
+							<i class="fas fa-check"></i>
+							Skin eksklusif &amp; bonus EXP</p>
+						<p>
+							<i class="fas fa-check"></i>
+							Total:
+							<strong>30+ item premium</strong>
+						</p>
+					</div>
+					<div class="popup-price">
+						<span>Harga:
+							<strong style="color: #e8a337; font-size: 1.4rem;">Rp 149.000</strong>
+						</span>
+					</div>
+				</div>
+				<div class="popup-footer">
+					<button id="confirm-purchase" class="popup-btn confirm">YA, BELI</button>
+					<button id="cancel-purchase" class="popup-btn cancel">BATAL</button>
+				</div>
+			</div>
+		</div>
+		<script>
+// JavaScript untuk Pop-up
+document.addEventListener('DOMContentLoaded', function() {
+    const buyButton = document.querySelector('.header-buttons .pass-button');
+    const popup = document.getElementById('premium-popup');
+    const closeBtn = document.querySelector('.popup-close');
+    const cancelBtn = document.getElementById('cancel-purchase');
+    const confirmBtn = document.getElementById('confirm-purchase');
+
+    // Buka pop-up
+    buyButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        popup.classList.add('show');
+    });
+
+    // Tutup pop-up
+    function closePopup() {
+        popup.classList.remove('show');
+    }
+
+    closeBtn.addEventListener('click', closePopup);
+    cancelBtn.addEventListener('click', closePopup);
+
+    // Klik di luar pop-up juga menutup
+    popup.addEventListener('click', function(e) {
+        if (e.target === popup) {
+            closePopup();
+        }
+    });
+
+    // Tombol "YA, BELI" (bisa diganti ke pembayaran nyata nanti)
+    confirmBtn.addEventListener('click', function() {
+        alert('Pembelian Premium Pass berhasil! Selamat menikmati hadiah eksklusif!');
+        closePopup();
+        // Di sini bisa redirect ke pembayaran atau proses backend
+    });
+});
+
+		</script>
 	</body>
 </html>

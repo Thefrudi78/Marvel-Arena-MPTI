@@ -502,6 +502,31 @@ html {
     opacity: 1;
   }
 }
+.character-portrait.coming-soon {
+  position: relative;
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.character-portrait.coming-soon img {
+  filter: grayscale(100%);
+}
+
+.coming-soon-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+  white-space: nowrap;
+  
+}
 
 /* ============================================================================================================================
    RANKED LOBBY

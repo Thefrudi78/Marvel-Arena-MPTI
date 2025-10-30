@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&amp;family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet">
 		<title>Marvel Game Store</title>
 		<style>
 			@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap');
@@ -246,6 +246,28 @@
 				font-size: 0.9rem;
 			}
 
+			.btn-topup {
+				position: absolute;
+							color: white;
+				font-weight: bold;
+				padding: 8px 18px;
+				border: none;
+				border-radius: 8px;
+				cursor: pointer;
+				text-transform: uppercase;
+				transition: 0.3s;
+				font-family: 'Orbitron', sans-serif;
+				font-size: 0.9rem;	background-color: rgba(215, 180, 76, 0.4);
+				border: 2px solid #f0d16f;
+				box-shadow: 0 0 10px #f6c34380;
+				right: 240px;
+			}
+				.btn-topup:hover {
+				background: linear-gradient(90deg, #f6c343, #ffcc33);
+				box-shadow: 0 0 20px #f0d16f;
+				color: #000;
+			}
+
 			.btn-back {
 				background-color: rgba(11, 79, 104, 0.6);
 				border: 2px solid #22b4f0;
@@ -292,6 +314,167 @@
 					font-size: 18px;
 				}
 			}
+		.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.popup-overlay.show {
+    display: flex;
+    opacity: 1;
+}
+
+.popup-content {
+    background: linear-gradient(135deg, rgba(15, 20, 35, 0.98), rgba(10, 10, 20, 0.98));
+    border: 2px solid #e8a337;
+    border-radius: 14px;
+    width: 90%;
+    max-width: 420px;
+    box-shadow: 0 0 35px rgba(232, 163, 55, 0.6);
+    overflow: hidden;
+    animation: popupScale 0.35s ease-out;
+    font-family: 'Orbitron', sans-serif;
+    color: #f0f0f0;
+}
+
+@keyframes popupScale {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.popup-header {
+    background: linear-gradient(90deg, #e8a337, #ffd700);
+    color: #000;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.popup-close {
+    cursor: pointer;
+    font-size: 1.6rem;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.popup-close:hover {
+    color: #fff;
+    transform: rotate(90deg);
+}
+
+.popup-body {
+    padding: 25px;
+    text-align: center;
+}
+
+.popup-item-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid #e8a337;
+    margin-bottom: 15px;
+    box-shadow: 0 0 15px rgba(232, 163, 55, 0.4);
+}
+
+#popup-title {
+    margin: 0 0 8px;
+    font-size: 1.3rem;
+    color: #fff;
+}
+
+#popup-price {
+    margin: 0 0 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.popup-balance {
+    background-color: rgba(255,255,255,0.05);
+    padding: 12px;
+    border-radius: 8px;
+    margin: 15px 0;
+    font-size: 0.95rem;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.popup-balance p {
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popup-footer {
+    display: flex;
+    gap: 12px;
+    padding: 15px 25px;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.popup-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.25s;
+}
+
+.popup-btn.confirm {
+    background: linear-gradient(90deg, #f6c343, #ffcc33);
+    color: #000;
+}
+
+.popup-btn.confirm:hover:not(:disabled) {
+    background: linear-gradient(90deg, #e8a337, #ffd700);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(232, 163, 55, 0.5);
+}
+
+.popup-btn.confirm:disabled {
+    background: #555;
+    color: #aaa;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.popup-btn.cancel {
+    background-color: transparent;
+    color: #ccc;
+    border: 2px solid #555;
+}
+
+.popup-btn.cancel:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+    border-color: #aaa;
+}
+
+.popup-warning {
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+		
 		</style>
 	</head>
 	<body>
@@ -301,10 +484,11 @@
 				<button class="btn-customize" onclick="window.location.href='custom.html'">Customize</button>
 			</div>
 			<h1>MARVEL ARENA STORE</h1>
+			<button class="btn-topup" onclick="window.location.href='top_up.html'">Top Up</button>
 			<div class="coins">
 				<span>
 					<i class="fas fa-coins gold-icon"></i>
-					10,600
+					9,600
 				</span>
 				<span>
 					<i class="fas fa-gem diamond-icon"></i>
@@ -312,16 +496,15 @@
 				</span>
 			</div>
 		</header>
-
 		<div class="container">
 			<nav>
 				<a href="#heroes">Heroes</a>
 				<a href="#skins">Skins</a>
 				<a href="#emotes">Emotes</a>
 			</nav>
-
 			<main>
 				<div class="content-wrapper">
+					
 					<!-- ==================== HEROES ==================== -->
 					<section id="heroes">
 						<h2>Heroes</h2>
@@ -329,36 +512,46 @@
 							<div class="card">
 								<img src="aset/skin/thor.png" alt="Thor">
 								<h3>Thor</h3>
-								<p><i class="fas fa-coins gold-icon"></i> 10,000</p>
+								<p>
+									<i class="fas fa-coins gold-icon"></i>
+									10,000</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 							<div class="card">
 								<img src="aset/skin/ultron.png" alt="Ultron">
 								<h3>Ultron</h3>
-								<p><i class="fas fa-coins gold-icon"></i> 10,000</p>
+								<p>
+									<i class="fas fa-coins gold-icon"></i>
+									10,000</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 							<div class="card">
 								<img src="aset/skin/venom.png" alt="Venom">
 								<h3>Venom</h3>
-								<p><i class="fas fa-coins gold-icon"></i> 10,000</p>
+								<p>
+									<i class="fas fa-coins gold-icon"></i>
+									10,000</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 							<div class="card">
 								<img src="aset/skin/visionn.png" alt="Vision">
 								<h3>Vision</h3>
-								<p><i class="fas fa-coins gold-icon"></i> 10,000</p>
+								<p>
+									<i class="fas fa-coins gold-icon"></i>
+									10,000</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 							<div class="card">
 								<img src="aset/skin/wasp.png" alt="The Wasp">
 								<h3>The Wasp</h3>
-								<p><i class="fas fa-coins gold-icon"></i> 10,000</p>
+								<p>
+									<i class="fas fa-coins gold-icon"></i>
+									10,000</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 						</div>
 					</section>
-
+					
 					<!-- ==================== SKINS ==================== -->
 					<section id="skins">
 						<h2>Skins</h2>
@@ -366,156 +559,206 @@
 							<div class="card">
 								<img src="aset/skin/antman_skin.png" alt="Antman">
 								<h3>Antman</h3>
-								<p><i class="fas fa-gem diamond-icon"></i> 2,500</p>
+								<p>
+									<i class="fas fa-gem diamond-icon"></i>
+									2,500</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 							<div class="card">
 								<img src="aset/skin/blackpanther_skin.png" alt="Black Panther">
 								<h3>Black Panther</h3>
-								<p><i class="fas fa-gem diamond-icon"></i> 2,500</p>
+								<p>
+									<i class="fas fa-gem diamond-icon"></i>
+									2,500</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 							<div class="card">
 								<img src="aset/skin/blackwidow_skin.png" alt="Black Widow">
 								<h3>Black Widow</h3>
-								<p><i class="fas fa-gem diamond-icon"></i> 2,500</p>
+								<p>
+									<i class="fas fa-gem diamond-icon"></i>
+									2,500</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 							<div class="card">
 								<img src="aset/skin/capt_skin.png" alt="Captain America">
 								<h3>Captain America</h3>
-								<p><i class="fas fa-gem diamond-icon"></i> 2,500</p>
+								<p>
+									<i class="fas fa-gem diamond-icon"></i>
+									2,500</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 							<div class="card">
 								<img src="aset/skin/captainmarvel_skin.png" alt="Captain Marvel">
 								<h3>Captain Marvel</h3>
-								<p><i class="fas fa-gem diamond-icon"></i> 2,500</p>
+								<p>
+									<i class="fas fa-gem diamond-icon"></i>
+									2,500</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 							<div class="card">
 								<img src="aset/skin/doctoroctopus_kin.png" alt="Doctor Octopus">
 								<h3>Doctor Octopus</h3>
-								<p><i class="fas fa-gem diamond-icon"></i> 2,500</p>
+								<p>
+									<i class="fas fa-gem diamond-icon"></i>
+									2,500</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 							<div class="card">
 								<img src="aset/skin/doctorstrange_skin.png" alt="Doctor Strange">
 								<h3>Doctor Strange</h3>
-								<p><i class="fas fa-gem diamond-icon"></i> 2,500</p>
+								<p>
+									<i class="fas fa-gem diamond-icon"></i>
+									2,500</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 							<div class="card">
 								<img src="aset/skin/falcon_skin.png" alt="Falcon">
 								<h3>Falcon</h3>
-								<p><i class="fas fa-gem diamond-icon"></i> 2,500</p>
+								<p>
+									<i class="fas fa-gem diamond-icon"></i>
+									2,500</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 							<div class="card">
 								<img src="aset/skin/greengoblin_skin.png" alt="Green Goblin">
 								<h3>Green Goblin</h3>
-								<p><i class="fas fa-gem diamond-icon"></i> 2,500</p>
+								<p>
+									<i class="fas fa-gem diamond-icon"></i>
+									2,500</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 							<div class="card">
 								<img src="aset/skin/hawkeye_skin.png" alt="Hawkeye">
 								<h3>Hawkeye</h3>
-								<p><i class="fas fa-gem diamond-icon"></i> 2,500</p>
+								<p>
+									<i class="fas fa-gem diamond-icon"></i>
+									2,500</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 							<div class="card">
 								<img src="aset/skin/hela_skin.png" alt="Hela">
 								<h3>Hela</h3>
-								<p><i class="fas fa-gem diamond-icon"></i> 2,500</p>
+								<p>
+									<i class="fas fa-gem diamond-icon"></i>
+									2,500</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 							<div class="card">
 								<img src="aset/skin/hulk_skin.png" alt="Hulk">
 								<h3>Hulk</h3>
-								<p><i class="fas fa-gem diamond-icon"></i> 2,500</p>
+								<p>
+									<i class="fas fa-gem diamond-icon"></i>
+									2,500</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 							<div class="card">
 								<img src="aset/skin/iron_skin.png" alt="Iron Man">
 								<h3>Iron Man</h3>
-								<p><i class="fas fa-gem diamond-icon"></i> 2,500</p>
+								<p>
+									<i class="fas fa-gem diamond-icon"></i>
+									2,500</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 							<div class="card">
 								<img src="aset/skin/kang_skin.png" alt="Kang the Conqueror">
 								<h3>Kang the Conqueror</h3>
-								<p><i class="fas fa-gem diamond-icon"></i> 2,500</p>
+								<p>
+									<i class="fas fa-gem diamond-icon"></i>
+									2,500</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 							<div class="card">
 								<img src="aset/skin/kilmonger_skin.png" alt="Killmonger">
 								<h3>Killmonger</h3>
-								<p><i class="fas fa-gem diamond-icon"></i> 2,500</p>
+								<p>
+									<i class="fas fa-gem diamond-icon"></i>
+									2,500</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 							<div class="card">
 								<img src="aset/skin/loki_skin.png" alt="Loki">
 								<h3>Loki</h3>
-								<p><i class="fas fa-gem diamond-icon"></i> 2,500</p>
+								<p>
+									<i class="fas fa-gem diamond-icon"></i>
+									2,500</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 							<div class="card">
 								<img src="aset/skin/redskull_skin.png" alt="Red Skull">
 								<h3>Red Skull</h3>
-								<p><i class="fas fa-gem diamond-icon"></i> 2,500</p>
+								<p>
+									<i class="fas fa-gem diamond-icon"></i>
+									2,500</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 							<div class="card">
 								<img src="aset/skin/scarletwitch_skin.png" alt="Scarlet Witch">
 								<h3>Scarlet Witch</h3>
-								<p><i class="fas fa-gem diamond-icon"></i> 2,500</p>
+								<p>
+									<i class="fas fa-gem diamond-icon"></i>
+									2,500</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 							<div class="card">
 								<img src="aset/skin/spiderman_skin.png" alt="Spider-Man">
 								<h3>Spider-Man</h3>
-								<p><i class="fas fa-gem diamond-icon"></i> 2,500</p>
+								<p>
+									<i class="fas fa-gem diamond-icon"></i>
+									2,500</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 							<div class="card">
 								<img src="aset/skin/thanos_skin.png" alt="Thanos">
 								<h3>Thanos</h3>
-								<p><i class="fas fa-gem diamond-icon"></i> 2,500</p>
+								<p>
+									<i class="fas fa-gem diamond-icon"></i>
+									2,500</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 							<div class="card">
 								<img src="aset/skin/thor_skin.png" alt="Thor">
 								<h3>Thor</h3>
-								<p><i class="fas fa-gem diamond-icon"></i> 2,500</p>
+								<p>
+									<i class="fas fa-gem diamond-icon"></i>
+									2,500</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 							<div class="card">
 								<img src="aset/skin/ultron_skin.png" alt="Ultron">
 								<h3>Ultron</h3>
-								<p><i class="fas fa-gem diamond-icon"></i> 2,500</p>
+								<p>
+									<i class="fas fa-gem diamond-icon"></i>
+									2,500</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 							<div class="card">
 								<img src="aset/skin/venom.skin.png" alt="Venom">
 								<h3>Venom</h3>
-								<p><i class="fas fa-gem diamond-icon"></i> 2,500</p>
+								<p>
+									<i class="fas fa-gem diamond-icon"></i>
+									2,500</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 							<div class="card">
 								<img src="aset/skin/vision_skin.png" alt="Vision">
 								<h3>Vision</h3>
-								<p><i class="fas fa-gem diamond-icon"></i> 2,500</p>
+								<p>
+									<i class="fas fa-gem diamond-icon"></i>
+									2,500</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 							<div class="card">
 								<img src="aset/skin/wasp_skin.png" alt="Wasp">
 								<h3>Wasp</h3>
-								<p><i class="fas fa-gem diamond-icon"></i> 2,500</p>
+								<p>
+									<i class="fas fa-gem diamond-icon"></i>
+									2,500</p>
 								<a href="#" class="btn-buy">Buy</a>
 							</div>
 						</div>
 					</section>
-
+					
 					<!-- ==================== EMOTES ==================== -->
 					<section id="emotes">
 						<h2>Emotes</h2>
@@ -531,7 +774,39 @@
 				</div>
 			</main>
 		</div>
-
+		<div id="buy-popup" class="popup-overlay">
+			<div class="popup-content">
+				<div class="popup-header">
+					<h3>KONFIRMASI PEMBELIAN</h3>
+					<span class="popup-close">×</span>
+				</div>
+				<div class="popup-body">
+					<img id="popup-img" src="" alt="" class="popup-item-img">
+					<h4 id="popup-title"></h4>
+					<p id="popup-price"></p>
+					<div class="popup-balance">
+						<p>Saldo Anda:</p>
+						<p id="user-gold">
+							<i class="fas fa-coins gold-icon"></i>
+							<span>10,600</span>
+						</p>
+						<p id="user-diamond">
+							<i class="fas fa-gem diamond-icon"></i>
+							<span>4,200</span>
+						</p>
+					</div>
+					<div id="insufficient" class="popup-warning" style="display: none; color: #ff4444; margin: 10px 0; font-weight: bold;">
+						<i class="fas fa-exclamation-triangle"></i>
+						Saldo tidak cukup!
+					</div>
+				</div>
+				<div class="popup-footer">
+					<button id="confirm-buy" class="popup-btn confirm">BELI</button>
+					<button id="cancel-buy" class="popup-btn cancel">BATAL</button>
+				</div>
+			</div>
+		</div>
+		
 		<!-- Highlight menu saat scroll -->
 		<script>
 			window.addEventListener('scroll', () => {
@@ -554,6 +829,89 @@
 					}
 				});
 			});
+		
+		</script>
+		<script>
+// DATA SALDO PENGGUNA (bisa diganti dengan API nanti)
+let userGold = 9600;
+let userDiamond = 4200;
+
+// Update saldo di header
+function updateHeaderBalance() {
+    document.querySelector('.coins span:nth-child(1)').innerHTML = `<i class="fas fa-coins gold-icon"></i> ${userGold.toLocaleString()}`;
+    document.querySelector('.coins span:nth-child(2)').innerHTML = `<i class="fas fa-gem diamond-icon"></i> ${userDiamond.toLocaleString()}`;
+}
+
+// Pop-up Logic
+document.addEventListener('DOMContentLoaded', function() {
+    const popup = document.getElementById('buy-popup');
+    const closeBtn = document.querySelector('.popup-close');
+    const cancelBtn = document.getElementById('cancel-buy');
+    const confirmBtn = document.getElementById('confirm-buy');
+    const insufficient = document.getElementById('insufficient');
+
+    let currentItem = {};
+
+    // Buka pop-up saat klik tombol Buy
+    document.querySelectorAll('.btn-buy').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const card = this.closest('.card');
+            currentItem = {
+                img: card.querySelector('img').src,
+                title: card.querySelector('h3').textContent,
+                priceText: card.querySelector('p').textContent.trim(),
+                price: parseInt(card.querySelector('p').textContent.replace(/[^0-9]/g, '')),
+                isGold: card.querySelector('p').textContent.includes('fa-coins')
+            };
+
+            // Isi pop-up
+            document.getElementById('popup-img').src = currentItem.img;
+            document.getElementById('popup-title').textContent = currentItem.title;
+            document.getElementById('popup-price').innerHTML = `<strong>${currentItem.priceText}</strong>`;
+
+            // Update saldo
+            document.querySelector('#user-gold span').textContent = userGold.toLocaleString();
+            document.querySelector('#user-diamond span').textContent = userDiamond.toLocaleString();
+
+            // Cek saldo
+            const hasEnough = currentItem.isGold ? userGold >= currentItem.price : userDiamond >= currentItem.price;
+            insufficient.style.display = hasEnough ? 'none' : 'block';
+            confirmBtn.disabled = !hasEnough;
+
+            popup.classList.add('show');
+        });
+    });
+
+    // Tutup pop-up
+    function closePopup() {
+        popup.classList.remove('show');
+    }
+
+    closeBtn.onclick = closePopup;
+    cancelBtn.onclick = closePopup;
+    popup.onclick = function(e) {
+        if (e.target === popup) closePopup();
+    };
+
+    // Konfirmasi beli
+    confirmBtn.onclick = function() {
+        if (currentItem.isGold) {
+            userGold -= currentItem.price;
+        } else {
+            userDiamond -= currentItem.price;
+        }
+
+        updateHeaderBalance();
+        alert(`Berhasil membeli **${currentItem.title}**!`);
+        closePopup();
+    };
+
+    // Inisialisasi saldo di header
+    updateHeaderBalance();
+});
+
 		</script>
 	</body>
 </html>

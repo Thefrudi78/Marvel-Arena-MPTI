@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="id">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Marvel: Anime Arena - Opsion</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+		<style>
+        /* Import Font Orbitron dari Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
+        /* Pengaturan Dasar - Semua Font Orbitron */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: "Orbitron", sans-serif;
+            color: white;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .options-screen-container {
+            height: 100vh;
+            position: relative;
+            background: url('aset/lab.png') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .options-screen-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(10, 20, 30, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 1;
+        }
+        
+        .back-button {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            z-index: 10;
+            text-decoration: none;
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 0 5px black;
+            background-color: rgba(0,0,0,0.3);
+            border: 2px solid rgba(255,255,255,0.4);
+            transform: skewX(-20deg);
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-family: "Orbitron", sans-serif;
+        }
+        .back-button i { margin-right: 15px; }
+        .back-button:hover { background-color: rgba(0,0,0,0.6);transform: scale(1.05); }
+
+        .options-wrapper {
+            position: relative;
+            top: 40px;
+            z-index: 2;
+            display: flex;
+            gap: 0;
+            width: 100%;
+            max-width: 1500px;
+            height: 85vh;
+            background-color: rgba(10, 20, 30, 0.9);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        /* PANEL NAVIGASI */
+        .options-nav {
+            flex: 0 0 300px;
+            background-color: rgba(10, 15, 20, 0.8);
+            padding: 20px 0;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .options-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .options-nav a {
+            display: block;
+            padding: 18px 25px;
+            text-decoration: none;
+            color: #aaa;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-left: 4px solid transparent;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .options-nav a:hover {
+            background-color: rgba(255,255,255,0.05);
+            color: white;
+        }
+        .options-nav a.active {
+            background-color: rgba(232, 163, 55, 0.1);
+            border-left-color: #e8a337;
+            color: white;
+        }
+
+        /* PANEL KONTEN */
+        .options-content {
+            flex-grow: 1;
+            padding: 30px 40px;
+            overflow-y: auto;
+            background-color: rgba(10, 15, 20, 0.8);
+        }
+
+        .options-content::-webkit-scrollbar {
+            display: none;
+        }
+
+        .options-content {
+            scrollbar-width: none; /* Firefox */
+        }
+        .tab-pane {
+            display: none;
+        }
+        .tab-pane.active {
+            display: block;
+        }
+
+        .tab-pane h2 {
+            font-family: "Orbitron", sans-serif;
+            font-size: 2.5rem;
+            margin: 0 0 25px 0;
+            color: #e8a337;
+            border-bottom: 2px solid rgba(232, 163, 55, 0.5);
+            padding-bottom: 10px;
+            font-weight: 900;
+        }
+
+        .option-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .option-row:last-child { border-bottom: none; }
+        
+        .option-row label {
+            font-size: 1.1rem;
+            flex-basis: 40%;
+            font-weight: 400;
+        }
+        .option-control {
+            flex-basis: 55%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Styling untuk Radio Buttons (menggantikan Select) */
+        input[type="radio"] {
+            display: none; /* Sembunyikan radio asli, gunakan custom styling */
+        }
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            background-color: rgba(0,0,0,0.3);
+            border: 1px solid #555;
+            border-radius: 5px;
+            padding: 8px;
+            min-width: 200px;
+        }
+        .radio-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 3px;
+            transition: background-color 0.2s;
+        }
+        .radio-option:hover {
+            background-color: rgba(255,255,255,0.05);
+        }
+        .radio-option input[type="radio"] + span {
+            margin-left: 8px;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+        .radio-option input[type="radio"]:checked + span {
+            color: #e8a337;
+            font-weight: 700;
+        }
+        .radio-custom {
+            width: 16px;
+            height: 16px;
+            border: 2px solid #555;
+            border-radius: 50%;
+            margin-right: 8px;
+            position: relative;
+            transition: all 0.2s;
+        }
+        .radio-option input[type="radio"]:checked + .radio-custom {
+            background-color: #e8a337;
+            border-color: #e8a337;
+        }
+        .radio-option input[type="radio"]:checked + .radio-custom::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        /* === RADIO ON/OFF CUSTOM (untuk pengganti toggle) === */
+        .radio-onoff-group {
+            display: flex;
+            gap: 10px;
+            background-color: rgba(0,0,0,0.3);
+            border: 1px solid #555;
+            border-radius: 8px;
+            padding: 6px;
+            width: fit-content;
+        }
+
+        .radio-onoff {
+            display: none;
+        }
+
+        .radio-onoff-label {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            min-width: 50px;
+            text-align: center;
+            color: #ccc;
+        }
+
+        .radio-onoff-label[for$="-on"] {
+            background-color: rgba(232, 163, 55, 0.15);
+            border: 1px solid rgba(232, 163, 55, 0.3);
+        }
+
+        .radio-onoff-label[for$="-off"] {
+            background-color: rgba(100, 100, 100, 0.15);
+            border: 1px solid rgba(100, 100, 100, 0.3);
+        }
+
+        input[type="radio"]:checked + .radio-onoff-label {
+            background-color: #e8a337 !important;
+            color: black !important;
+            border-color: #ffd700 !important;
+            box-shadow: 0 0 8px rgba(232, 163, 55, 0.5);
+        }
+
+        input[type="range"], .option-button {
+            background-color: rgba(0,0,0,0.3);
+            border: 1px solid #555;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: "Orbitron", sans-serif;
+        }
+        
+        input[type="range"] { 
+            flex-grow: 1; 
+            cursor: pointer; 
+        }
+        
+        .option-button {
+            background-color: #e8a337;
+            color: black;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            font-family: "Orbitron", sans-serif;
+        }
+        .option-button:hover { background-color: #ffd700; }
+
+        /* === MODAL KONFIGURASI TOMBOL BARU (CONTROLLER STYLE) === */
+        .controls-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .controls-modal.active { display: flex; }
+
+        .modal-content {
+            background: rgba(10, 20, 30, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            width: 100%;
+            max-width: 1200px;
+            position: relative;
+            padding: 30px;
+            box-shadow: 0 0 40px rgba(232, 163, 55, 0.3);
+            margin-bottom: 35px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 2rem;
+            color: #aaa;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .modal-close:hover { color: #e8a337; }
+
+        .controller-layout {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .controller-column {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-width: 200px;
+        }
+
+        .controller-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid #555;
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            cursor: pointer;
+            font-family: "Orbitron", sans-serif;
+        }
+        .controller-btn:hover {
+            background: rgba(232, 163, 55, 0.2);
+            border-color: #e8a337;
+        }
+        .controller-btn.active {
+            background: #e8a337 !important;
+            color: black !important;
+            font-weight: bold;
+            border-color: #ffd700 !important;
+        }
+        .controller-btn i, .controller-btn .btn-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            background: rgba(0,0,0,0.4);
+            color: #ccc;
+            font-weight: bold;
+        }
+        .btn-icon { 
+            font-style: normal; 
+            font-size: 0.9rem;
+        }
+
+        .controller-img {
+            width: 320px;
+            height: auto;
+            border-radius: 15px;
+            border: 2px solid rgba(232, 163, 55, 0.5);
+            box-shadow: 0 0 20px rgba(232, 163, 55, 0.3);
+        }
+
+        .reset-btn {
+            display: block;
+            margin: 30px auto 0;
+            padding: 12px 40px;
+            background: #e8a337;
+            color: black;
+            border: none;
+            border-radius: 8px;
+            font-family: "Orbitron", sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .reset-btn:hover {
+            background: #ffd700;
+        }
+
+        .modal-title {
+            text-align: center;
+            color: #e8a337;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            font-weight: 900;
+        }
+
+        .modal-subtitle {
+            text-align: center;
+            color: #aaa;
+            font-size: 1rem;
+            margin-bottom: 25px;
+        }
+
+        @media (max-width: 992px) {
+            .controller-layout { flex-direction: column; }
+            .controller-img { width: 280px; }
+            .controller-column { min-width: 100%; }
+        }
+        .credits-list, .privacy-content {
+    color: #ddd;
+    line-height: 1.7;
+    font-size: 1rem;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.credits-list h3, .privacy-content h3 {
+    color: #e8a337;
+    margin: 20px 0 8px 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.credits-list p, .privacy-content p {
+    margin: 8px 0;
+}
+
+.privacy-content ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+.privacy-content ul li {
+    margin: 5px 0;
+}
+
+/* Scrollbar halus */
+.credits-list::-webkit-scrollbar, .privacy-content::-webkit-scrollbar {
+    width: 6px;
+}
+.credits-list::-webkit-scrollbar-track, .privacy-content::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.3);
+}
+.credits-list::-webkit-scrollbar-thumb, .privacy-content::-webkit-scrollbar-thumb {
+    background: #e8a337;
+    border-radius: 3px;
+}
+    
+		</style>
+	</head>
+	<body>
+		<div class="options-screen-container">
+			<a href="index.html" class="back-button">KEMBALI</a>
+			<div class="options-wrapper">
+				<nav class="options-nav">
+					<ul>
+						<li>
+							<a data-target="game-settings-content" class="active">PENGATURAN GAME</a>
+						</li>
+						<li>
+							<a data-target="controls-content">KONTROL</a>
+						</li>
+						<li>
+							<a data-target="display-content">TAMPILAN</a>
+						</li>
+						<li>
+							<a data-target="audio-content">AUDIO</a>
+						</li>
+						<li>
+							<a data-target="online-content">ONLINE</a>
+						</li>
+						<li>
+							<a data-target="accessibility-content">AKSESIBILITAS</a>
+						</li>
+						<li>
+							<a data-target="credits-content">KREDIT</a>
+						</li>
+					</ul>
+				</nav>
+				<div class="options-content">
+					<div class="tab-pane active" id="game-settings-content">
+						<h2>PENGATURAN GAME</h2>
+						<div class="option-row">
+							<label>Bahasa Teks</label>
+							<div class="option-control">
+								<div class="radio-group">
+									<label class="radio-option">
+										<input type="radio" name="text-lang" value="Indonesia" checked="">
+										<span class="radio-custom"></span>
+										<span>Indonesia</span>
+									</label>
+									<label class="radio-option">
+										<input type="radio" name="text-lang" value="English">
+										<span class="radio-custom"></span>
+										<span>English</span>
+									</label>
+									<label class="radio-option">
+										<input type="radio" name="text-lang" value="Japanese">
+										<span class="radio-custom"></span>
+										<span>Jepang</span>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="option-row">
+							<label>Bahasa Suara</label>
+							<div class="option-control">
+								<div class="radio-group">
+									<label class="radio-option">
+										<input type="radio" name="voice-lang" value="English" checked="">
+										<span class="radio-custom"></span>
+										<span>Inggris</span>
+									</label>
+									<label class="radio-option">
+										<input type="radio" name="voice-lang" value="Japanese">
+										<span class="radio-custom"></span>
+										<span>Jepang</span>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="option-row">
+							<label>Tingkat Kesulitan AI</label>
+							<div class="option-control">
+								<div class="radio-group">
+									<label class="radio-option">
+										<input type="radio" name="ai-difficulty" value="Mudah" checked="">
+										<span class="radio-custom"></span>
+										<span>Mudah</span>
+									</label>
+									<label class="radio-option">
+										<input type="radio" name="ai-difficulty" value="Normal">
+										<span class="radio-custom"></span>
+										<span>Normal</span>
+									</label>
+									<label class="radio-option">
+										<input type="radio" name="ai-difficulty" value="Sulit">
+										<span class="radio-custom"></span>
+										<span>Sulit</span>
+									</label>
+									<label class="radio-option">
+										<input type="radio" name="ai-difficulty" value="Sangat Sulit">
+										<span class="radio-custom"></span>
+										<span>Sangat Sulit</span>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="option-row">
+							<label>Jumlah Ronde (Offline)</label>
+							<div class="option-control">
+								<div class="radio-group">
+									<label class="radio-option">
+										<input type="radio" name="vs-rounds" value="1">
+										<span class="radio-custom"></span>
+										<span>1</span>
+									</label>
+									<label class="radio-option">
+										<input type="radio" name="vs-rounds" value="3" checked="">
+										<span class="radio-custom"></span>
+										<span>3</span>
+									</label>
+									<label class="radio-option">
+										<input type="radio" name="vs-rounds" value="5">
+										<span class="radio-custom"></span>
+										<span>5</span>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="option-row">
+							<label>Waktu Ronde (Offline)</label>
+							<div class="option-control">
+								<div class="radio-group">
+									<label class="radio-option">
+										<input type="radio" name="vs-time" value="60 Detik">
+										<span class="radio-custom"></span>
+										<span>60 Detik</span>
+									</label>
+									<label class="radio-option">
+										<input type="radio" name="vs-time" value="99 Detik" checked="">
+										<span class="radio-custom"></span>
+										<span>99 Detik</span>
+									</label>
+									<label class="radio-option">
+										<input type="radio" name="vs-time" value="Tak Terbatas">
+										<span class="radio-custom"></span>
+										<span>Tak Terbatas</span>
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="controls-content">
+						<h2>KONTROL</h2>
+						<div class="option-row">
+							<label>Konfigurasi Tombol</label>
+							<div class="option-control">
+								<button class="option-button" id="open-controls-modal">Buka</button>
+							</div>
+						</div>
+						<div class="option-row">
+							<label>Getaran</label>
+							<div class="option-control">
+								<div class="radio-onoff-group">
+									<input type="radio" name="vibration" id="vibration-on" value="1" checked="" class="radio-onoff">
+									<label for="vibration-on" class="radio-onoff-label">ON</label>
+									<input type="radio" name="vibration" id="vibration-off" value="0" class="radio-onoff">
+									<label for="vibration-off" class="radio-onoff-label">OFF</label>
+								</div>
+							</div>
+						</div>
+						<div class="option-row">
+							<label>Tombol Pintas</label>
+							<div class="option-control">
+								<div class="radio-onoff-group">
+									<input type="radio" name="shortcuts" id="shortcuts-on" value="1" class="radio-onoff">
+									<label for="shortcuts-on" class="radio-onoff-label">ON</label>
+									<input type="radio" name="shortcuts" id="shortcuts-off" value="0" checked="" class="radio-onoff">
+									<label for="shortcuts-off" class="radio-onoff-label">OFF</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="display-content">
+						<h2>TAMPILAN</h2>
+						<div class="option-row">
+							<label for="brightness">Kecerahan</label>
+							<div class="option-control">
+								<input type="range" id="brightness" min="0" max="100" value="50">
+							</div>
+						</div>
+						<div class="option-row">
+							<label>Mode Grafik</label>
+							<div class="option-control">
+								<div class="radio-group">
+									<label class="radio-option">
+										<input type="radio" name="graphics-mode" value="Prioritaskan Performa" checked="">
+										<span class="radio-custom"></span>
+										<span>Prioritaskan Performa</span>
+									</label>
+									<label class="radio-option">
+										<input type="radio" name="graphics-mode" value="Prioritaskan Kualitas">
+										<span class="radio-custom"></span>
+										<span>Prioritaskan Kualitas</span>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="option-row">
+							<label>Tampilkan Indikator Koneksi</label>
+							<div class="option-control">
+								<div class="radio-onoff-group">
+									<input type="radio" name="conn-indicator" id="conn-indicator-on" value="1" checked="" class="radio-onoff">
+									<label for="conn-indicator-on" class="radio-onoff-label">ON</label>
+									<input type="radio" name="conn-indicator" id="conn-indicator-off" value="0" class="radio-onoff">
+									<label for="conn-indicator-off" class="radio-onoff-label">OFF</label>
+								</div>
+							</div>
+						</div>
+						<div class="option-row">
+							<label>Sesuaikan Area Aman</label>
+							<div class="option-control">
+								<button class="option-button">Buka</button>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="audio-content">
+						<h2>AUDIO</h2>
+						<div class="option-row">
+							<label for="vol-master">Volume Utama</label>
+							<div class="option-control">
+								<input type="range" id="vol-master" min="0" max="100" value="80">
+							</div>
+						</div>
+						<div class="option-row">
+							<label for="vol-bgm">Volume Musik Latar</label>
+							<div class="option-control">
+								<input type="range" id="vol-bgm" min="0" max="100" value="60">
+							</div>
+						</div>
+						<div class="option-row">
+							<label for="vol-sfx">Volume Efek Suara</label>
+							<div class="option-control">
+								<input type="range" id="vol-sfx" min="0" max="100" value="70">
+							</div>
+						</div>
+						<div class="option-row">
+							<label for="vol-voice">Volume Suara Karakter</label>
+							<div class="option-control">
+								<input type="range" id="vol-voice" min="0" max="100" value="75">
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="online-content">
+						<h2>ONLINE</h2>
+						<div class="option-row">
+							<label>Cross-Play</label>
+							<div class="option-control">
+								<div class="radio-onoff-group">
+									<input type="radio" name="crossplay" id="crossplay-on" value="1" checked="" class="radio-onoff">
+									<label for="crossplay-on" class="radio-onoff-label">ON</label>
+									<input type="radio" name="crossplay" id="crossplay-off" value="0" class="radio-onoff">
+									<label for="crossplay-off" class="radio-onoff-label">OFF</label>
+								</div>
+							</div>
+						</div>
+						<div class="option-row">
+							<label>Filter Kualitas Koneksi</label>
+							<div class="option-control">
+								<div class="radio-group">
+									<label class="radio-option">
+										<input type="radio" name="conn-filter" value="Hanya Koneksi Baik" checked="">
+										<span class="radio-custom"></span>
+										<span>Hanya Koneksi Baik</span>
+									</label>
+									<label class="radio-option">
+										<input type="radio" name="conn-filter" value="Semua Koneksi">
+										<span class="radio-custom"></span>
+										<span>Semua Koneksi</span>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="option-row">
+							<label>Tampilkan Nama Lawan</label>
+							<div class="option-control">
+								<div class="radio-onoff-group">
+									<input type="radio" name="show-opponent-name" id="show-opponent-name-on" value="1" checked="" class="radio-onoff">
+									<label for="show-opponent-name-on" class="radio-onoff-label">ON</label>
+									<input type="radio" name="show-opponent-name" id="show-opponent-name-off" value="0" class="radio-onoff">
+									<label for="show-opponent-name-off" class="radio-onoff-label">OFF</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="accessibility-content">
+						<h2>AKSESIBILITAS</h2>
+						<div class="option-row">
+							<label>Mode Buta Warna</label>
+							<div class="option-control">
+								<div class="radio-group">
+									<label class="radio-option">
+										<input type="radio" name="colorblind" value="Mati" checked="">
+										<span class="radio-custom"></span>
+										<span>Mati</span>
+									</label>
+									<label class="radio-option">
+										<input type="radio" name="colorblind" value="Protanopia">
+										<span class="radio-custom"></span>
+										<span>Protanopia</span>
+									</label>
+									<label class="radio-option">
+										<input type="radio" name="colorblind" value="Deuteranopia">
+										<span class="radio-custom"></span>
+										<span>Deuteranopia</span>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="option-row">
+							<label>Ukuran Font Takarir</label>
+							<div class="option-control">
+								<div class="radio-group">
+									<label class="radio-option">
+										<input type="radio" name="subtitle-size" value="Kecil">
+										<span class="radio-custom"></span>
+										<span>Kecil</span>
+									</label>
+									<label class="radio-option">
+										<input type="radio" name="subtitle-size" value="Sedang" checked="">
+										<span class="radio-custom"></span>
+										<span>Sedang</span>
+									</label>
+									<label class="radio-option">
+										<input type="radio" name="subtitle-size" value="Besar">
+										<span class="radio-custom"></span>
+										<span>Besar</span>
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="option-row">
+							<label>Tombol Tahan</label>
+							<div class="option-control">
+								<div class="radio-onoff-group">
+									<input type="radio" name="subtitle-bg" id="subtitle-bg-on" value="1" checked="" class="radio-onoff">
+									<label for="subtitle-bg-on" class="radio-onoff-label">ON</label>
+									<input type="radio" name="subtitle-bg" id="subtitle-bg-off" value="0" class="radio-onoff">
+									<label for="subtitle-bg-off" class="radio-onoff-label">OFF</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="credits-content">
+						<h2>KREDIT</h2>
+						<div class="option-row">
+							<label>Lihat Kredit</label>
+							<div class="option-control">
+								<button class="option-button">Mulai</button>
+							</div>
+						</div>
+						<div class="option-row">
+							<label>Kebijakan Privasi / Legal</label>
+							<div class="option-control">
+								<button class="option-button" id="open-privacy">Lihat</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- MODAL KREDIT -->
+		<div class="controls-modal" id="credits-modal">
+			<div class="modal-content">
+				<div class="modal-close" id="close-credits">×</div>
+				<h2 class="modal-title">KREDIT</h2>
+				<p class="modal-subtitle">Tim pengembang dan kontributor proyek ini</p>
+				<div class="credits-list">
+					<h3>Direktur Kreatif</h3>
+					<p>Viony Widjawa</p>
+					<h3>Programmer Utama</h3>
+					<p>Rudi Hartono
+						<br>
+						Froni Nasution</p>
+					<h3>Desain Karakter &amp; Animasi</h3>
+					<p>Sarah Lestari<br>
+						Kevin Pratama</p>
+					<h3>Musik &amp; Efek Suara</h3>
+					<p>Studio Soundwave<br>
+						Komposer: Dapur Audio</p>
+					<h3>Tester QA</h3>
+					<p>Tim Alpha Squad</p>
+					<h3>Terima Kasih Khusus</h3>
+					<p>Marvel Fans Indonesia<br>
+						Komunitas Anime Arena<br>
+					</p>
+					<h3>Powered By</h3>
+					<p>Marvel Studios</p>
+				</div>
+				<button class="reset-btn" id="close-credits-bottom">Tutup</button>
+			</div>
+		</div>
+		
+		<!-- MODAL KEBIJAKAN PRIVASI -->
+		<div class="controls-modal" id="privacy-modal">
+			<div class="modal-content">
+				<div class="modal-close" id="close-privacy">×</div>
+				<h2 class="modal-title">KEBIJAKAN PRIVASI &amp; LEGAL</h2>
+				<p class="modal-subtitle">Informasi hukum dan perlindungan data pengguna</p>
+				<div class="privacy-content">
+					<h3>1. Pengumpulan Data</h3>
+					<p>Kami hanya mengumpulkan data yang diperlukan untuk pengalaman bermain, seperti nama pengguna, statistik permainan, dan preferensi pengaturan.</p>
+					<h3>2. Penggunaan Data</h3>
+					<p>Data digunakan untuk:</p>
+					<ul>
+						<li>Menyimpan progres permainan</li>
+						<li>Meningkatkan pengalaman pengguna</li>
+						<li>Mencegah kecurangan di mode online</li>
+					</ul>
+					<h3>3. Tidak Ada Penjualan Data</h3>
+					<p>Kami
+						<strong>tidak pernah</strong>
+						menjual data pribadi Anda kepada pihak ketiga.</p>
+					<h3>4. Keamanan</h3>
+					<p>Semua data disimpan dengan enkripsi AES-256 dan hanya dapat diakses oleh sistem internal.</p>
+					<h3>5. Hak Pengguna</h3>
+					<p>Anda dapat menghapus akun dan semua data kapan saja melalui menu Pengaturan → Hapus Akun.</p>
+					<h3>6. Pembaruan Kebijakan</h3>
+					<p>Kebijakan ini terakhir diperbarui:
+						<strong>30 Oktober 2025</strong>
+					</p>
+				</div>
+				<button class="reset-btn" id="close-privacy-bottom">Tutup</button>
+			</div>
+		</div>
+		
+		<!-- MODAL KONFIGURASI TOMBOL (CONTROLLER STYLE) -->
+		<div class="controls-modal" id="controls-modal">
+			<div class="modal-content">
+				<div class="modal-close" id="close-modal">×</div>
+				<h2 class="modal-title">KONFIGURASI KONTROL</h2>
+				<p class="modal-subtitle">Klik aksi untuk mengubah pemetaan tombol controller</p>
+				<div class="controller-layout">
+					
+					<!-- Kolom KIRI (Tombol Utama Fighting) -->
+					<div class="controller-column">
+						<div class="controller-btn" data-action="light-punch">
+							<span class="btn-icon">Y</span>
+							Pukulan Ringan
+						</div>
+						<div class="controller-btn" data-action="heavy-punch">
+							<span class="btn-icon">X</span>
+							Pukulan Berat
+						</div>
+						<div class="controller-btn" data-action="light-kick">
+							<span class="btn-icon">A</span>
+							Tendangan Ringan
+						</div>
+						<div class="controller-btn" data-action="heavy-kick">
+							<span class="btn-icon">B</span>
+							Tendangan Berat
+						</div>
+						<div class="controller-btn" data-action="guard">
+							<i>L1</i>
+							Blok / Guard
+						</div>
+					</div>
+					
+					<!-- GAMBAR CONTROLLER DI TENGAH -->
+					<img src="aset/joystick.png" alt="Game Controller" class="controller-img">
+					
+					<!-- Kolom KANAN (Special Moves & Utility) -->
+					<div class="controller-column">
+						<div class="controller-btn" data-action="special-1">
+							<i class="fas fa-chevron-up"></i>
+							Melompat
+						</div>
+						<div class="controller-btn" data-action="special-2">
+							<i class="fas fa-chevron-down"></i>
+							Menunduk
+						</div>
+						<div class="controller-btn" data-action="super">
+							<i class="fas fa-chevron-left"></i>
+							Dash
+						</div>
+						<div class="controller-btn" data-action="dash">
+							<i class="fas fa-chevron-right"></i>
+							Dash
+						</div>
+						<div class="controller-btn" data-action="throw">
+							<i>R1</i>
+							Lempar / Throw
+						</div>
+					</div>
+				</div>
+				<button class="reset-btn" id="reset-controls">Kembalikan ke Pengaturan Default</button>
+			</div>
+		</div>
+		
+		<!-- JavaScript untuk navigasi tab DAN MODAL -->
+		<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // 1. NAVIGASI TAB
+            const navLinks = document.querySelectorAll('.options-nav a');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    tabPanes.forEach(p => p.classList.remove('active'));
+                    this.classList.add('active');
+                    const targetId = this.getAttribute('data-target');
+                    const targetPane = document.getElementById(targetId);
+                    if (targetPane) targetPane.classList.add('active');
+                });
+            });
+
+            // 2. MODAL KONFIGURASI KONTROL
+            const openBtn = document.getElementById('open-controls-modal');
+            const modal = document.getElementById('controls-modal');
+            const closeBtn = document.getElementById('close-modal');
+            const resetBtn = document.getElementById('reset-controls');
+
+            openBtn.addEventListener('click', () => modal.classList.add('active'));
+            closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+            modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
+
+            // Pilih tombol
+            document.querySelectorAll('.controller-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const action = this.getAttribute('data-action');
+                    document.querySelectorAll(`.controller-btn[data-action="${action}"]`).forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // Reset
+            resetBtn.addEventListener('click', () => {
+                document.querySelectorAll('.controller-btn').forEach(btn => btn.classList.remove('active'));
+                ['light-punch', 'heavy-punch', 'light-kick', 'heavy-kick', 'guard'].forEach(action => {
+                    document.querySelector(`.controller-btn[data-action="${action}"]`).classList.add('active');
+                });
+                alert('Konfigurasi dikembalikan ke pengaturan default!');
+            });
+        });
+            // 3. MODAL KREDIT
+            const creditsBtn = document.querySelector('#credits-content .option-button');
+            const creditsModal = document.getElementById('credits-modal');
+            const closeCredits = document.getElementById('close-credits');
+            const closeCreditsBottom = document.getElementById('close-credits-bottom');
+
+            creditsBtn.addEventListener('click', () => creditsModal.classList.add('active'));
+            closeCredits.addEventListener('click', () => creditsModal.classList.remove('active'));
+            closeCreditsBottom.addEventListener('click', () => creditsModal.classList.remove('active'));
+            creditsModal.addEventListener('click', (e) => {
+                if (e.target === creditsModal) creditsModal.classList.remove('active');
+            });
+
+            // 4. MODAL KEBIJAKAN PRIVASI
+            // 4. MODAL KEBIJAKAN PRIVASI (DIPERBAIKI)
+            const privacyBtn = document.getElementById('open-privacy');
+            const privacyModal = document.getElementById('privacy-modal');
+            const closePrivacy = document.getElementById('close-privacy');
+            const closePrivacyBottom = document.getElementById('close-privacy-bottom');
+
+            if (privacyBtn) {
+                privacyBtn.addEventListener('click', () => {
+                    privacyModal.classList.add('active');
+                });
+            }
+
+            closePrivacy.addEventListener('click', () => privacyModal.classList.remove('active'));
+            closePrivacyBottom.addEventListener('click', () => privacyModal.classList.remove('active'));
+            privacyModal.addEventListener('click', (e) => {
+                if (e.target === privacyModal) privacyModal.classList.remove('active');
+            });
+    
+		</script>
+	</body>
+</html>
