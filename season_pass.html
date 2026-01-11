@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Marvel: Anime Arena - Season Pass</title>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&amp;display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
 		<style>
         /* Mengimpor Font dari Google */
         @import url('https://fonts.googleapis.com/css2?family=Teko:wght@500;700&display=swap');
@@ -96,16 +96,9 @@
             background-color: #e8a337; transition: background-color 0.2s;
         }
         .header-buttons .pass-button:hover { background-color: #ffd700; }
-        .header-buttons .pass-button.secondary {
-            background-color: transparent; color: #e8a337;
-            border: 2px solid #e8a337;
-        }
-        .header-buttons .pass-button.secondary:hover {
-            background-color: rgba(232, 163, 55, 0.1);
-        }
 
         /* ==================================
-           KONTEN UTAMA (KIRI & KANAN)
+           KONTEN UTAMA
            ================================== */
         .pass-main-content {
             flex-grow: 1;
@@ -115,9 +108,6 @@
             padding: 20px;
         }
 
-        /* ==================================
-           ZONA KIRI: PREVIEW HADIAH
-           ================================== */
         .pass-preview-pane {
             flex: 1;
             display: flex;
@@ -153,9 +143,6 @@
             text-align: center;
         }
 
-        /* ==================================
-           ZONA KANAN: KONTEN TAB
-           ================================== */
         .pass-content-right {
             flex: 2;
             display: flex;
@@ -185,12 +172,11 @@
         .pass-content-window {
             flex-grow: 1;
             padding-top: 20px;
-            overflow: hidden; /* Dihilangkan auto agar tidak scroll ganda */
+            overflow: hidden;
         }
 
         .tab-pane { display: none; height: 100%; }
         
-        /* [PERBAIKAN] #track-content sekarang memiliki layout baru */
         #track-content { display: flex; flex-direction: row; gap: 20px; }
         .pass-nav a[href="#track-pane"] {
             color: white; border-bottom-color: #e8a337;
@@ -206,10 +192,7 @@
         #track-pane:target ~ .pass-nav a[href="#track-pane"] { color: white; border-bottom-color: #e8a337; }
         #track-pane:target ~ .pass-nav a[href="#challenges-pane"] { color: #aaa; border-bottom-color: transparent; }
 
-        /* ==================================
-           [PERBAIKAN] JALUR HADIAH
-           ================================== */
-        
+        /* JALUR HADIAH */
         .track-labels-vertical {
             display: flex;
             flex-direction: column;
@@ -230,14 +213,8 @@
             border-radius: 8px;
             height: 100%;
         }
-        
-        .reward-track-container::-webkit-scrollbar {
-            display: none;
-        }
-        .reward-track-container {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+        .reward-track-container::-webkit-scrollbar { display: none; }
+        .reward-track-container { -ms-overflow-style: none; scrollbar-width: none; }
                 
         .reward-track {
             display: inline-flex;
@@ -293,7 +270,7 @@
         }
         
         .reward-item.claimed::after {
-            content: '✓';
+            
             position: absolute;
             bottom: -10px;
             right: -10px;
@@ -332,24 +309,15 @@
             100% { box-shadow: 0 0 5px #fff; }
         }
 
-        /* ==================================
-           ZONA KONTEN: TANTANGAN (TANPA SCROLLBAR, TAPI BISA SCROLL)
-           ================================== */
+        /* TANTANGAN */
         #challenges-content {
             overflow-y: auto;
             height: 100%;
-            padding-right: 10px; /* Memberi ruang agar tidak terpotong */
+            padding-right: 10px;
             box-sizing: border-box;
         }
-
-        /* HILANGKAN SCROLLBAR DI TANTANGAN */
-        #challenges-content::-webkit-scrollbar {
-            display: none;
-        }
-        #challenges-content {
-            -ms-overflow-style: none;  /* IE dan Edge */
-            scrollbar-width: none;     /* Firefox */
-        }
+        #challenges-content::-webkit-scrollbar { display: none; }
+        #challenges-content { -ms-overflow-style: none; scrollbar-width: none; }
 
         .challenges-list h3 {
             font-family: 'orbitron', sans-serif;
@@ -368,16 +336,14 @@
             justify-content: space-between;
             align-items: center;
         }
-        .challenge-item .challenge-desc { 
-            font-size: 1rem; 
-        }
+        .challenge-item .challenge-desc { font-size: 1rem; }
         .challenge-item .challenge-reward {
             font-size: 1rem;
             font-weight: bold;
             color: #9c27b0;
         }
 
-        /* === [BARU] TOMBOL KEMBALI === */
+        /* TOMBOL KEMBALI */
         .back-button {
             position: absolute;
             top: 10px;
@@ -401,142 +367,200 @@
             background-color: rgba(0, 0, 0, 0.6);
             transform: scale(1.05) skewX(-20deg);
         }
-        .back-button i {
-            margin-right: 15px;
+        .back-button i { margin-right: 15px; }
+
+        /* ==================================
+           POPUP STYLES (KONFIRMASI & PEMBAYARAN)
+           ================================== */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
         }
 
-        .popup-overlay {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-color: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(5px);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
+        .popup-overlay.show {
+            display: flex;
+            opacity: 1;
+            visibility: visible;
+        }
 
-.popup-overlay.show {
-    display: flex;
-    opacity: 1;
-}
+        .popup-content {
+            width: 90%;
+            max-width: 380px;
+            background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
+            border: 3px solid #ffd700;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+            animation: popupIn 0.4s ease-out;
+            font-family: 'Orbitron', sans-serif;
+        }
 
-.popup-content {
-    background: linear-gradient(135deg, rgba(20, 20, 40, 0.95), rgba(10, 10, 20, 0.95));
-    border: 2px solid #e8a337;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 420px;
-    box-shadow: 0 0 30px rgba(232, 163, 55, 0.5);
-    overflow: hidden;
-    animation: popupSlide 0.4s ease-out;
-    font-family: 'Orbitron', sans-serif;
-}
+        @keyframes popupIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
 
-@keyframes popupSlide {
-    from { transform: scale(0.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
+        /* Header */
+        .popup-header {
+            background: linear-gradient(to right, #ffd700, #ffed4e);
+            color: #000;
+            padding: 14px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 900;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
 
-.popup-header {
-    background: linear-gradient(to right, #e8a337, #ffd700);
-    color: black;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: 700;
-    font-size: 1.2rem;
-}
+        .popup-close {
+            cursor: pointer;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: 0.2s;
+        }
 
-.popup-close {
-    cursor: pointer;
-    font-size: 1.5rem;
-    font-weight: bold;
-    transition: 0.2s;
-}
+        .popup-close:hover {
+            transform: rotate(90deg);
+            color: #fff;
+        }
 
-.popup-close:hover {
-    color: #fff;
-    transform: rotate(90deg);
-}
+        /* Body */
+        .popup-body {
+            padding: 20px;
+            background: #111;
+        }
 
-.popup-body {
-    padding: 25px;
-    color: #eee;
-}
+        .popup-body p {
+            margin: 0 0 15px;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #eee;
+        }
 
-.popup-body p {
-    margin: 0 0 15px;
-    font-size: 1rem;
-    line-height: 1.5;
-}
+        .popup-benefits {
+            margin: 15px 0;
+            font-size: 0.95rem;
+        }
 
-.popup-benefits {
-    margin: 15px 0;
-    font-size: 0.95rem;
-}
+        .popup-benefits p {
+            margin: 8px 0;
+            color: #b8b8b8;
+        }
 
-.popup-benefits p {
-    margin: 8px 0;
-    color: #b8b8b8;
-}
+        .popup-benefits i {
+            color: #04e762;
+            margin-right: 8px;
+        }
 
-.popup-benefits i {
-    color: #04e762;
-    margin-right: 8px;
-}
+        .popup-price {
+            text-align: center;
+            margin: 20px 0 0;
+            font-size: 1.1rem;
+        }
 
-.popup-price {
-    text-align: center;
-    margin: 20px 0 0;
-    font-size: 1.1rem;
-}
+        /* Opsi Pembayaran */
+        .payment-option {
+            display:行き flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+        }
 
-.popup-footer {
-    display: flex;
-    gap: 10px;
-    padding: 15px 25px;
-    background-color: rgba(0,0,0,0.3);
-}
+        .payment-option:hover {
+            background: rgba(255, 215, 0, 0.15);
+            border-color: #ffd700;
+            transform: translateY(-2px);
+        }
 
-.popup-btn {
-    flex: 1;
-    padding: 12px;
-    border: none;
-    border-radius: 6px;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: bold;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.2s;
-}
+        .payment-option.selected {
+            background: rgba(255, 215, 0, 0.25);
+            border: 2px solid #ffd700;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
 
-.popup-btn.confirm {
-    background-color: #e8a337;
-    color: black;
-}
+        .payment-option i,
+        .payment-option img {
+            font-size: 1.4rem;
+            margin-right: 14px;
+            width: 32px;
+            text-align: center;
+            color: #00d4ff;
+        }
 
-.popup-btn.confirm:hover {
-    background-color: #ffd700;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(232, 163, 55, 0.4);
-}
+        .payment-option img {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+        }
 
-.popup-btn.cancel {
-    background-color: transparent;
-    color: #aaa;
-    border: 2px solid #555;
-}
+        /* Footer */
+        .popup-footer {
+            display: flex;
+            gap: 12px;
+            padding: 16px 20px;
+            background: #0a0a0a;
+        }
 
-.popup-btn.cancel:hover {
-    background-color: rgba(255,255,255,0.1);
-    color: white;
-    border-color: #aaa;
-}
-		
+        .popup-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            letter-spacing: 1px;
+        }
+        
+
+        .btn-cancel {
+            background: #1a1a1a;
+            color: #ccc;
+            border: 2px solid #444;
+        }
+
+        .btn-cancel:hover {
+            background: #333;
+            color: white;
+            border-color: #666;
+        }
+
+        .btn-confirm {
+            background: #444;
+            color: #aaa;
+        }
+
+        .btn-confirm.active {
+            background: #666;
+            color: white;
+            cursor: pointer;
+        }
+
+        .btn-confirm.active:hover {
+            background: #888;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
 		</style>
 	</head>
 	<body>
@@ -579,59 +603,36 @@
 						<div class="pass-content-window">
 							<div class="tab-pane" id="track-content">
 								<div class="track-labels-vertical">
-									<span class="premium">
-										<i class="fas fa-star"></i>
-										PREMIUM</span>
-									<span class="free">
-										<i class="fas fa-lock-open"></i>
-										GRATIS</span>
+									<span class="premium">Premium</span>
+									<span class="free">Gratis</span>
 								</div>
 								<div class="reward-track-container">
 									<div class="reward-track">
+										<!-- Level 1-5 -->
 										<div class="track-level">
-											<div class="reward-item premium claimed">
-												<i class="fas fa-user-shield reward-icon"></i>
-											</div>
+											<div class="reward-item premium claimed"><i class="fas fa-user-shield reward-icon"></i></div>
 											<span class="level-number">1</span>
-											<div class="reward-item free claimed">
-												<i class="fas fa-coins reward-icon" style="color: #ffd700;"></i>
-											</div>
+											<div class="reward-item free claimed"><i class="fas fa-coins reward-icon" style="color: #ffd700;"></i></div>
 										</div>
 										<div class="track-level">
-											<div class="reward-item premium claimed">
-												<i class="fas fa-gem reward-icon" style="color: #00bfff;"></i>
-											</div>
+											<div class="reward-item premium claimed"><i class="fas fa-gem reward-icon" style="color: #00bfff;"></i></div>
 											<span class="level-number">2</span>
-											<div class="reward-item free locked">
-												<i class="fas fa-lock reward-icon"></i>
-											</div>
+											<div class="reward-item free locked"><i class="fas fa-lock reward-icon"></i></div>
 										</div>
 										<div class="track-level active">
-											<div class="reward-item premium unlocked">
-												<i class="fas fa-fire reward-icon" style="color: red;"></i>
-											</div>
+											<div class="reward-item premium unlocked"><i class="fas fa-fire reward-icon" style="color: red;"></i></div>
 											<span class="level-number">3</span>
-											<div class="reward-item free unlocked">
-												<i class="fas fa-coins reward-icon" style="color: #ffd700;"></i>
-											</div>
+											<div class="reward-item free unlocked"><i class="fas fa-coins reward-icon" style="color: #ffd700;"></i></div>
 										</div>
 										<div class="track-level">
-											<div class="reward-item premium locked">
-												<i class="fas fa-lock reward-icon"></i>
-											</div>
+											<div class="reward-item premium locked"><i class="fas fa-lock reward-icon"></i></div>
 											<span class="level-number">4</span>
-											<div class="reward-item free locked">
-												<i class="fas fa-lock reward-icon"></i>
-											</div>
+											<div class="reward-item free locked"><i class="fas fa-lock reward-icon"></i></div>
 										</div>
 										<div class="track-level">
-											<div class="reward-item premium locked">
-												<i class="fas fa-user-secret reward-icon"></i>
-											</div>
+											<div class="reward-item premium locked"><i class="fas fa-user-secret reward-icon"></i></div>
 											<span class="level-number">5</span>
-											<div class="reward-item free locked">
-												<i class="fas fa-lock reward-icon"></i>
-											</div>
+											<div class="reward-item free locked"><i class="fas fa-lock reward-icon"></i></div>
 										</div>
 										<script>
                                         for (let i = 6; i <= 30; i++) {
@@ -643,7 +644,6 @@
                                                 </div>
                                             `);
                                         }
-										
 										</script>
 									</div>
 								</div>
@@ -652,65 +652,10 @@
 								<div class="challenges-list">
 									<h3>TANTANGAN MINGGUAN</h3>
 									<div class="challenge-item">
-										<div class="challenge-info">
-											<div class="challenge-desc">Selesaikan 10 Pertandingan Ranked</div>
-										</div>
+										<div class="challenge-info"><div class="challenge-desc">Selesaikan 10 Pertandingan Ranked</div></div>
 										<div class="challenge-reward">200 EXP</div>
 									</div>
-									<div class="challenge-item">
-										<div class="challenge-info">
-											<div class="challenge-desc">Menangkan 5 Pertandingan Tanpa Kalah</div>
-										</div>
-										<div class="challenge-reward">180 EXP</div>
-									</div>
-									<div class="challenge-item">
-										<div class="challenge-info">
-											<div class="challenge-desc">Menangkan 15 Pertandingan Casual</div>
-										</div>
-										<div class="challenge-reward">150 EXP</div>
-									</div>
-									<div class="challenge-item">
-										<div class="challenge-info">
-											<div class="challenge-desc">Dapatkan 25 Point Kemenangan</div>
-										</div>
-										<div class="challenge-reward">190 EXP</div>
-									</div>
-									<div class="challenge-item">
-										<div class="challenge-info">
-											<div class="challenge-desc">Selesaikan 20 Pertandingan Casual</div>
-										</div>
-										<div class="challenge-reward">160 EXP</div>
-									</div>
-									<div class="challenge-item">
-										<div class="challenge-info">
-											<div class="challenge-desc">Gunakan Karakter Spiderman Selama 3 Pertandingan</div>
-										</div>
-										<div class="challenge-reward">120 EXP</div>
-									</div>
-									<div class="challenge-item">
-										<div class="challenge-info">
-											<div class="challenge-desc">Kumpulkan Total 30000 Koin dari Pertandingan</div>
-										</div>
-										<div class="challenge-reward">140 EXP</div>
-									</div>
-									<div class="challenge-item">
-										<div class="challenge-info">
-											<div class="challenge-desc">Gunakan Skin Black Spider Minimal 5 Kali</div>
-										</div>
-										<div class="challenge-reward">130 EXP</div>
-									</div>
-									<div class="challenge-item">
-										<div class="challenge-info">
-											<div class="challenge-desc">Login Selama 7 Hari Berturut-turut</div>
-										</div>
-										<div class="challenge-reward">170 EXP</div>
-									</div>
-									<div class="challenge-item">
-										<div class="challenge-info">
-											<div class="challenge-desc">Login Selama 15 Hari Berturut-turut</div>
-										</div>
-										<div class="challenge-reward">100 EXP</div>
-									</div>
+									<!-- Tambahkan tantangan lain jika perlu -->
 								</div>
 							</div>
 						</div>
@@ -718,32 +663,23 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- POPUP KONFIRMASI -->
 		<div id="premium-popup" class="popup-overlay">
 			<div class="popup-content">
 				<div class="popup-header">
-					<h3>KONFIRMASI PEMBELIAN</h3>
-					<span class="popup-close">×</span>
+					<span>KONFIRMASI PEMBELIAN</span>
+					<span class="popup-close">X</span>
 				</div>
 				<div class="popup-body">
-					<p>Apakah Anda yakin ingin membeli
-						<strong>PREMIUM PASS</strong>?</p>
+					<p>Apakah Anda yakin ingin membeli <strong>PREMIUM PASS</strong>?</p>
 					<div class="popup-benefits">
-						<p>
-							<i class="fas fa-check"></i>
-							Akses ke semua hadiah premium</p>
-						<p>
-							<i class="fas fa-check"></i>
-							Skin eksklusif &amp; bonus EXP</p>
-						<p>
-							<i class="fas fa-check"></i>
-							Total:
-							<strong>30+ item premium</strong>
-						</p>
+						<p><i class="fas fa-check"></i> Akses ke semua hadiah premium</p>
+						<p><i class="fas fa-check"></i> Skin eksklusif & bonus EXP</p>
+						<p><i class="fas fa-check"></i> Total: <strong>30+ item premium</strong></p>
 					</div>
 					<div class="popup-price">
-						<span>Harga:
-							<strong style="color: #e8a337; font-size: 1.4rem;">Rp 149.000</strong>
-						</span>
+						<span>Harga: <strong style="color: #e8a337; font-size: 1.4rem;">Rp 149.000</strong></span>
 					</div>
 				</div>
 				<div class="popup-footer">
@@ -752,44 +688,112 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- POPUP METODE PEMBAYARAN -->
+		<div id="payment-popup" class="popup-overlay">
+			<div class="popup-content">
+				<div class="popup-header">
+					<span>PILIH METODE PEMBAYARAN</span>
+					<span class="popup-close">X</span>
+				</div>
+				<div class="popup-body">
+					<div class="payment-option" data-method="gopay">
+						<i class="fas fa-wallet"></i>
+						<span>GoPay</span>
+					</div>
+					<div class="payment-option" data-method="ovo">
+						<i class="fas fa-wallet"></i>
+						<span>OVO</span>
+					</div>
+					<div class="payment-option" data-method="dana">
+						<i class="fas fa-mobile-alt"></i>
+						<span>DANA</span>
+					</div>
+					<div class="payment-option" data-method="shopeepay">
+						<i class="fas fa-lock"></i>
+						<span>ShopeePay</span>
+					</div>
+					<div class="payment-option" data-method="bank">
+						<i class="fas fa-university"></i>
+						<span>Transfer Bank</span>
+					</div>
+				</div>
+				<div class="popup-footer">
+					<button class="popup-btn btn-cancel">BATAL</button>
+					<button class="popup-btn btn-confirm" id="confirm-payment" disabled>KONFIRMASI</button>
+				</div>
+			</div>
+		</div>
+
 		<script>
-// JavaScript untuk Pop-up
-document.addEventListener('DOMContentLoaded', function() {
-    const buyButton = document.querySelector('.header-buttons .pass-button');
-    const popup = document.getElementById('premium-popup');
-    const closeBtn = document.querySelector('.popup-close');
-    const cancelBtn = document.getElementById('cancel-purchase');
-    const confirmBtn = document.getElementById('confirm-purchase');
+		document.addEventListener('DOMContentLoaded', function() {
+			const buyBtn = document.getElementById('buy-premium-btn');
+			const confirmPopup = document.getElementById('premium-popup');
+			const paymentPopup = document.getElementById('payment-popup');
 
-    // Buka pop-up
-    buyButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        popup.classList.add('show');
-    });
+			const confirmBtn = document.getElementById('confirm-purchase');
+			const cancelBtn = document.getElementById('cancel-purchase');
+			const closeConfirm = confirmPopup.querySelector('.popup-close');
 
-    // Tutup pop-up
-    function closePopup() {
-        popup.classList.remove('show');
-    }
+			const paymentOptions = document.querySelectorAll('#payment-popup .payment-option');
+			const confirmPaymentBtn = document.getElementById('confirm-payment');
+			const cancelPaymentBtn = paymentPopup.querySelector('.btn-cancel');
+			const closePayment = paymentPopup.querySelector('.popup-close');
 
-    closeBtn.addEventListener('click', closePopup);
-    cancelBtn.addEventListener('click', closePopup);
+			let selectedMethod = null;
 
-    // Klik di luar pop-up juga menutup
-    popup.addEventListener('click', function(e) {
-        if (e.target === popup) {
-            closePopup();
-        }
-    });
+			// Buka Konfirmasi
+			buyBtn.addEventListener('click', e => {
+				e.preventDefault();
+				confirmPopup.classList.add('show');
+			});
 
-    // Tombol "YA, BELI" (bisa diganti ke pembayaran nyata nanti)
-    confirmBtn.addEventListener('click', function() {
-        alert('Pembelian Premium Pass berhasil! Selamat menikmati hadiah eksklusif!');
-        closePopup();
-        // Di sini bisa redirect ke pembayaran atau proses backend
-    });
-});
+			// Tutup Popup
+			function closePopup(popup) {
+				popup.classList.remove('show');
+			}
 
+			// Tutup Konfirmasi
+			closeConfirm.addEventListener('click', () => closePopup(confirmPopup));
+			cancelBtn.addEventListener('click', () => closePopup(confirmPopup));
+			confirmPopup.addEventListener('click', e => { if (e.target === confirmPopup) closePopup(confirmPopup); });
+
+			// Lanjut ke Metode Pembayaran
+			confirmBtn.addEventListener('click', () => {
+				closePopup(confirmPopup);
+				paymentPopup.classList.add('show');
+				selectedMethod = null;
+				confirmPaymentBtn.disabled = true;
+				confirmPaymentBtn.classList.remove('active');
+				paymentOptions.forEach(opt => opt.classList.remove('selected'));
+			});
+
+			// Pilih Metode
+			paymentOptions.forEach(option => {
+				option.addEventListener('click', function() {
+					paymentOptions.forEach(opt => opt.classList.remove('selected'));
+					this.classList.add('selected');
+					selectedMethod = this.getAttribute('data-method');
+					confirmPaymentBtn.disabled = false;
+					confirmPaymentBtn.classList.add('active');
+				});
+			});
+
+			// Kembali dari Pembayaran
+			cancelPaymentBtn.addEventListener('click', () => {
+				closePopup(paymentPopup);
+				confirmPopup.classList.add('show');
+			});
+			closePayment.addEventListener('click', () => closePopup(paymentPopup));
+			paymentPopup.addEventListener('click', e => { if (e.target === paymentPopup) closePopup(paymentPopup); });
+
+			// Konfirmasi Pembayaran
+			confirmPaymentBtn.addEventListener('click', function() {
+				if (!selectedMethod) return;
+				alert(`Pembayaran via ${document.querySelector('#payment-popup .payment-option.selected span').textContent} berhasil!`);
+				closePopup(paymentPopup);
+			});
+		});
 		</script>
 	</body>
 </html>

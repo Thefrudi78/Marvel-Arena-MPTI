@@ -198,7 +198,7 @@
             color: #fff;
         }
 
-        /* POPUP KONFIRMASI - TANPA SALDO DIAMOND */
+        /* MODAL */
         .confirm-modal {
             display: none;
             position: fixed;
@@ -359,6 +359,48 @@
             color: #fff;
         }
 
+        /* METODE PEMBAYARAN */
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 15px 0;
+        }
+        .payment-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        .payment-option input {
+            display: none;
+        }
+        .payment-item {
+            flex: 1;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 10px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: 0.3s;
+            font-weight: 700;
+            color: #ddd;
+        }
+        .payment-item i {
+            font-size: 1.4rem;
+            color: #4fc3f7;
+        }
+        .payment-option input:checked + .payment-item {
+            background: rgba(255,215,0,0.15);
+            border-color: #ffd700;
+            color: #fff;
+            box-shadow: 0 0 15px rgba(255,215,0,0.3);
+        }
+        .payment-item:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
         /* Responsive */
         @media (max-width: 480px) {
             .diamond-balance {
@@ -392,7 +434,6 @@
         <p class="topup-subtitle">
             Dapatkan Skin Eksklusif, Season Pass, & Item Premium!
         </p>
-
         <!-- 8 PAKET -->
         <div class="diamond-grid">
             <div class="diamond-card" data-diamonds="50" data-price="8000" data-bonus="0">
@@ -443,7 +484,7 @@
             </div>
         </div>
 
-        <!-- POPUP KONFIRMASI -->
+        <!-- MODAL KONFIRMASI -->
         <div class="confirm-modal" id="confirm-modal">
             <div class="modal-content">
                 <div class="modal-header">
@@ -471,14 +512,72 @@
             </div>
         </div>
 
+        <!-- MODAL METODE PEMBAYARAN -->
+        <div class="confirm-modal" id="payment-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span>PILIH METODE PEMBAYARAN</span>
+                    <span class="modal-close" id="payment-close">x</span>
+                </div>
+                <div class="modal-body">
+                    <div class="payment-options">
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="gopay" />
+                            <div class="payment-item">
+                                <i class="fab fa-google-pay"></i>
+                                <span>GoPay</span>
+                            </div>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="ovo" />
+                            <div class="payment-item">
+                                <i class="fas fa-wallet"></i>
+                                <span>OVO</span>
+                            </div>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="dana" />
+                            <div class="payment-item">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>DANA</span>
+                            </div>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="shopeepay" />
+                            <div class="payment-item">
+                                <i class="fas fa-shopping-bag"></i>
+                                <span>ShopeePay</span>
+                            </div>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="bank" />
+                            <div class="payment-item">
+                                <i class="fas fa-university"></i>
+                                <span>Transfer Bank</span>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="modal-buttons" style="margin-top: 25px;">
+                        <button class="btn-cancel" id="payment-cancel">BATAL</button>
+                        <button class="btn-buy" id="btn-confirm-payment" disabled>KONFIRMASI</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script>
         const cards = document.querySelectorAll('.diamond-card');
-        const modal = document.getElementById('confirm-modal');
+        const confirmModal = document.getElementById('confirm-modal');
+        const paymentModal = document.getElementById('payment-modal');
         const modalClose = document.getElementById('modal-close');
+        const paymentClose = document.getElementById('payment-close');
         const btnBuy = document.getElementById('btn-buy');
         const btnCancel = document.getElementById('btn-cancel');
+        const btnConfirmPayment = document.getElementById('btn-confirm-payment');
+        const paymentCancel = document.getElementById('payment-cancel');
         const warning = document.getElementById('warning-text');
         const packageName = document.getElementById('package-name');
         const packageDiamonds = document.getElementById('package-diamonds');
@@ -488,9 +587,10 @@
 
         // Simulasi saldo uang (Rp)
         let userMoney = 200000;
-
         let selectedPackage = null;
+        let selectedPaymentMethod = null;
 
+        // === KLIK CARD ===
         cards.forEach(card => {
             card.addEventListener('click', () => {
                 cards.forEach(c => c.classList.remove('selected'));
@@ -501,14 +601,14 @@
                     bonus: parseInt(card.dataset.bonus)
                 };
 
-                // Update popup
+                // Update modal konfirmasi
                 packageName.textContent = `Paket ${selectedPackage.diamonds} Diamond`;
                 packageDiamonds.textContent = `${selectedPackage.diamonds.toLocaleString()} Diamond`;
                 packageBonus.textContent = selectedPackage.bonus > 0 ? `+${selectedPackage.bonus} Bonus` : '';
                 packageBonus.style.display = selectedPackage.bonus > 0 ? 'block' : 'none';
                 packagePrice.textContent = `Rp ${selectedPackage.price.toLocaleString('id-ID')}`;
 
-                // Cek saldo uang
+                // Cek saldo
                 if (userMoney >= selectedPackage.price) {
                     btnBuy.classList.add('enabled');
                     warning.style.display = 'none';
@@ -517,37 +617,61 @@
                     warning.style.display = 'flex';
                 }
 
-                modal.classList.add('active');
+                confirmModal.classList.add('active');
             });
         });
 
-        // Tutup modal
-        modalClose.addEventListener('click', closeModal);
-        btnCancel.addEventListener('click', closeModal);
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
-
-        function closeModal() {
-            modal.classList.remove('active');
-            cards.forEach(c => c.classList.remove('selected'));
-            selectedPackage = null;
-        }
-
-        // Beli
+        // === LANJUTKAN KE PEMBAYARAN ===
         btnBuy.addEventListener('click', () => {
             if (!btnBuy.classList.contains('enabled')) return;
+            confirmModal.classList.remove('active');
+            paymentModal.classList.add('active');
+        });
 
+        // === PILIH METODE PEMBAYARAN ===
+        document.querySelectorAll('input[name="payment"]').forEach(radio => {
+            radio.addEventListener('change', () => {
+                selectedPaymentMethod = radio.value;
+                btnConfirmPayment.disabled = false;
+                btnConfirmPayment.classList.add('enabled');
+            });
+        });
+
+        // === KONFIRMASI PEMBAYARAN ===
+        btnConfirmPayment.addEventListener('click', () => {
+            if (!selectedPaymentMethod) return;
+
+            // Proses pembelian
             const newDiamonds = parseInt(currentDiamonds.textContent.replace(/,/g, '')) + selectedPackage.diamonds;
             currentDiamonds.textContent = newDiamonds.toLocaleString('id-ID');
             userMoney -= selectedPackage.price;
 
-            alert(`Pembelian Berhasil!\n+${selectedPackage.diamonds} Diamond ditambahkan.`);
+            alert(`Pembelian Berhasil!\n+${selectedPackage.diamonds} Diamond ditambahkan via ${selectedPaymentMethod.toUpperCase()}.`);
 
-            closeModal();
+            closeAllModals();
         });
 
-        // Selected style
+        // === TUTUP SEMUA MODAL ===
+        function closeAllModals() {
+            confirmModal.classList.remove('active');
+            paymentModal.classList.remove('active');
+            cards.forEach(c => c.classList.remove('selected'));
+            selectedPackage = null;
+            selectedPaymentMethod = null;
+            btnConfirmPayment.disabled = true;
+            btnConfirmPayment.classList.remove('enabled');
+            document.querySelectorAll('input[name="payment"]').forEach(r => r.checked = false);
+        }
+
+        modalClose.addEventListener('click', closeAllModals);
+        btnCancel.addEventListener('click', closeAllModals);
+        paymentClose.addEventListener('click', closeAllModals);
+        paymentCancel.addEventListener('click', closeAllModals);
+
+        confirmModal.addEventListener('click', (e) => { if (e.target === confirmModal) closeAllModals(); });
+        paymentModal.addEventListener('click', (e) => { if (e.target === paymentModal) closeAllModals(); });
+
+        // === STYLE DINAMIS ===
         const style = document.createElement('style');
         style.textContent = `
             .diamond-card.selected {

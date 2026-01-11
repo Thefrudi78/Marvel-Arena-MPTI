@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marvel: Anime Arena - Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Pengaturan Dasar */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            /* [DIUBAH] Menggunakan font Orbitron */
+            font-family: 'Orbitron', sans-serif;
+            color: white;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        /* Kontainer Utama & Latar Belakang Sinematik */
+        .login-container {
+            height: 100vh;
+            position: relative;
+            
+            /* ============================================== */
+            /* [ GANTI BACKGROUND DI SINI ] */
+            /* Ganti URL di bawah ini dengan gambar latar Anda */
+            /* ============================================== */
+            background: url('aset/lobby.jpg') no-repeat center center;
+            background-size: cover;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        
+        /* Lapisan gelap dan EFEK BLUR */
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(10, 20, 30, 0.6);
+            /* [ INI ADALAH EFEK BLUR ] */
+            /* Anda bisa mengubah '5px' menjadi lebih besar/kecil */
+            backdrop-filter: blur(5px);
+            z-index: 1;
+        }
+        
+        /* Wrapper untuk menampung semua konten di tengah */
+        .login-wrapper {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* ==================================
+           ZONA ATAS: LOGO & SAMBUTAN
+           ================================== */
+        .login-header {
+            text-align: center;
+        }
+        
+        .game-logo {
+            /* Font Teko dihapus, otomatis menggunakan Orbitron */
+            font-size: 4.5rem; /* Disesuaikan untuk Orbitron */
+            font-weight: 900; /* Menggunakan bobot terberat */
+            letter-spacing: 2px;
+            margin: 0;
+            line-height: 1;
+            color:white;
+
+        }
+        
+        .welcome-msg {
+            font-size: 1.2rem; /* Disesuaikan untuk Orbitron */
+            font-weight: 400; /* Bobot normal */
+            color: #ccc;
+            margin: 0;
+        }
+
+        /* ==================================
+           ZONA TENGAH: PANEL FORMULIR LOGIN
+           ================================== */
+        .login-form {
+            background-color:  rgba(0, 0, 0, 0.8);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px 40px;
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 15px;
+            background-color: rgba(0,0,0,0.3);
+            border: 1px solid #555;
+            border-radius: 5px;
+            color: white;
+            font-size: 1rem;
+            font-family: 'Orbitron', sans-serif; /* Pastikan input juga menggunakan font */
+            box-sizing: border-box;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: #e8a337;
+        }
+
+        /* [DIUBAH] Tombol utama sekarang adalah link (<a>) */
+        .btn-primary {
+            background-color: #e8a337;
+            color: black;
+            padding: 15px;
+            border-radius: 5px;
+            border: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            text-decoration: none; /* Menghilangkan garis bawah link */
+            text-align: center; /* Memastikan teks di tengah */
+        }
+        .btn-primary:hover {
+            background-color: #ffd700;
+        }
+
+        .forgot-password {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-align: right;
+            margin-top: -10px;
+        }
+        .forgot-password:hover {
+            color: white;
+        }
+
+        .separator {
+            font-size: 0.9rem;
+            color: #777;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #e8a337;
+            border: 2px solid #e8a337;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .btn-secondary:hover {
+            background-color: rgba(232, 163, 55, 0.1);
+            color: #ffd700;
+        }
+
+        /* ==================================
+           ZONA BAWAH: LOGIN PIHAK KETIGA
+           ================================== */
+        .social-login {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .social-login span {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+        .social-icon {
+            font-size: 2rem;
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.2s, transform 0.2s;
+        }
+        .social-icon:hover {
+            color: white;
+            transform: scale(1.2);
+        }
+        
+        /* ==================================
+           SUDUT BAWAH: INFO VERSI
+           ================================== */
+        .version-info {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            z-index: 2;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        
+        <div class="login-wrapper">
+
+            <div class="login-header">
+                <h1 class="game-logo">MARVEL ARENA</h1>
+                <p class="welcome-msg">Selamat Datang, Pejuang!</p>
+            </div>
+
+            <div class="login-form">
+                <input type="text" class="input-field" placeholder="Masukkan Username / Email">
+                <input type="password" class="input-field" placeholder="Masukkan Kata Sandi">
+                
+                <a href="index.html" class="btn-primary">Login</a>
+                
+                <a href="#" class="forgot-password">Lupa Kata Sandi?</a>
+                
+                <div class="separator">atau</div>
+
+                <a href="register.html" class="btn-secondary">Daftar Akun Baru</a>
+            </div>
+
+            <div class="social-login">
+                <span>Login dengan:</span>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-google"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-apple"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+
+        </div> <div class="version-info">
+            Versi 1.0.2
+        </div>
+
+    </div> </body>
+</html>

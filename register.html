@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marvel: Anime Arena - Daftar Akun</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Pengaturan Dasar */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            /* Menggunakan font Orbitron */
+            font-family: 'Orbitron', sans-serif;
+            color: white;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        /* Kontainer Utama & Latar Belakang */
+        .register-container {
+            height: 100vh;
+            position: relative;
+            
+            /* ============================================== */
+            /* [ GANTI BACKGROUND DI SINI ] */
+            /* Ganti URL di bawah ini dengan gambar latar Anda */
+            /* ============================================== */
+            background: url('aset/lobby.jpg') no-repeat center center;
+            background-size: cover;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        
+        /* Lapisan gelap dan EFEK BLUR */
+        .register-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(10, 20, 30, 0.7); /* Sedikit lebih gelap untuk fokus */
+            backdrop-filter: blur(5px);
+            z-index: 1;
+        }
+        
+        /* Wrapper untuk menampung semua konten di tengah */
+        .register-wrapper {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* ==================================
+           ZONA ATAS: JUDUL
+           ================================== */
+        .register-header {
+            text-align: center;
+        }
+        
+        .register-header h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            margin: 0;
+            line-height: 1;
+            color: white;
+
+        }
+        
+        .register-header p {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: #ccc;
+            margin: 10px 0 0 0;
+        }
+
+        /* ==================================
+           ZONA TENGAH: FORMULIR PENDAFTARAN
+           ================================== */
+        .register-form {
+            background-color: rgba(10, 20, 30, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px 40px;
+            width: 450px; /* Sedikit lebih lebar */
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Jarak antar input grup */
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .input-group label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #aaa;
+            text-transform: uppercase;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            background-color: rgba(0,0,0,0.3);
+            border: 1px solid #555;
+            border-radius: 5px;
+            color: white;
+            font-size: 1rem;
+            font-family: 'Orbitron', sans-serif;
+            box-sizing: border-box;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: #e8a337;
+        }
+
+        .input-group small {
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        /* ==================================
+           ZONA BAWAH: PERSETUJUAN & AKSI
+           ================================== */
+        .form-agreement {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-agreement label {
+            font-size: 0.8rem;
+            color: #ccc;
+        }
+        
+        .form-agreement a {
+            color: #e8a337;
+            text-decoration: none;
+        }
+        .form-agreement a:hover {
+            text-decoration: underline;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .btn {
+            flex: 1; /* Membuat kedua tombol seimbang */
+            padding: 15px;
+            border-radius: 5px;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background-color: #e8a337;
+            color: black;
+        }
+        .btn-primary:hover {
+            background-color: #ffd700;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #e8a337;
+            border: 2px solid #e8a337;
+        }
+        .btn-secondary:hover {
+            background-color: rgba(232, 163, 55, 0.1);
+            color: #ffd700;
+        }
+        
+        /* Tombol non-aktif (opsional) */
+        .btn-primary.disabled {
+            background-color: #555;
+            color: #999;
+            cursor: not-allowed;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="register-container">
+        
+        <div class="register-wrapper">
+
+            <div class="register-header">
+                <h1>DAFTAR AKUN BARU</h1>
+                <p>Bergabunglah dengan komunitas pejuang kami!</p>
+            </div>
+
+            <form class="register-form">
+                
+                <div class="input-group">
+                    <label for="username">USERNAME</label>
+                    <input type="text" id="username" class="input-field" placeholder="Masukkan Username Pilihan Anda">
+                    <small>Username akan terlihat oleh pemain lain.</small>
+                </div>
+                
+                <div class="input-group">
+                    <label for="email">ALAMAT EMAIL</label>
+                    <input type="email" id="email" class="input-field" placeholder="Masukkan Alamat Email Aktif Anda">
+                    <small>Email ini akan digunakan untuk pemulihan akun.</small>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">KATA SANDI</label>
+                    <input type="password" id="password" class="input-field" placeholder="Masukkan Kata Sandi">
+                    <small>Minimal 8 karakter, gabungan huruf dan angka.</small>
+                </div>
+                
+                <div class="input-group">
+                    <label for="confirm-password">KONFIRMASI KATA SANDI</label>
+                    <input type="password" id="confirm-password" class="input-field" placeholder="Ulangi Kata Sandi Anda">
+                </div>
+
+                <div class="form-agreement">
+                    <input type="checkbox" id="tos">
+                    <label for="tos">Saya setuju dengan <a href="#">Syarat & Ketentuan</a> serta <a href="#">Kebijakan Privasi</a>.</label>
+                </div>
+
+                <div class="form-actions">
+                    <a href="login.html" class="btn btn-secondary">Kembali</a>
+                    
+                    <button type="submit" class="btn btn-primary">Daftar Akun</button>
+                </div>
+                
+            </form>
+
+        </div> </div> </body>
+</html>
